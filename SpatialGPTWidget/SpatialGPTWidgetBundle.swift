@@ -11,7 +11,8 @@ import SwiftUI
 @main
 struct SpatialLLMWidgetBundle: WidgetBundle {
     var body: some Widget {
-        SpatialLLMWidget()
+        SecurityLLMWidget()
+        FinanceLLMWidget()
     }
 }
 

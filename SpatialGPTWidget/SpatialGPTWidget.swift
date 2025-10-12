@@ -8,6 +8,10 @@
 import WidgetKit
 import SwiftUI
 
+enum LLMFlavor { case security, finance }
+
+// MARK: - View Model
+
 struct LLMInfo: Hashable {
     let id: UUID = .init()
     let title: String
@@ -17,10 +21,11 @@ struct LLMInfo: Hashable {
     let securityHeader: String
     let securityBullets: [String]
     let footer: String
-    
-    static func forChoice(_ choice: LLMChoice) -> LLMInfo {
-        switch choice {
-        case .chatgpt:
+
+    static func forChoice(_ choice: LLMChoice, flavor: LLMFlavor) -> LLMInfo {
+        switch (choice, flavor) {
+
+        case (.chatgpt, .security):
             return LLMInfo(
                 title: "ChatGPT",
                 logoName: "ChatGPT",
@@ -37,7 +42,27 @@ struct LLMInfo: Hashable {
                 ],
                 footer: "ChatGPT is an AI chatbot that understands and generates human-like text."
             )
-        case .anthropic:
+
+        case (.chatgpt, .finance):
+            return LLMInfo(
+                title: "ChatGPT",
+                logoName: "ChatGPT",
+                overviewHeader: "Overview",
+                overviewBullets: [
+                    "Powerful model",
+                    "Widely used",
+                    "Based on US infrastructure"
+                ],
+                securityHeader: "Financial Overview",
+                securityBullets: [
+                    "High API costs",
+                    "$0.01–$0.06 per 1,000 tokens",
+                    "High costs for continuous use"
+                ],
+                footer: "ChatGPT is an AI chatbot that understands and generates human-like text."
+            )
+
+        case (.anthropic, .security):
             return LLMInfo(
                 title: "Claude",
                 logoName: "Anthropic",
@@ -55,11 +80,29 @@ struct LLMInfo: Hashable {
                 ],
                 footer: "Claude is an AI chatbot that understands and generates human-like text."
             )
+
+        case (.anthropic, .finance):
+            return LLMInfo(
+                title: "Claude",
+                logoName: "Anthropic",
+                overviewHeader: "Overview",
+                overviewBullets: [
+                    "Powerful model",
+                    "Very secure",
+                    "Produces reliable statements"
+                ],
+                securityHeader: "Financial Overview",
+                securityBullets: [
+                    "Medium",
+                    "$0.005–$0.03 per 1,000 tokens"
+                ],
+                footer: "Claude is an AI chatbot that understands and generates human-like text."
+            )
         }
     }
 }
 
-// MARK: - Timeline
+// MARK: - Timeline Entries
 
 struct LLMEntry: TimelineEntry {
     let date: Date
@@ -67,17 +110,19 @@ struct LLMEntry: TimelineEntry {
     let info: LLMInfo
 }
 
-struct LLMProvider: AppIntentTimelineProvider {
+// MARK: - Providers (one per flavor)
+
+struct SecurityLLMProvider: AppIntentTimelineProvider {
     func placeholder(in context: Context) -> LLMEntry {
-        // Use any demo choice here; config itself can be default-inited
-        let demoChoice: LLMChoice = .chatgpt
-        return LLMEntry(date: .now,
-                        config: LLMConfigurationIntent(),
-                        info: .forChoice(demoChoice))
+        LLMEntry(date: .now,
+                 config: LLMConfigurationIntent(),
+                 info: .forChoice(.chatgpt, flavor: .security))
     }
 
     func snapshot(for configuration: LLMConfigurationIntent, in context: Context) async -> LLMEntry {
-        LLMEntry(date: .now, config: configuration, info: .forChoice(configuration.provider))
+        LLMEntry(date: .now,
+                 config: configuration,
+                 info: .forChoice(configuration.provider, flavor: .security))
     }
 
     func timeline(for configuration: LLMConfigurationIntent, in context: Context) async -> Timeline<LLMEntry> {
@@ -85,7 +130,31 @@ struct LLMProvider: AppIntentTimelineProvider {
         let entries = (0..<5).map { h in
             LLMEntry(date: Calendar.current.date(byAdding: .hour, value: h, to: start)!,
                      config: configuration,
-                     info: .forChoice(configuration.provider))
+                     info: .forChoice(configuration.provider, flavor: .security))
+        }
+        return Timeline(entries: entries, policy: .atEnd)
+    }
+}
+
+struct FinanceLLMProvider: AppIntentTimelineProvider {
+    func placeholder(in context: Context) -> LLMEntry {
+        LLMEntry(date: .now,
+                 config: LLMConfigurationIntent(),
+                 info: .forChoice(.chatgpt, flavor: .finance))
+    }
+
+    func snapshot(for configuration: LLMConfigurationIntent, in context: Context) async -> LLMEntry {
+        LLMEntry(date: .now,
+                 config: configuration,
+                 info: .forChoice(configuration.provider, flavor: .finance))
+    }
+
+    func timeline(for configuration: LLMConfigurationIntent, in context: Context) async -> Timeline<LLMEntry> {
+        let start = Date()
+        let entries = (0..<5).map { h in
+            LLMEntry(date: Calendar.current.date(byAdding: .hour, value: h, to: start)!,
+                     config: configuration,
+                     info: .forChoice(configuration.provider, flavor: .finance))
         }
         return Timeline(entries: entries, policy: .atEnd)
     }
@@ -96,7 +165,7 @@ struct LLMProvider: AppIntentTimelineProvider {
 struct LLMCardView: View {
     let info: LLMInfo
     @Environment(\.levelOfDetail) private var lod
-    
+
     var body: some View {
         switch lod {
         case .simplified:
@@ -105,7 +174,7 @@ struct LLMCardView: View {
             detailedView
         }
     }
-    
+
     private var simplifiedView: some View {
         VStack(spacing: 8) {
             Image(info.logoName)
@@ -113,21 +182,21 @@ struct LLMCardView: View {
                 .scaledToFit()
                 .frame(maxWidth: 60, maxHeight: 60)
                 .accessibilityHidden(true)
-            
+
             Text(info.title)
                 .font(.system(size: 30, weight: .bold))
                 .lineLimit(1)
                 .minimumScaleFactor(0.8)
                 .accessibilityLabel("\(info.title) widget")
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(8)
     }
-    
+
     private var detailedView: some View {
         VStack(alignment: .leading, spacing: 2) {
-            Spacer()
-            // HStack with logo then title
+            Spacer(minLength: 0)
+
             HStack(alignment: .center, spacing: 10) {
                 Image(info.logoName)
                     .resizable()
@@ -141,29 +210,28 @@ struct LLMCardView: View {
                     .lineLimit(1)
                     .minimumScaleFactor(0.8)
             }
-            
+
             Divider()
-            
+
             SectionHeader(title: info.overviewHeader)
             BulletList(items: info.overviewBullets)
-            
+
             Divider()
-            
+
             SectionHeader(title: info.securityHeader)
             BulletList(items: info.securityBullets)
-            
+
             Divider()
-            
+
             Text(info.footer)
                 .font(.system(size: 7))
                 .fixedSize(horizontal: false, vertical: true)
                 .lineLimit(3)
                 .minimumScaleFactor(0.9)
-            
-            Spacer()
+
+            Spacer(minLength: 0)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-        
     }
 }
 
@@ -183,30 +251,49 @@ private struct BulletList: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             ForEach(items.indices, id: \.self) { i in
-                HStack(alignment: .firstTextBaseline, spacing: 0) {
-                    Text("•")
-                        .accessibilityHidden(true)
-                    Text(items[i])
-                        .fixedSize(horizontal: false, vertical: true)
+                HStack(alignment: .firstTextBaseline, spacing: 2) {
+                    Text("•").accessibilityHidden(true)
+                    Text(items[i]).fixedSize(horizontal: false, vertical: true)
                 }
             }
-        }.font(.system(size: 7))
-            .padding(0)
+        }
+        .font(.system(size: 7))
+        .padding(.top, 0)
     }
 }
 
-// MARK: - Widget
+// MARK: - Widgets (exactly two)
 
-struct SpatialLLMWidget: Widget {
-    let kind: String = "SpatialLLMWidget"
-    
+struct SecurityLLMWidget: Widget {
+    let kind = "SecurityLLMWidget"
+
     var body: some WidgetConfiguration {
-        AppIntentConfiguration(kind: kind, intent: LLMConfigurationIntent.self, provider: LLMProvider()) { entry in
+        AppIntentConfiguration(kind: kind,
+                               intent: LLMConfigurationIntent.self,
+                               provider: SecurityLLMProvider()) { entry in
             LLMCardView(info: entry.info)
                 .containerBackground(.white.gradient, for: .widget)
         }
-        .configurationDisplayName("LLM Overview")
-        .description("At a glance LLM + security overview.")
+        .configurationDisplayName("LLM – Security")
+        .description("Security overview for ChatGPT or Claude.")
+        .supportedFamilies([.systemSmall])
+        .supportedMountingStyles([.elevated])
+        .widgetTexture(.paper)
+    }
+}
+
+struct FinanceLLMWidget: Widget {
+    let kind = "FinanceLLMWidget"
+
+    var body: some WidgetConfiguration {
+        AppIntentConfiguration(kind: kind,
+                               intent: LLMConfigurationIntent.self,
+                               provider: FinanceLLMProvider()) { entry in
+            LLMCardView(info: entry.info)
+                .containerBackground(.white.gradient, for: .widget)
+        }
+        .configurationDisplayName("LLM – Finance")
+        .description("Financial overview for ChatGPT or Claude.")
         .supportedFamilies([.systemSmall])
         .supportedMountingStyles([.elevated])
         .widgetTexture(.paper)
