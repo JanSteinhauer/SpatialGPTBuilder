@@ -1,0 +1,678 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		ECE6442B2E9B73F10004DE5F /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; productRef = ECE6442A2E9B73F10004DE5F /* RealityKitContent */; };
+		ECE6444D2E9B74420004DE5F /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECE6444C2E9B74420004DE5F /* WidgetKit.framework */; };
+		ECE6444F2E9B74420004DE5F /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECE6444E2E9B74420004DE5F /* SwiftUI.framework */; };
+		ECE6445C2E9B74450004DE5F /* SpatialGPTWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = ECE6444A2E9B74420004DE5F /* SpatialGPTWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		ECE644382E9B73F40004DE5F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ECE6441D2E9B73F10004DE5F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ECE644242E9B73F10004DE5F;
+			remoteInfo = SpatialGPTBuilder;
+		};
+		ECE6445A2E9B74450004DE5F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ECE6441D2E9B73F10004DE5F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ECE644492E9B74420004DE5F;
+			remoteInfo = SpatialGPTWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		ECE644612E9B74450004DE5F /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				ECE6445C2E9B74450004DE5F /* SpatialGPTWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		ECE644252E9B73F10004DE5F /* SpatialGPTBuilder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpatialGPTBuilder.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		ECE644292E9B73F10004DE5F /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
+		ECE644372E9B73F40004DE5F /* SpatialGPTBuilderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpatialGPTBuilderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		ECE6444A2E9B74420004DE5F /* SpatialGPTWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SpatialGPTWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		ECE6444C2E9B74420004DE5F /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		ECE6444E2E9B74420004DE5F /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		ECE6443D2E9B73F40004DE5F /* Exceptions for "SpatialGPTBuilder" folder in "SpatialGPTBuilder" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = ECE644242E9B73F10004DE5F /* SpatialGPTBuilder */;
+		};
+		ECE644602E9B74450004DE5F /* Exceptions for "SpatialGPTWidget" folder in "SpatialGPTWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = ECE644492E9B74420004DE5F /* SpatialGPTWidgetExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		ECE644272E9B73F10004DE5F /* SpatialGPTBuilder */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				ECE6443D2E9B73F40004DE5F /* Exceptions for "SpatialGPTBuilder" folder in "SpatialGPTBuilder" target */,
+			);
+			path = SpatialGPTBuilder;
+			sourceTree = "<group>";
+		};
+		ECE6443A2E9B73F40004DE5F /* SpatialGPTBuilderTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = SpatialGPTBuilderTests;
+			sourceTree = "<group>";
+		};
+		ECE644502E9B74420004DE5F /* SpatialGPTWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				ECE644602E9B74450004DE5F /* Exceptions for "SpatialGPTWidget" folder in "SpatialGPTWidgetExtension" target */,
+			);
+			path = SpatialGPTWidget;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		ECE644222E9B73F10004DE5F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECE6442B2E9B73F10004DE5F /* RealityKitContent in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ECE644342E9B73F40004DE5F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ECE644472E9B74420004DE5F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECE6444F2E9B74420004DE5F /* SwiftUI.framework in Frameworks */,
+				ECE6444D2E9B74420004DE5F /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		ECE6441C2E9B73F10004DE5F = {
+			isa = PBXGroup;
+			children = (
+				ECE644272E9B73F10004DE5F /* SpatialGPTBuilder */,
+				ECE644282E9B73F10004DE5F /* Packages */,
+				ECE6443A2E9B73F40004DE5F /* SpatialGPTBuilderTests */,
+				ECE644502E9B74420004DE5F /* SpatialGPTWidget */,
+				ECE6444B2E9B74420004DE5F /* Frameworks */,
+				ECE644262E9B73F10004DE5F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		ECE644262E9B73F10004DE5F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ECE644252E9B73F10004DE5F /* SpatialGPTBuilder.app */,
+				ECE644372E9B73F40004DE5F /* SpatialGPTBuilderTests.xctest */,
+				ECE6444A2E9B74420004DE5F /* SpatialGPTWidgetExtension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ECE644282E9B73F10004DE5F /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				ECE644292E9B73F10004DE5F /* RealityKitContent */,
+			);
+			path = Packages;
+			sourceTree = "<group>";
+		};
+		ECE6444B2E9B74420004DE5F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ECE6444C2E9B74420004DE5F /* WidgetKit.framework */,
+				ECE6444E2E9B74420004DE5F /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		ECE644242E9B73F10004DE5F /* SpatialGPTBuilder */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ECE6443E2E9B73F40004DE5F /* Build configuration list for PBXNativeTarget "SpatialGPTBuilder" */;
+			buildPhases = (
+				ECE644212E9B73F10004DE5F /* Sources */,
+				ECE644222E9B73F10004DE5F /* Frameworks */,
+				ECE644232E9B73F10004DE5F /* Resources */,
+				ECE644612E9B74450004DE5F /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ECE6445B2E9B74450004DE5F /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				ECE644272E9B73F10004DE5F /* SpatialGPTBuilder */,
+			);
+			name = SpatialGPTBuilder;
+			packageProductDependencies = (
+				ECE6442A2E9B73F10004DE5F /* RealityKitContent */,
+			);
+			productName = SpatialGPTBuilder;
+			productReference = ECE644252E9B73F10004DE5F /* SpatialGPTBuilder.app */;
+			productType = "com.apple.product-type.application";
+		};
+		ECE644362E9B73F40004DE5F /* SpatialGPTBuilderTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ECE644432E9B73F40004DE5F /* Build configuration list for PBXNativeTarget "SpatialGPTBuilderTests" */;
+			buildPhases = (
+				ECE644332E9B73F40004DE5F /* Sources */,
+				ECE644342E9B73F40004DE5F /* Frameworks */,
+				ECE644352E9B73F40004DE5F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ECE644392E9B73F40004DE5F /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				ECE6443A2E9B73F40004DE5F /* SpatialGPTBuilderTests */,
+			);
+			name = SpatialGPTBuilderTests;
+			packageProductDependencies = (
+			);
+			productName = SpatialGPTBuilderTests;
+			productReference = ECE644372E9B73F40004DE5F /* SpatialGPTBuilderTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		ECE644492E9B74420004DE5F /* SpatialGPTWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ECE6445D2E9B74450004DE5F /* Build configuration list for PBXNativeTarget "SpatialGPTWidgetExtension" */;
+			buildPhases = (
+				ECE644462E9B74420004DE5F /* Sources */,
+				ECE644472E9B74420004DE5F /* Frameworks */,
+				ECE644482E9B74420004DE5F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				ECE644502E9B74420004DE5F /* SpatialGPTWidget */,
+			);
+			name = SpatialGPTWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = SpatialGPTWidgetExtension;
+			productReference = ECE6444A2E9B74420004DE5F /* SpatialGPTWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		ECE6441D2E9B73F10004DE5F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2600;
+				LastUpgradeCheck = 2600;
+				TargetAttributes = {
+					ECE644242E9B73F10004DE5F = {
+						CreatedOnToolsVersion = 26.0.1;
+					};
+					ECE644362E9B73F40004DE5F = {
+						CreatedOnToolsVersion = 26.0.1;
+						TestTargetID = ECE644242E9B73F10004DE5F;
+					};
+					ECE644492E9B74420004DE5F = {
+						CreatedOnToolsVersion = 26.0.1;
+					};
+				};
+			};
+			buildConfigurationList = ECE644202E9B73F10004DE5F /* Build configuration list for PBXProject "SpatialGPTBuilder" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = ECE6441C2E9B73F10004DE5F;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = ECE644262E9B73F10004DE5F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				ECE644242E9B73F10004DE5F /* SpatialGPTBuilder */,
+				ECE644362E9B73F40004DE5F /* SpatialGPTBuilderTests */,
+				ECE644492E9B74420004DE5F /* SpatialGPTWidgetExtension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		ECE644232E9B73F10004DE5F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ECE644352E9B73F40004DE5F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ECE644482E9B74420004DE5F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		ECE644212E9B73F10004DE5F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ECE644332E9B73F40004DE5F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ECE644462E9B74420004DE5F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		ECE644392E9B73F40004DE5F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ECE644242E9B73F10004DE5F /* SpatialGPTBuilder */;
+			targetProxy = ECE644382E9B73F40004DE5F /* PBXContainerItemProxy */;
+		};
+		ECE6445B2E9B74450004DE5F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ECE644492E9B74420004DE5F /* SpatialGPTWidgetExtension */;
+			targetProxy = ECE6445A2E9B74450004DE5F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		ECE6443F2E9B73F40004DE5F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = N3Q3GX6Q6Z;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jansteinhauer.SpatialGPTBuilder;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "xros xrsimulator";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 7;
+			};
+			name = Debug;
+		};
+		ECE644402E9B73F40004DE5F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = N3Q3GX6Q6Z;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jansteinhauer.SpatialGPTBuilder;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "xros xrsimulator";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 7;
+			};
+			name = Release;
+		};
+		ECE644412E9B73F40004DE5F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = N3Q3GX6Q6Z;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = xros;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				XROS_DEPLOYMENT_TARGET = 26.0;
+			};
+			name = Debug;
+		};
+		ECE644422E9B73F40004DE5F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = N3Q3GX6Q6Z;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = xros;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+				XROS_DEPLOYMENT_TARGET = 26.0;
+			};
+			name = Release;
+		};
+		ECE644442E9B73F40004DE5F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = N3Q3GX6Q6Z;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jansteinhauer.SpatialGPTBuilderTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SUPPORTED_PLATFORMS = "xros xrsimulator";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 7;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SpatialGPTBuilder.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SpatialGPTBuilder";
+				XROS_DEPLOYMENT_TARGET = 26.0;
+			};
+			name = Debug;
+		};
+		ECE644452E9B73F40004DE5F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = N3Q3GX6Q6Z;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jansteinhauer.SpatialGPTBuilderTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SUPPORTED_PLATFORMS = "xros xrsimulator";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 7;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SpatialGPTBuilder.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SpatialGPTBuilder";
+				XROS_DEPLOYMENT_TARGET = 26.0;
+			};
+			name = Release;
+		};
+		ECE6445E2E9B74450004DE5F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = N3Q3GX6Q6Z;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SpatialGPTWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SpatialGPTWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jansteinhauer.SpatialGPTBuilder.SpatialGPTWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "xros xrsimulator";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 7;
+			};
+			name = Debug;
+		};
+		ECE6445F2E9B74450004DE5F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = N3Q3GX6Q6Z;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SpatialGPTWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SpatialGPTWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jansteinhauer.SpatialGPTBuilder.SpatialGPTWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "xros xrsimulator";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 7;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		ECE644202E9B73F10004DE5F /* Build configuration list for PBXProject "SpatialGPTBuilder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ECE644412E9B73F40004DE5F /* Debug */,
+				ECE644422E9B73F40004DE5F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ECE6443E2E9B73F40004DE5F /* Build configuration list for PBXNativeTarget "SpatialGPTBuilder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ECE6443F2E9B73F40004DE5F /* Debug */,
+				ECE644402E9B73F40004DE5F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ECE644432E9B73F40004DE5F /* Build configuration list for PBXNativeTarget "SpatialGPTBuilderTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ECE644442E9B73F40004DE5F /* Debug */,
+				ECE644452E9B73F40004DE5F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ECE6445D2E9B74450004DE5F /* Build configuration list for PBXNativeTarget "SpatialGPTWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ECE6445E2E9B74450004DE5F /* Debug */,
+				ECE6445F2E9B74450004DE5F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		ECE6442A2E9B73F10004DE5F /* RealityKitContent */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = RealityKitContent;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = ECE6441D2E9B73F10004DE5F /* Project object */;
+}
