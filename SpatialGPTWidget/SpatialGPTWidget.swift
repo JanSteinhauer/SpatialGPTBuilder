@@ -98,6 +98,44 @@ struct LLMInfo: Hashable {
                 ],
                 footer: "Claude is an AI chatbot that understands and generates human-like text."
             )
+            
+        case (.gemini, .security):
+            return LLMInfo(
+                title: "Gemini",
+                logoName: "Gemini",
+                overviewHeader: "Overview",
+                overviewBullets: [
+                    "Integrated into the Google ecosystem",
+                    "Strong at multimodal input",
+                    "Can generate images"
+                ],
+                securityHeader: "Security Overview",
+                securityBullets: [
+                    "Medium",
+                    "Google Cloud security standards",
+                    "Hosting in the USA"
+                ],
+                footer: "Gemini is an AI chatbot that understands and generates human-like text."
+            )
+
+        case (.gemini, .finance):
+            return LLMInfo(
+                title: "Gemini",
+                logoName: "Gemini",
+                overviewHeader: "Overview",
+                overviewBullets: [
+                    "Integrated into the Google ecosystem",
+                    "Strong at multimodal input",
+                    "Can generate images"
+                ],
+                securityHeader: "Financial Overview",
+                securityBullets: [
+                    "Low",
+                    "$0.002–$0.01 per 1,000 tokens",
+                    "Useful if you are a Google customer"
+                ],
+                footer: "Gemini is an AI chatbot that understands and generates human-like text."
+            )
         }
     }
 }
@@ -275,7 +313,7 @@ struct SecurityLLMWidget: Widget {
                 .containerBackground(.white.gradient, for: .widget)
         }
         .configurationDisplayName("LLM – Security")
-        .description("Security overview for ChatGPT or Claude.")
+        .description("Security overview for ChatGPT, Claude, or Gemini.")
         .supportedFamilies([.systemSmall])
         .supportedMountingStyles([.elevated])
         .widgetTexture(.paper)
@@ -293,7 +331,7 @@ struct FinanceLLMWidget: Widget {
                 .containerBackground(.white.gradient, for: .widget)
         }
         .configurationDisplayName("LLM – Finance")
-        .description("Financial overview for ChatGPT or Claude.")
+        .description("Financial overview for ChatGPT, Claude, or Gemini.")
         .supportedFamilies([.systemSmall])
         .supportedMountingStyles([.elevated])
         .widgetTexture(.paper)

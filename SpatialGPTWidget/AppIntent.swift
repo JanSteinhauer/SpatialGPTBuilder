@@ -11,12 +11,14 @@ import AppIntents
 enum LLMChoice: String, AppEnum {
     case chatgpt
     case anthropic
+    case gemini
     
     static var typeDisplayRepresentation: TypeDisplayRepresentation = "LLM Provider"
     
     static var caseDisplayRepresentations: [LLMChoice : DisplayRepresentation] = [
         .chatgpt: "ChatGPT",
-        .anthropic: "Claude (Anthropic)"
+        .anthropic: "Claude (Anthropic)",
+        .gemini: "Gemini (Google)"
     ]
 }
 
