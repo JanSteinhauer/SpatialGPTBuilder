@@ -111,11 +111,11 @@ struct LLMCardView: View {
             Image(info.logoName)
                 .resizable()
                 .scaledToFit()
-                .frame(maxWidth: 48, maxHeight: 48)
+                .frame(maxWidth: 60, maxHeight: 60)
                 .accessibilityHidden(true)
             
             Text(info.title)
-                .font(.headline)
+                .font(.system(size: 30, weight: .bold))
                 .lineLimit(1)
                 .minimumScaleFactor(0.8)
                 .accessibilityLabel("\(info.title) widget")
@@ -125,17 +125,18 @@ struct LLMCardView: View {
     }
     
     private var detailedView: some View {
-        VStack(alignment: .leading, spacing: 10) {
+        VStack(alignment: .leading, spacing: 2) {
+            Spacer()
             // HStack with logo then title
             HStack(alignment: .center, spacing: 10) {
                 Image(info.logoName)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 28, height: 28)
+                    .frame(width: 24, height: 24)
                     .accessibilityHidden(true)
                 
                 Text(info.title)
-                    .font(.headline)
+                    .font(.system(size: 14))
                     .fontWeight(.semibold)
                     .lineLimit(1)
                     .minimumScaleFactor(0.8)
@@ -143,27 +144,26 @@ struct LLMCardView: View {
             
             Divider()
             
-            // Overview
             SectionHeader(title: info.overviewHeader)
             BulletList(items: info.overviewBullets)
             
             Divider()
             
-            // Security
             SectionHeader(title: info.securityHeader)
             BulletList(items: info.securityBullets)
             
             Divider()
             
-            // Footer text
             Text(info.footer)
-                .font(.footnote)
+                .font(.system(size: 7))
                 .fixedSize(horizontal: false, vertical: true)
                 .lineLimit(3)
                 .minimumScaleFactor(0.9)
+            
+            Spacer()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-        .padding(12)
+        
     }
 }
 
@@ -171,7 +171,7 @@ private struct SectionHeader: View {
     let title: String
     var body: some View {
         Text(title)
-            .font(.subheadline)
+            .font(.system(size: 9))
             .fontWeight(.semibold)
             .textCase(.none)
             .accessibilityAddTraits(.isHeader)
@@ -181,18 +181,17 @@ private struct SectionHeader: View {
 private struct BulletList: View {
     let items: [String]
     var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
+        VStack(alignment: .leading, spacing: 0) {
             ForEach(items.indices, id: \.self) { i in
-                HStack(alignment: .firstTextBaseline, spacing: 6) {
+                HStack(alignment: .firstTextBaseline, spacing: 0) {
                     Text("•")
-                        .font(.body)
                         .accessibilityHidden(true)
                     Text(items[i])
-                        .font(.body)
                         .fixedSize(horizontal: false, vertical: true)
                 }
             }
-        }
+        }.font(.system(size: 7))
+            .padding(0)
     }
 }
 
