@@ -12,13 +12,17 @@ enum LLMChoice: String, AppEnum {
     case chatgpt
     case anthropic
     case gemini
+    case gemma
+    case llama
     
     static var typeDisplayRepresentation: TypeDisplayRepresentation = "LLM Provider"
     
     static var caseDisplayRepresentations: [LLMChoice : DisplayRepresentation] = [
         .chatgpt: "ChatGPT",
         .anthropic: "Claude (Anthropic)",
-        .gemini: "Gemini (Google)"
+        .gemini: "Gemini (Google)",
+        .gemma: "Gemma",
+        .llama: "Llama"
     ]
 }
 

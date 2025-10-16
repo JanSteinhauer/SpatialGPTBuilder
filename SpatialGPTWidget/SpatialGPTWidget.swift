@@ -136,6 +136,82 @@ struct LLMInfo: Hashable {
                 ],
                 footer: "Gemini is an AI chatbot that understands and generates human-like text."
             )
+            
+        case (.llama, .security):
+                    return LLMInfo(
+                        title: "Llama",
+                        logoName: "Llama",
+                        overviewHeader: "Overview",
+                        overviewBullets: [
+                            "Powerful open-source LLM",
+                            "Runs locally or in a private cloud",
+                            "Flexible deployment and tuning"
+                        ],
+                        securityHeader: "Security Overview",
+                        securityBullets: [
+                            "High",
+                            "Full data control when self-hosted",
+                            "No third-party data processing by default"
+                        ],
+                        footer: "Llama is an open-source family of models that can be deployed on your own infrastructure."
+                    )
+
+                case (.llama, .finance):
+                    return LLMInfo(
+                        title: "Llama",
+                        logoName: "Llama",
+                        overviewHeader: "Overview",
+                        overviewBullets: [
+                            "Powerful open-source LLM",
+                            "Runs locally or in a private cloud",
+                            "Flexible deployment and tuning"
+                        ],
+                        securityHeader: "Financial Overview",
+                        securityBullets: [
+                            "Medium",
+                            "No ongoing API fees; own hardware needed",
+                            "Performance and cost depend on your hardware"
+                        ],
+                        footer: "Llama is an open-source family of models that can be deployed on your own infrastructure."
+                    )
+
+                case (.gemma, .security):
+                    return LLMInfo(
+                        title: "Gemma",
+                        logoName: "Gemma",
+                        overviewHeader: "Overview",
+                        overviewBullets: [
+                            "Lightweight model from Google",
+                            "Can run locally or in a private cloud",
+                            "Integrates well with Google Cloud"
+                        ],
+                        securityHeader: "Security Overview",
+                        securityBullets: [
+                            "High",
+                            "No data sent to Google when self-hosted",
+                            "Full control over data flows"
+                        ],
+                        footer: "Gemma is a lightweight model designed for efficient local or private-cloud deployments."
+                    )
+
+                case (.gemma, .finance):
+                    return LLMInfo(
+                        title: "Gemma",
+                        logoName: "Gemma",
+                        overviewHeader: "Overview",
+                        overviewBullets: [
+                            "Lightweight model from Google",
+                            "Can run locally or in a private cloud",
+                            "Integrates well with Google Cloud"
+                        ],
+                        securityHeader: "Financial Overview",
+                        securityBullets: [
+                            "Medium",
+                            "No recurring API costs when self-hosted; hardware required",
+                            "Lower quality than Gemini but cost-efficient"
+                        ],
+                        footer: "Gemma is a lightweight model designed for efficient local or private-cloud deployments."
+                    )
         }
     }
 }
