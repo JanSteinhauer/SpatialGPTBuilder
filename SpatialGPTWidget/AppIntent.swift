@@ -30,6 +30,9 @@ enum LLMChoice: String, AppEnum {
     case googleWorkspace
     case internalSystems
     case openData
+    case germanyHosting
+    case euHosting
+    case globalHosting
 
     
     static var typeDisplayRepresentation: TypeDisplayRepresentation = "LLM Provider"
@@ -55,7 +58,11 @@ enum LLMChoice: String, AppEnum {
         .microsoft365: "Microsoft 365",
         .googleWorkspace: "Google Workspace",
         .internalSystems: "Internal Systems",
-        .openData: "Open Data"
+        .openData: "Open Data",
+        .germanyHosting: "Germany Hosting",
+        .euHosting: "EU Hosting",
+        .globalHosting: "Global Hosting",
+        
     ]
 }
 

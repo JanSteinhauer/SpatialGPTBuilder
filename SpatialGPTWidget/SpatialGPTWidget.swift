@@ -823,7 +823,119 @@ struct LLMInfo: Hashable {
                     footer: "Lowest cost, but added effort to ensure reliability."
                 )
 
+            case (.germanyHosting, .security):
+                return LLMInfo(
+                    title: "Germany",
+                    logoName: "title",
+                    overviewHeader: "Overview",
+                    overviewBullets: [
+                        "Hosted exclusively in German data centers",
+                        "Must comply with strict GDPR and national standards",
+                        "Strong data residency guarantees"
+                    ],
+                    securityHeader: "Security Overview",
+                    securityBullets: [
+                        "Very High",
+                        "Maximum privacy and data protection",
+                        "Clear local regulatory framework"
+                    ],
+                    footer: "Germany hosting provides the strongest data residency and privacy posture."
+                )
 
+            case (.germanyHosting, .finance):
+                return LLMInfo(
+                    title: "Germany",
+                    logoName: "title",
+                    overviewHeader: "Overview",
+                    overviewBullets: [
+                        "Hosted exclusively in German data centers",
+                        "Must comply with strict GDPR and national standards",
+                        "Strong data residency guarantees"
+                    ],
+                    securityHeader: "Financial Overview",
+                    securityBullets: [
+                        "Medium",
+                        "Potential premium for in-country hosting",
+                        "Limited provider flexibility compared to global options"
+                    ],
+                    footer: "Expect moderate cost due to stricter locality and compliance requirements."
+                )
+
+            case (.euHosting, .security):
+                return LLMInfo(
+                    title: "European Union",
+                    logoName: "title",
+                    overviewHeader: "Overview",
+                    overviewBullets: [
+                        "Hosted across EU data centers",
+                        "Generally GDPR-compliant",
+                        "National standards vary by member state"
+                    ],
+                    securityHeader: "Security Overview",
+                    securityBullets: [
+                        "High",
+                        "Strong legal basis across the EU",
+                        "Variations in national implementations"
+                    ],
+                    footer: "EU hosting balances compliance with broader infrastructure choice."
+                )
+
+            case (.euHosting, .finance):
+                return LLMInfo(
+                    title: "European Union",
+                    logoName: "title",
+                    overviewHeader: "Overview",
+                    overviewBullets: [
+                        "Hosted across EU data centers",
+                        "Generally GDPR-compliant",
+                        "National standards vary by member state"
+                    ],
+                    securityHeader: "Financial Overview",
+                    securityBullets: [
+                        "Medium",
+                        "Competitive pricing among EU providers",
+                        "Costs depend on country and SLAs"
+                    ],
+                    footer: "Typical EU pricing with good compliance coverage."
+                )
+
+            case (.globalHosting, .security):
+                return LLMInfo(
+                    title: "Worldwide",
+                    logoName: "title",
+                    overviewHeader: "Overview",
+                    overviewBullets: [
+                        "Global data centers for higher availability",
+                        "Broad provider and region choice",
+                        "Useful for multi-region performance"
+                    ],
+                    securityHeader: "Security Overview",
+                    securityBullets: [
+                        "Low",
+                        "Lower privacy protections in some regions",
+                        "Heightened risk without strong contractual controls"
+                    ],
+                    footer: "Global hosting maximizes reach but weakens data residency guarantees."
+                )
+
+            case (.globalHosting, .finance):
+                return LLMInfo(
+                    title: "Worldwide",
+                    logoName: "title",
+                    overviewHeader: "Overview",
+                    overviewBullets: [
+                        "Global data centers for higher availability",
+                        "Broad provider and region choice",
+                        "Useful for multi-region performance"
+                    ],
+                    securityHeader: "Financial Overview",
+                    securityBullets: [
+                        "High",
+                        "Fewer providers meet high standards in all regions",
+                        "Premium pricing for globally compliant setups"
+                    ],
+                    footer: "Expect higher cost for globally consistent compliance and SLAs."
+                )
 
         }
     }
