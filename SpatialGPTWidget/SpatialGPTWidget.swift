@@ -555,6 +555,121 @@ struct LLMInfo: Hashable {
                     ],
                     footer: "Operational expenditure model with quick time-to-value."
                 )
+            
+            case (.standardEncryption, .security):
+                return LLMInfo(
+                    title: "Standard Encryption",
+                    logoName: "title",
+                    overviewHeader: "Overview",
+                    overviewBullets: [
+                        "Password-based protection",
+                        "Quick and easy to implement",
+                        "Baseline security for small teams"
+                    ],
+                    securityHeader: "Security Overview",
+                    securityBullets: [
+                        "Low",
+                        "Not fully GDPR-compliant in many setups",
+                        "Higher risk of compromise"
+                    ],
+                    footer: "Standard encryption is fast to deploy but offers limited protection and compliance."
+                )
+
+            case (.standardEncryption, .finance):
+                return LLMInfo(
+                    title: "Standard Encryption",
+                    logoName: "title",
+                    overviewHeader: "Overview",
+                    overviewBullets: [
+                        "Password-based protection",
+                        "Quick and easy to implement",
+                        "Baseline security for small teams"
+                    ],
+                    securityHeader: "Financial Overview",
+                    securityBullets: [
+                        "Low cost",
+                        "Minimal operational overhead",
+                        "Few administrative requirements"
+                    ],
+                    footer: "Lowest-cost option with basic protection only."
+                )
+
+            case (.multiFactorAuth, .security):
+                return LLMInfo(
+                    title: "Multi-Factor Authentication",
+                    logoName: "title",
+                    overviewHeader: "Overview",
+                    overviewBullets: [
+                        "Users authenticate with password plus a second factor",
+                        "Second factor via authenticator app or SMS",
+                        "Significantly strengthens account security"
+                    ],
+                    securityHeader: "Security Overview",
+                    securityBullets: [
+                        "Very High",
+                        "Maximum hardening against account takeover",
+                        "Strong compliance posture"
+                    ],
+                    footer: "MFA delivers strong protection by combining something you know with something you have."
+                )
+
+            case (.multiFactorAuth, .finance):
+                return LLMInfo(
+                    title: "Multi-Factor Authentication",
+                    logoName: "title",
+                    overviewHeader: "Overview",
+                    overviewBullets: [
+                        "Users authenticate with password plus a second factor",
+                        "Second factor via authenticator app or SMS",
+                        "Significantly strengthens account security"
+                    ],
+                    securityHeader: "Financial Overview",
+                    securityBullets: [
+                        "Very High cost",
+                        "Licensing and rollout costs",
+                        "Ongoing support and user training"
+                    ],
+                    footer: "Higher costs due to licensing, rollout, and helpdesk load."
+                )
+
+            case (.privacyByDesign, .security):
+                return LLMInfo(
+                    title: "Privacy by Design",
+                    logoName: "title",
+                    overviewHeader: "Overview",
+                    overviewBullets: [
+                        "No data is stored (anonymous usage)",
+                        "No history access limits some use cases",
+                        "Strong privacy defaults from the start"
+                    ],
+                    securityHeader: "Security Overview",
+                    securityBullets: [
+                        "Very High",
+                        "Personal data is deleted immediately",
+                        "Excellent for sensitive contexts"
+                    ],
+                    footer: "Maximizes privacy and compliance, at the expense of historical analytics."
+                )
+
+            case (.privacyByDesign, .finance):
+                return LLMInfo(
+                    title: "Privacy by Design",
+                    logoName: "title",
+                    overviewHeader: "Overview",
+                    overviewBullets: [
+                        "No data is stored (anonymous usage)",
+                        "No history access limits some use cases",
+                        "Strong privacy defaults from the start"
+                    ],
+                    securityHeader: "Financial Overview",
+                    securityBullets: [
+                        "Medium to High",
+                        "Reduced analytics and insights",
+                        "Cost depends on access model and controls"
+                    ],
+                    footer: "Trade-offs: higher privacy, fewer analytic possibilities, variable costs."
+                )
+
 
         }
     }

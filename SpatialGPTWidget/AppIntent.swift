@@ -23,6 +23,9 @@ enum LLMChoice: String, AppEnum {
     case localServer
     case privateCloud
     case cloud
+    case standardEncryption
+    case multiFactorAuth
+    case privacyByDesign
 
     
     static var typeDisplayRepresentation: TypeDisplayRepresentation = "LLM Provider"
@@ -41,7 +44,10 @@ enum LLMChoice: String, AppEnum {
         .roleBasedAccess: "Role-Based Access",
         .localServer: "Local Server",
         .privateCloud: "Private Cloud",
-        .cloud: "Cloud"
+        .cloud: "Cloud",
+        .standardEncryption: "Standard Encryption",
+        .multiFactorAuth: "Multi-Factor Authentication",
+        .privacyByDesign: "Privacy by Design"
     ]
 }
 
