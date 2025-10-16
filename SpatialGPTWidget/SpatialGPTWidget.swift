@@ -327,6 +327,120 @@ struct LLMInfo: Hashable {
                 ],
                 footer: "Cost-efficient and very convenient for daily use."
             )
+            
+        case (.freeUse, .security):
+            return LLMInfo(
+                title: "Free Use",
+                logoName: "title",
+                overviewHeader: "Overview",
+                overviewBullets: [
+                    "All users can use the application fully",
+                    "Very high flexibility for end users",
+                    "Fast adoption with minimal friction"
+                ],
+                securityHeader: "Security Overview",
+                securityBullets: [
+                    "Low",
+                    "Risk of data misuse or unauthorized access",
+                    "Difficult to prevent cross-department data exposure"
+                ],
+                footer: "Free Use maximizes accessibility but requires strong data boundaries elsewhere."
+            )
+
+        case (.freeUse, .finance):
+            return LLMInfo(
+                title: "Free Use",
+                logoName: "title",
+                overviewHeader: "Overview",
+                overviewBullets: [
+                    "All users can use the application fully",
+                    "Very high flexibility for end users",
+                    "Fast adoption with minimal friction"
+                ],
+                securityHeader: "Financial Overview",
+                securityBullets: [
+                    "Very low (near zero) cost",
+                    "No moderation overhead",
+                    "Minimal admin effort"
+                ],
+                footer: "Lowest-cost rollout, trading off governance for speed and convenience."
+            )
+
+        case (.moderationFilter, .security):
+            return LLMInfo(
+                title: "Moderation / Filter",
+                logoName: "title",
+                overviewHeader: "Overview",
+                overviewBullets: [
+                    "Inputs and outputs checked for sensitive data",
+                    "Prevents undesired information leakage",
+                    "Adds a governance layer to AI usage"
+                ],
+                securityHeader: "Security Overview",
+                securityBullets: [
+                    "Medium",
+                    "Blocks many risky cases",
+                    "Filters are not perfect and can be bypassed"
+                ],
+                footer: "Moderation provides a balanced control layer without fully restricting access."
+            )
+
+        case (.moderationFilter, .finance):
+            return LLMInfo(
+                title: "Moderation / Filter",
+                logoName: "title",
+                overviewHeader: "Overview",
+                overviewBullets: [
+                    "Inputs and outputs checked for sensitive data",
+                    "Prevents undesired information leakage",
+                    "Adds a governance layer to AI usage"
+                ],
+                securityHeader: "Financial Overview",
+                securityBullets: [
+                    "Low to medium cost",
+                    "Operational overhead for review/maintenance",
+                    "Reasonable ongoing effort"
+                ],
+                footer: "Moderation costs are modest compared to the governance benefits."
+            )
+
+        case (.roleBasedAccess, .security):
+            return LLMInfo(
+                title: "Role-Based Access",
+                logoName: "title",
+                overviewHeader: "Overview",
+                overviewBullets: [
+                    "Access rights assigned by roles/departments",
+                    "Least-privilege by design",
+                    "Granular policy control"
+                ],
+                securityHeader: "Security Overview",
+                securityBullets: [
+                    "High",
+                    "Company controls and steers data flows",
+                    "Strong guardrails and auditability"
+                ],
+                footer: "Role-based access maximizes control and compliance through defined permissions."
+            )
+
+        case (.roleBasedAccess, .finance):
+            return LLMInfo(
+                title: "Role-Based Access",
+                logoName: "title",
+                overviewHeader: "Overview",
+                overviewBullets: [
+                    "Access rights assigned by roles/departments",
+                    "Least-privilege by design",
+                    "Granular policy control"
+                ],
+                securityHeader: "Financial Overview",
+                securityBullets: [
+                    "Medium cost",
+                    "High administrative overhead (complex management)",
+                    "May limit user flexibility and adoption"
+                ],
+                footer: "Higher admin effort in exchange for strong governance and compliance."
+            )
         }
     }
 }

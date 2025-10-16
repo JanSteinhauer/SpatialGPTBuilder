@@ -17,6 +17,9 @@ enum LLMChoice: String, AppEnum {
     case standaloneWebApp
     case apiIntegration
     case mobileApp
+    case freeUse
+    case moderationFilter
+    case roleBasedAccess
     
     static var typeDisplayRepresentation: TypeDisplayRepresentation = "LLM Provider"
     
@@ -28,7 +31,10 @@ enum LLMChoice: String, AppEnum {
         .llama: "Llama",
         .standaloneWebApp: "WebApp",
         .apiIntegration: "API Integration",
-        .mobileApp: "Mobile App"
+        .mobileApp: "Mobile App",
+        .freeUse: "Free Use",
+        .moderationFilter: "Moderation Filter",
+        .roleBasedAccess: "Role-Based Access"
     ]
 }
 
