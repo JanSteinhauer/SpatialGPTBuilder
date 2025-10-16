@@ -212,6 +212,121 @@ struct LLMInfo: Hashable {
                         ],
                         footer: "Gemma is a lightweight model designed for efficient local or private-cloud deployments."
                     )
+        case (.standaloneWebApp, .security):
+            return LLMInfo(
+                title: "Standalone Web App",
+                logoName: "titel",
+                overviewHeader: "Overview",
+                overviewBullets: [
+                    "Separate platform",
+                    "Easy browser access",
+                    "No installation required"
+                ],
+                securityHeader: "Security Overview",
+                securityBullets: [
+                    "Medium",
+                    "Few attack surfaces but limited control",
+                    "Hard to embed data from other tools"
+                ],
+                footer: "A standalone web app runs in the browser and needs no local setup."
+            )
+
+        case (.standaloneWebApp, .finance):
+            return LLMInfo(
+                title: "Standalone Web App",
+                logoName: "titel",
+                overviewHeader: "Overview",
+                overviewBullets: [
+                    "Separate platform",
+                    "Easy browser access",
+                    "No installation required"
+                ],
+                securityHeader: "Financial Overview",
+                securityBullets: [
+                    "Low cost",
+                    "Quick to deploy",
+                    "Minimal setup"
+                ],
+                footer: "Inexpensive and fast to launch from any browser."
+            )
+
+        // --- API Integration ---
+        case (.apiIntegration, .security):
+            return LLMInfo(
+                title: "API Integration",
+                logoName: "titel",
+                overviewHeader: "Overview",
+                overviewBullets: [
+                    "Integrates into existing tools",
+                    "Seamless daily workflow",
+                    "Requires integration effort"
+                ],
+                securityHeader: "Security Overview",
+                securityBullets: [
+                    "Medium",
+                    "Depends on API access control",
+                    "Interfaces can introduce vulnerabilities"
+                ],
+                footer: "Connects AI directly into enterprise tools via APIs."
+            )
+
+        case (.apiIntegration, .finance):
+            return LLMInfo(
+                title: "API Integration",
+                logoName: "titel",
+                overviewHeader: "Overview",
+                overviewBullets: [
+                    "Integrates into existing tools",
+                    "Seamless daily workflow",
+                    "Requires integration effort"
+                ],
+                securityHeader: "Financial Overview",
+                securityBullets: [
+                    "Medium",
+                    "Implementation adds some cost",
+                    "Long-term efficiency benefits"
+                ],
+                footer: "Requires dev work but streamlines workflows."
+            )
+
+        // --- Mobile App / Intranet ---
+        case (.mobileApp, .security):
+            return LLMInfo(
+                title: "Mobile App / Intranet",
+                logoName: "titel",
+                overviewHeader: "Overview",
+                overviewBullets: [
+                    "Mobile or intranet availability",
+                    "High user convenience",
+                    "Accessible from anywhere"
+                ],
+                securityHeader: "Security Overview",
+                securityBullets: [
+                    "Low",
+                    "Endpoint usage increases risk",
+                    "More device-based vulnerabilities"
+                ],
+                footer: "Flexible but comes with higher endpoint security risks."
+            )
+
+        case (.mobileApp, .finance):
+            return LLMInfo(
+                title: "Mobile App / Intranet",
+                logoName: "titel",
+                overviewHeader: "Overview",
+                overviewBullets: [
+                    "Mobile or intranet availability",
+                    "High user convenience",
+                    "Accessible from anywhere"
+                ],
+                securityHeader: "Financial Overview",
+                securityBullets: [
+                    "Medium",
+                    "Moderate setup & maintenance",
+                    "Convenience boosts productivity"
+                ],
+                footer: "Cost-efficient and very convenient for daily use."
+            )
         }
     }
 }
@@ -280,74 +395,81 @@ struct LLMCardView: View {
     let info: LLMInfo
     @Environment(\.levelOfDetail) private var lod
 
-    var body: some View {
-        switch lod {
-        case .simplified:
-            simplifiedView
-        default:
-            detailedView
-        }
-    }
+    private var isTitleOnly: Bool { info.logoName == "titel" }
 
-    private var simplifiedView: some View {
-        VStack(spacing: 8) {
-            Image(info.logoName)
-                .resizable()
-                .scaledToFit()
-                .frame(maxWidth: 60, maxHeight: 60)
-                .accessibilityHidden(true)
-
-            Text(info.title)
-                .font(.system(size: 30, weight: .bold))
-                .lineLimit(1)
-                .minimumScaleFactor(0.8)
-                .accessibilityLabel("\(info.title) widget")
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .padding(8)
-    }
-
-    private var detailedView: some View {
-        VStack(alignment: .leading, spacing: 2) {
-            Spacer(minLength: 0)
-
-            HStack(alignment: .center, spacing: 10) {
-                Image(info.logoName)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 24, height: 24)
-                    .accessibilityHidden(true)
-                
-                Text(info.title)
-                    .font(.system(size: 14))
-                    .fontWeight(.semibold)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.8)
+        var body: some View {
+            switch lod {
+            case .simplified: simplifiedView
+            default: detailedView
             }
-
-            Divider()
-
-            SectionHeader(title: info.overviewHeader)
-            BulletList(items: info.overviewBullets)
-
-            Divider()
-
-            SectionHeader(title: info.securityHeader)
-            BulletList(items: info.securityBullets)
-
-            Divider()
-
-            Text(info.footer)
-                .font(.system(size: 7))
-                .fixedSize(horizontal: false, vertical: true)
-                .lineLimit(3)
-                .minimumScaleFactor(0.9)
-
-            Spacer(minLength: 0)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+
+        private var simplifiedView: some View {
+            Group {
+                if isTitleOnly {
+                    Text(info.title)
+                        .font(.system(size: 30, weight: .bold))
+                        .lineLimit(2)
+                        .minimumScaleFactor(0.8)
+                        .accessibilityLabel("\(info.title) widget")
+                } else {
+                    VStack(spacing: 8) {
+                        Image(info.logoName)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(maxWidth: 60, maxHeight: 60)
+                            .accessibilityHidden(true)
+                        Text(info.title)
+                            .font(.system(size: 30, weight: .bold))
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.8)
+                            .accessibilityLabel("\(info.title) widget")
+                    }
+                }
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .padding(8)
+        }
+
+        private var detailedView: some View {
+            VStack(alignment: .leading, spacing: 2) {
+                Spacer(minLength: 0)
+
+                HStack(alignment: .center, spacing: 10) {
+                    if !isTitleOnly {
+                        Image(info.logoName)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 24, height: 24)
+                            .accessibilityHidden(true)
+                    }
+                    Text(info.title)
+                        .font(.system(size: 14))
+                        .fontWeight(.semibold)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.8)
+                }
+
+                Divider()
+                SectionHeader(title: info.overviewHeader)
+                BulletList(items: info.overviewBullets)
+
+                Divider()
+                SectionHeader(title: info.securityHeader)
+                BulletList(items: info.securityBullets)
+
+                Divider()
+                Text(info.footer)
+                    .font(.system(size: 7))
+                    .fixedSize(horizontal: false, vertical: true)
+                    .lineLimit(3)
+                    .minimumScaleFactor(0.9)
+
+                Spacer(minLength: 0)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        }
     }
-}
 
 private struct SectionHeader: View {
     let title: String

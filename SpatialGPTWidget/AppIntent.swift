@@ -14,6 +14,9 @@ enum LLMChoice: String, AppEnum {
     case gemini
     case gemma
     case llama
+    case standaloneWebApp
+    case apiIntegration
+    case mobileApp
     
     static var typeDisplayRepresentation: TypeDisplayRepresentation = "LLM Provider"
     
@@ -22,7 +25,10 @@ enum LLMChoice: String, AppEnum {
         .anthropic: "Claude (Anthropic)",
         .gemini: "Gemini (Google)",
         .gemma: "Gemma",
-        .llama: "Llama"
+        .llama: "Llama",
+        .standaloneWebApp: "WebApp",
+        .apiIntegration: "API Integration",
+        .mobileApp: "Mobile App"
     ]
 }
 
