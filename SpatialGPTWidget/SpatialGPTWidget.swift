@@ -936,6 +936,121 @@ struct LLMInfo: Hashable {
                     ],
                     footer: "Expect higher cost for globally consistent compliance and SLAs."
                 )
+            
+            case (.internalStorage, .security):
+                return LLMInfo(
+                    title: "Internal Storage",
+                    logoName: "title",
+                    overviewHeader: "Overview",
+                    overviewBullets: [
+                        "Model reads from a predefined company database",
+                        "Database updates are manual (no live data access)",
+                        "Potential limitations due to stale content"
+                    ],
+                    securityHeader: "Security Overview",
+                    securityBullets: [
+                        "Medium to High",
+                        "Risk depends on the chosen AI model",
+                        "Outdated data can lead to incorrect answers"
+                    ],
+                    footer: "Internal Storage favors cost control but requires strict update procedures."
+                )
+
+            case (.internalStorage, .finance):
+                return LLMInfo(
+                    title: "Internal Storage",
+                    logoName: "title",
+                    overviewHeader: "Overview",
+                    overviewBullets: [
+                        "Model reads from a predefined company database",
+                        "Database updates are manual (no live data access)",
+                        "Potential limitations due to stale content"
+                    ],
+                    securityHeader: "Financial Overview",
+                    securityBullets: [
+                        "Low to Medium",
+                        "No live-data query costs",
+                        "Pay for database storage plus maintenance"
+                    ],
+                    footer: "Cheaper than live pipelines; maintenance effort remains."
+                )
+
+            case (.fineTuning, .security):
+                return LLMInfo(
+                    title: "Fine-Tuning",
+                    logoName: "title",
+                    overviewHeader: "Overview",
+                    overviewBullets: [
+                        "Model is further trained on internal company data",
+                        "Delivers highly company-specific answers",
+                        "Strong performance if training data is curated"
+                    ],
+                    securityHeader: "Security Overview",
+                    securityBullets: [
+                        "Low",
+                        "Company data enters the model’s training process",
+                        "Risk profile depends on the AI model and vendor"
+                    ],
+                    footer: "Great alignment with company needs; ensure secure training workflows."
+                )
+
+            case (.fineTuning, .finance):
+                return LLMInfo(
+                    title: "Fine-Tuning",
+                    logoName: "title",
+                    overviewHeader: "Overview",
+                    overviewBullets: [
+                        "Model is further trained on internal company data",
+                        "Delivers highly company-specific answers",
+                        "Strong performance if training data is curated"
+                    ],
+                    securityHeader: "Financial Overview",
+                    securityBullets: [
+                        "High",
+                        "Data preparation and training are costly",
+                        "Best performance, but highest upfront spend"
+                    ],
+                    footer: "Expect significant costs for data prep, training, and validation."
+                )
+
+            case (.rag, .security):
+                return LLMInfo(
+                    title: "RAG",
+                    logoName: "title",
+                    overviewHeader: "Overview",
+                    overviewBullets: [
+                        "Like Internal Storage, but queries firm knowledge on every request",
+                        "Combines retrieval with generation for fresher answers",
+                        "Quality depends on indexing and document hygiene"
+                    ],
+                    securityHeader: "Security Overview",
+                    securityBullets: [
+                        "Depends on data sources and AI model",
+                        "Access control and logging are critical",
+                        "Strong governance needed for retrieved content"
+                    ],
+                    footer: "RAG improves freshness and context at the cost of pipeline complexity."
+                )
+
+            case (.rag, .finance):
+                return LLMInfo(
+                    title: "RAG",
+                    logoName: "title",
+                    overviewHeader: "Overview",
+                    overviewBullets: [
+                        "Like Internal Storage, but queries firm knowledge on every request",
+                        "Combines retrieval with generation for fresher answers",
+                        "Quality depends on indexing and document hygiene"
+                    ],
+                    securityHeader: "Financial Overview",
+                    securityBullets: [
+                        "Medium",
+                        "Data must be prepared, stored, and maintained in a specific format",
+                        "Better data quality → better performance → higher cost"
+                    ],
+                    footer: "Ongoing cost scales with corpus size, refresh rate, and infra."
+                )
+
 
         }
     }

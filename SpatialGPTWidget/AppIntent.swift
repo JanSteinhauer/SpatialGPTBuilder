@@ -33,6 +33,9 @@ enum LLMChoice: String, AppEnum {
     case germanyHosting
     case euHosting
     case globalHosting
+    case internalStorage
+    case fineTuning
+    case rag
 
     
     static var typeDisplayRepresentation: TypeDisplayRepresentation = "LLM Provider"
@@ -62,6 +65,9 @@ enum LLMChoice: String, AppEnum {
         .germanyHosting: "Germany Hosting",
         .euHosting: "EU Hosting",
         .globalHosting: "Global Hosting",
+        .internalStorage: "Internal Storage",
+        .fineTuning: "Fine-Tuning",
+        .rag: "RAG"
         
     ]
 }
