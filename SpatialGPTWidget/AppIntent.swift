@@ -20,6 +20,10 @@ enum LLMChoice: String, AppEnum {
     case freeUse
     case moderationFilter
     case roleBasedAccess
+    case localServer
+    case privateCloud
+    case cloud
+
     
     static var typeDisplayRepresentation: TypeDisplayRepresentation = "LLM Provider"
     
@@ -34,7 +38,10 @@ enum LLMChoice: String, AppEnum {
         .mobileApp: "Mobile App",
         .freeUse: "Free Use",
         .moderationFilter: "Moderation Filter",
-        .roleBasedAccess: "Role-Based Access"
+        .roleBasedAccess: "Role-Based Access",
+        .localServer: "Local Server",
+        .privateCloud: "Private Cloud",
+        .cloud: "Cloud"
     ]
 }
 

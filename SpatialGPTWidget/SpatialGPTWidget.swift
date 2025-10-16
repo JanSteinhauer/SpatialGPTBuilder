@@ -441,6 +441,121 @@ struct LLMInfo: Hashable {
                 ],
                 footer: "Higher admin effort in exchange for strong governance and compliance."
             )
+            
+            case (.localServer, .security):
+                return LLMInfo(
+                    title: "Local Server",
+                    logoName: "title",
+                    overviewHeader: "Overview",
+                    overviewBullets: [
+                        "Runs on your own servers inside the corporate network",
+                        "Only available for certain self-hostable AI models; otherwise grayed out",
+                        "Maximum ownership of runtime and data path"
+                    ],
+                    securityHeader: "Security Overview",
+                    securityBullets: [
+                        "Very High",
+                        "Full control over data and access",
+                        "No dependency on external vendors"
+                    ],
+                    footer: "Choose Local Server when strict data residency and full control are mandatory."
+                )
+
+            case (.localServer, .finance):
+                return LLMInfo(
+                    title: "Local Server",
+                    logoName: "title",
+                    overviewHeader: "Overview",
+                    overviewBullets: [
+                        "Runs on your own servers inside the corporate network",
+                        "Only available for certain self-hostable AI models; otherwise grayed out",
+                        "Maximum ownership of runtime and data path"
+                    ],
+                    securityHeader: "Financial Overview",
+                    securityBullets: [
+                        "Very High",
+                        "Significant personnel, energy, and hardware costs",
+                        "CapEx- and Ops-heavy to maintain"
+                    ],
+                    footer: "Expect high upfront and ongoing costs due to hardware and operations."
+                )
+
+            case (.privateCloud, .security):
+                return LLMInfo(
+                    title: "Private Cloud",
+                    logoName: "title",
+                    overviewHeader: "Overview",
+                    overviewBullets: [
+                        "Dedicated cloud environment implemented for your company",
+                        "Provided/managed by an external vendor",
+                        "Only available for certain AI models; otherwise grayed out"
+                    ],
+                    securityHeader: "Security Overview",
+                    securityBullets: [
+                        "Medium",
+                        "Improved data control and policy alignment",
+                        "Still dependent on an external provider’s infrastructure"
+                    ],
+                    footer: "Private Cloud balances control with managed operations."
+                )
+
+            case (.privateCloud, .finance):
+                return LLMInfo(
+                    title: "Private Cloud",
+                    logoName: "title",
+                    overviewHeader: "Overview",
+                    overviewBullets: [
+                        "Dedicated cloud environment implemented for your company",
+                        "Provided/managed by an external vendor",
+                        "Only available for certain AI models; otherwise grayed out"
+                    ],
+                    securityHeader: "Financial Overview",
+                    securityBullets: [
+                        "High",
+                        "Ongoing maintenance costs",
+                        "More expensive than public cloud"
+                    ],
+                    footer: "Higher TCO than public cloud due to dedicated environments and SLAs."
+                )
+
+            case (.cloud, .security):
+                return LLMInfo(
+                    title: "Cloud",
+                    logoName: "title",
+                    overviewHeader: "Overview",
+                    overviewBullets: [
+                        "No own hardware needed",
+                        "Everything runs via public APIs (e.g., OpenAI API)",
+                        "Fastest to start and scale"
+                    ],
+                    securityHeader: "Security Overview",
+                    securityBullets: [
+                        "Very Low",
+                        "Data leaves the company (depends on chosen AI model and vendor)",
+                        "Strong contractual and technical safeguards required"
+                    ],
+                    footer: "Public cloud offers speed and scale but shifts control to the provider."
+                )
+
+            case (.cloud, .finance):
+                return LLMInfo(
+                    title: "Cloud",
+                    logoName: "title",
+                    overviewHeader: "Overview",
+                    overviewBullets: [
+                        "No own hardware needed",
+                        "Everything runs via public APIs (e.g., OpenAI API)",
+                        "Fastest to start and scale"
+                    ],
+                    securityHeader: "Financial Overview",
+                    securityBullets: [
+                        "Low to Medium",
+                        "Pay-as-you-go; no hardware purchases",
+                        "Costs scale with usage"
+                    ],
+                    footer: "Operational expenditure model with quick time-to-value."
+                )
+
         }
     }
 }
