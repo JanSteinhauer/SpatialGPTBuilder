@@ -669,6 +669,160 @@ struct LLMInfo: Hashable {
                     ],
                     footer: "Trade-offs: higher privacy, fewer analytic possibilities, variable costs."
                 )
+            
+            
+            case (.microsoft365, .security):
+                return LLMInfo(
+                    title: "Microsoft 365",
+                    logoName: "title",
+                    overviewHeader: "Overview",
+                    overviewBullets: [
+                        "Integrates with Teams and Outlook",
+                        "Access to documents in SharePoint",
+                        "Fits existing Microsoft workflows"
+                    ],
+                    securityHeader: "Security Overview",
+                    securityBullets: [
+                        "High",
+                        "GDPR-compliant if hosted in DE/EU",
+                        "Mature enterprise controls"
+                    ],
+                    footer: "Use Microsoft 365 to leverage existing MS ecosystem and governance."
+                )
+
+            case (.microsoft365, .finance):
+                return LLMInfo(
+                    title: "Microsoft 365",
+                    logoName: "title",
+                    overviewHeader: "Overview",
+                    overviewBullets: [
+                        "Integrates with Teams and Outlook",
+                        "Access to documents in SharePoint",
+                        "Fits existing Microsoft workflows"
+                    ],
+                    securityHeader: "Financial Overview",
+                    securityBullets: [
+                        "Medium",
+                        "License costs (≈ $12.50 per user)",
+                        "Scope limited to MS-stored data"
+                    ],
+                    footer: "Licensing adds cost; data scope is bounded by Microsoft storage."
+                )
+
+            case (.googleWorkspace, .security):
+                return LLMInfo(
+                    title: "Google Workspace",
+                    logoName: "title",
+                    overviewHeader: "Overview",
+                    overviewBullets: [
+                        "Connects to Gmail and Google Drive",
+                        "Strong collaboration features",
+                        "Well-suited for Google-first orgs"
+                    ],
+                    securityHeader: "Security Overview",
+                    securityBullets: [
+                        "Medium",
+                        "Good technical security",
+                        "US-based hosting and regulations"
+                    ],
+                    footer: "Solid security posture, but consider data residency and compliance."
+                )
+
+            case (.googleWorkspace, .finance):
+                return LLMInfo(
+                    title: "Google Workspace",
+                    logoName: "title",
+                    overviewHeader: "Overview",
+                    overviewBullets: [
+                        "Connects to Gmail and Google Drive",
+                        "Strong collaboration features",
+                        "Well-suited for Google-first orgs"
+                    ],
+                    securityHeader: "Financial Overview",
+                    securityBullets: [
+                        "Low to Medium",
+                        "Licensing applies",
+                        "Scope limited to Google-stored data"
+                    ],
+                    footer: "Cost-effective if already standardized on Google Workspace."
+                )
+
+            case (.internalSystems, .security):
+                return LLMInfo(
+                    title: "Internal Systems",
+                    logoName: "title",
+                    overviewHeader: "Overview",
+                    overviewBullets: [
+                        "Connects to company-internal databases",
+                        "Custom integrations for line-of-business data",
+                        "Maximizes enterprise data coverage"
+                    ],
+                    securityHeader: "Security Overview",
+                    securityBullets: [
+                        "High",
+                        "Internally hosted data for maximum control",
+                        "Best for sensitive information"
+                    ],
+                    footer: "Ideal when strict data control and auditability are required."
+                )
+
+            case (.internalSystems, .finance):
+                return LLMInfo(
+                    title: "Internal Systems",
+                    logoName: "title",
+                    overviewHeader: "Overview",
+                    overviewBullets: [
+                        "Connects to company-internal databases",
+                        "Custom integrations for line-of-business data",
+                        "Maximizes enterprise data coverage"
+                    ],
+                    securityHeader: "Financial Overview",
+                    securityBullets: [
+                        "High",
+                        "Integration and maintenance effort",
+                        "Search limited to internal sources"
+                    ],
+                    footer: "Expect higher TCO due to integration and ongoing maintenance."
+                )
+
+            case (.openData, .security):
+                return LLMInfo(
+                    title: "Open Data / Web Sources",
+                    logoName: "title",
+                    overviewHeader: "Overview",
+                    overviewBullets: [
+                        "Uses freely available web content",
+                        "Broad external information coverage",
+                        "Similar to public web grounding"
+                    ],
+                    securityHeader: "Security Overview",
+                    securityBullets: [
+                        "Low",
+                        "No control over data origin or quality",
+                        "Risk of misinformation"
+                    ],
+                    footer: "Great reach, but requires validation and careful governance."
+                )
+
+            case (.openData, .finance):
+                return LLMInfo(
+                    title: "Open Data / Web Sources",
+                    logoName: "title",
+                    overviewHeader: "Overview",
+                    overviewBullets: [
+                        "Uses freely available web content",
+                        "Broad external information coverage",
+                        "Similar to public web grounding"
+                    ],
+                    securityHeader: "Financial Overview",
+                    securityBullets: [
+                        "Very Low",
+                        "Data is freely available",
+                        "Minimal direct costs"
+                    ],
+                    footer: "Lowest cost, but added effort to ensure reliability."
+                )
+
 
 
         }

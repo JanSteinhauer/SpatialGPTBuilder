@@ -26,6 +26,10 @@ enum LLMChoice: String, AppEnum {
     case standardEncryption
     case multiFactorAuth
     case privacyByDesign
+    case microsoft365
+    case googleWorkspace
+    case internalSystems
+    case openData
 
     
     static var typeDisplayRepresentation: TypeDisplayRepresentation = "LLM Provider"
@@ -47,7 +51,11 @@ enum LLMChoice: String, AppEnum {
         .cloud: "Cloud",
         .standardEncryption: "Standard Encryption",
         .multiFactorAuth: "Multi-Factor Authentication",
-        .privacyByDesign: "Privacy by Design"
+        .privacyByDesign: "Privacy by Design",
+        .microsoft365: "Microsoft 365",
+        .googleWorkspace: "Google Workspace",
+        .internalSystems: "Internal Systems",
+        .openData: "Open Data"
     ]
 }
 
