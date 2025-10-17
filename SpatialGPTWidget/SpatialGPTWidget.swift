@@ -212,9 +212,10 @@ struct LLMInfo: Hashable {
                         ],
                         footer: "Gemma is a lightweight model designed for efficient local or private-cloud deployments."
                     )
+            
         case (.standaloneWebApp, .security):
             return LLMInfo(
-                title: "Standalone Web App",
+                title: "Web App",
                 logoName: "titel",
                 overviewHeader: "Overview",
                 overviewBullets: [
@@ -233,7 +234,7 @@ struct LLMInfo: Hashable {
 
         case (.standaloneWebApp, .finance):
             return LLMInfo(
-                title: "Standalone Web App",
+                title: "Web App",
                 logoName: "titel",
                 overviewHeader: "Overview",
                 overviewBullets: [
@@ -253,7 +254,7 @@ struct LLMInfo: Hashable {
         // --- API Integration ---
         case (.apiIntegration, .security):
             return LLMInfo(
-                title: "API Integration",
+                title: "API",
                 logoName: "titel",
                 overviewHeader: "Overview",
                 overviewBullets: [
@@ -272,7 +273,7 @@ struct LLMInfo: Hashable {
 
         case (.apiIntegration, .finance):
             return LLMInfo(
-                title: "API Integration",
+                title: "API",
                 logoName: "titel",
                 overviewHeader: "Overview",
                 overviewBullets: [
@@ -289,10 +290,9 @@ struct LLMInfo: Hashable {
                 footer: "Requires dev work but streamlines workflows."
             )
 
-        // --- Mobile App / Intranet ---
         case (.mobileApp, .security):
             return LLMInfo(
-                title: "Mobile App / Intranet",
+                title: "Mobile App",
                 logoName: "titel",
                 overviewHeader: "Overview",
                 overviewBullets: [
@@ -311,7 +311,7 @@ struct LLMInfo: Hashable {
 
         case (.mobileApp, .finance):
             return LLMInfo(
-                title: "Mobile App / Intranet",
+                title: "Mobile App",
                 logoName: "titel",
                 overviewHeader: "Overview",
                 overviewBullets: [
@@ -331,7 +331,7 @@ struct LLMInfo: Hashable {
         case (.freeUse, .security):
             return LLMInfo(
                 title: "Free Use",
-                logoName: "title",
+                logoName: "titel",
                 overviewHeader: "Overview",
                 overviewBullets: [
                     "All users can use the application fully",
@@ -342,7 +342,6 @@ struct LLMInfo: Hashable {
                 securityBullets: [
                     "Low",
                     "Risk of data misuse or unauthorized access",
-                    "Difficult to prevent cross-department data exposure"
                 ],
                 footer: "Free Use maximizes accessibility but requires strong data boundaries elsewhere."
             )
@@ -350,7 +349,7 @@ struct LLMInfo: Hashable {
         case (.freeUse, .finance):
             return LLMInfo(
                 title: "Free Use",
-                logoName: "title",
+                logoName: "titel",
                 overviewHeader: "Overview",
                 overviewBullets: [
                     "All users can use the application fully",
@@ -361,20 +360,18 @@ struct LLMInfo: Hashable {
                 securityBullets: [
                     "Very low (near zero) cost",
                     "No moderation overhead",
-                    "Minimal admin effort"
                 ],
                 footer: "Lowest-cost rollout, trading off governance for speed and convenience."
             )
 
         case (.moderationFilter, .security):
             return LLMInfo(
-                title: "Moderation / Filter",
-                logoName: "title",
+                title: "Moderation",
+                logoName: "titel",
                 overviewHeader: "Overview",
                 overviewBullets: [
                     "Inputs and outputs checked for sensitive data",
                     "Prevents undesired information leakage",
-                    "Adds a governance layer to AI usage"
                 ],
                 securityHeader: "Security Overview",
                 securityBullets: [
@@ -387,13 +384,12 @@ struct LLMInfo: Hashable {
 
         case (.moderationFilter, .finance):
             return LLMInfo(
-                title: "Moderation / Filter",
-                logoName: "title",
+                title: "Moderation",
+                logoName: "titel",
                 overviewHeader: "Overview",
                 overviewBullets: [
                     "Inputs and outputs checked for sensitive data",
                     "Prevents undesired information leakage",
-                    "Adds a governance layer to AI usage"
                 ],
                 securityHeader: "Financial Overview",
                 securityBullets: [
@@ -406,8 +402,8 @@ struct LLMInfo: Hashable {
 
         case (.roleBasedAccess, .security):
             return LLMInfo(
-                title: "Role-Based Access",
-                logoName: "title",
+                title: "Role Access",
+                logoName: "titel",
                 overviewHeader: "Overview",
                 overviewBullets: [
                     "Access rights assigned by roles/departments",
@@ -425,8 +421,8 @@ struct LLMInfo: Hashable {
 
         case (.roleBasedAccess, .finance):
             return LLMInfo(
-                title: "Role-Based Access",
-                logoName: "title",
+                title: "Role Access",
+                logoName: "titel",
                 overviewHeader: "Overview",
                 overviewBullets: [
                     "Access rights assigned by roles/departments",
@@ -445,12 +441,11 @@ struct LLMInfo: Hashable {
             case (.localServer, .security):
                 return LLMInfo(
                     title: "Local Server",
-                    logoName: "title",
+                    logoName: "titel",
                     overviewHeader: "Overview",
                     overviewBullets: [
                         "Runs on your own servers inside the corporate network",
                         "Only available for certain self-hostable AI models; otherwise grayed out",
-                        "Maximum ownership of runtime and data path"
                     ],
                     securityHeader: "Security Overview",
                     securityBullets: [
@@ -464,12 +459,11 @@ struct LLMInfo: Hashable {
             case (.localServer, .finance):
                 return LLMInfo(
                     title: "Local Server",
-                    logoName: "title",
+                    logoName: "titel",
                     overviewHeader: "Overview",
                     overviewBullets: [
                         "Runs on your own servers inside the corporate network",
                         "Only available for certain self-hostable AI models; otherwise grayed out",
-                        "Maximum ownership of runtime and data path"
                     ],
                     securityHeader: "Financial Overview",
                     securityBullets: [
@@ -483,12 +477,11 @@ struct LLMInfo: Hashable {
             case (.privateCloud, .security):
                 return LLMInfo(
                     title: "Private Cloud",
-                    logoName: "title",
+                    logoName: "titel",
                     overviewHeader: "Overview",
                     overviewBullets: [
                         "Dedicated cloud environment implemented for your company",
                         "Provided/managed by an external vendor",
-                        "Only available for certain AI models; otherwise grayed out"
                     ],
                     securityHeader: "Security Overview",
                     securityBullets: [
@@ -502,12 +495,11 @@ struct LLMInfo: Hashable {
             case (.privateCloud, .finance):
                 return LLMInfo(
                     title: "Private Cloud",
-                    logoName: "title",
+                    logoName: "titel",
                     overviewHeader: "Overview",
                     overviewBullets: [
                         "Dedicated cloud environment implemented for your company",
                         "Provided/managed by an external vendor",
-                        "Only available for certain AI models; otherwise grayed out"
                     ],
                     securityHeader: "Financial Overview",
                     securityBullets: [
@@ -521,7 +513,7 @@ struct LLMInfo: Hashable {
             case (.cloud, .security):
                 return LLMInfo(
                     title: "Cloud",
-                    logoName: "title",
+                    logoName: "titel",
                     overviewHeader: "Overview",
                     overviewBullets: [
                         "No own hardware needed",
@@ -540,7 +532,7 @@ struct LLMInfo: Hashable {
             case (.cloud, .finance):
                 return LLMInfo(
                     title: "Cloud",
-                    logoName: "title",
+                    logoName: "titel",
                     overviewHeader: "Overview",
                     overviewBullets: [
                         "No own hardware needed",
@@ -558,8 +550,8 @@ struct LLMInfo: Hashable {
             
             case (.standardEncryption, .security):
                 return LLMInfo(
-                    title: "Standard Encryption",
-                    logoName: "title",
+                    title: "Standard",
+                    logoName: "titel",
                     overviewHeader: "Overview",
                     overviewBullets: [
                         "Password-based protection",
@@ -577,8 +569,8 @@ struct LLMInfo: Hashable {
 
             case (.standardEncryption, .finance):
                 return LLMInfo(
-                    title: "Standard Encryption",
-                    logoName: "title",
+                    title: "Standard",
+                    logoName: "titel",
                     overviewHeader: "Overview",
                     overviewBullets: [
                         "Password-based protection",
@@ -596,8 +588,8 @@ struct LLMInfo: Hashable {
 
             case (.multiFactorAuth, .security):
                 return LLMInfo(
-                    title: "Multi-Factor Authentication",
-                    logoName: "title",
+                    title: "Multi-Factor",
+                    logoName: "titel",
                     overviewHeader: "Overview",
                     overviewBullets: [
                         "Users authenticate with password plus a second factor",
@@ -615,8 +607,8 @@ struct LLMInfo: Hashable {
 
             case (.multiFactorAuth, .finance):
                 return LLMInfo(
-                    title: "Multi-Factor Authentication",
-                    logoName: "title",
+                    title: "Multi-Factor",
+                    logoName: "titel",
                     overviewHeader: "Overview",
                     overviewBullets: [
                         "Users authenticate with password plus a second factor",
@@ -635,7 +627,7 @@ struct LLMInfo: Hashable {
             case (.privacyByDesign, .security):
                 return LLMInfo(
                     title: "Privacy by Design",
-                    logoName: "title",
+                    logoName: "titel",
                     overviewHeader: "Overview",
                     overviewBullets: [
                         "No data is stored (anonymous usage)",
@@ -654,7 +646,7 @@ struct LLMInfo: Hashable {
             case (.privacyByDesign, .finance):
                 return LLMInfo(
                     title: "Privacy by Design",
-                    logoName: "title",
+                    logoName: "titel",
                     overviewHeader: "Overview",
                     overviewBullets: [
                         "No data is stored (anonymous usage)",
@@ -674,7 +666,7 @@ struct LLMInfo: Hashable {
             case (.microsoft365, .security):
                 return LLMInfo(
                     title: "Microsoft 365",
-                    logoName: "title",
+                    logoName: "Microsoft",
                     overviewHeader: "Overview",
                     overviewBullets: [
                         "Integrates with Teams and Outlook",
@@ -687,13 +679,13 @@ struct LLMInfo: Hashable {
                         "GDPR-compliant if hosted in DE/EU",
                         "Mature enterprise controls"
                     ],
-                    footer: "Use Microsoft 365 to leverage existing MS ecosystem and governance."
+                    footer: "Use Microsoft 365 to leverage existing MS ecosystem."
                 )
 
             case (.microsoft365, .finance):
                 return LLMInfo(
                     title: "Microsoft 365",
-                    logoName: "title",
+                    logoName: "Microsoft",
                     overviewHeader: "Overview",
                     overviewBullets: [
                         "Integrates with Teams and Outlook",
@@ -706,13 +698,13 @@ struct LLMInfo: Hashable {
                         "License costs (≈ $12.50 per user)",
                         "Scope limited to MS-stored data"
                     ],
-                    footer: "Licensing adds cost; data scope is bounded by Microsoft storage."
+                    footer: "Data scope is bounded by Microsoft storage."
                 )
 
             case (.googleWorkspace, .security):
                 return LLMInfo(
-                    title: "Google Workspace",
-                    logoName: "title",
+                    title: "Google",
+                    logoName: "Google",
                     overviewHeader: "Overview",
                     overviewBullets: [
                         "Connects to Gmail and Google Drive",
@@ -730,8 +722,8 @@ struct LLMInfo: Hashable {
 
             case (.googleWorkspace, .finance):
                 return LLMInfo(
-                    title: "Google Workspace",
-                    logoName: "title",
+                    title: "Google",
+                    logoName: "Google",
                     overviewHeader: "Overview",
                     overviewBullets: [
                         "Connects to Gmail and Google Drive",
@@ -749,7 +741,7 @@ struct LLMInfo: Hashable {
 
             case (.internalSystems, .security):
                 return LLMInfo(
-                    title: "Internal Systems",
+                    title: "Internal",
                     logoName: "title",
                     overviewHeader: "Overview",
                     overviewBullets: [
@@ -768,7 +760,7 @@ struct LLMInfo: Hashable {
 
             case (.internalSystems, .finance):
                 return LLMInfo(
-                    title: "Internal Systems",
+                    title: "Internal",
                     logoName: "title",
                     overviewHeader: "Overview",
                     overviewBullets: [
@@ -787,8 +779,8 @@ struct LLMInfo: Hashable {
 
             case (.openData, .security):
                 return LLMInfo(
-                    title: "Open Data / Web Sources",
-                    logoName: "title",
+                    title: "Web Sources",
+                    logoName: "WWW",
                     overviewHeader: "Overview",
                     overviewBullets: [
                         "Uses freely available web content",
@@ -806,8 +798,8 @@ struct LLMInfo: Hashable {
 
             case (.openData, .finance):
                 return LLMInfo(
-                    title: "Open Data / Web Sources",
-                    logoName: "title",
+                    title: "Web Sources",
+                    logoName: "WWW",
                     overviewHeader: "Overview",
                     overviewBullets: [
                         "Uses freely available web content",
@@ -826,7 +818,7 @@ struct LLMInfo: Hashable {
             case (.germanyHosting, .security):
                 return LLMInfo(
                     title: "Germany",
-                    logoName: "title",
+                    logoName: "Germany",
                     overviewHeader: "Overview",
                     overviewBullets: [
                         "Hosted exclusively in German data centers",
@@ -845,7 +837,7 @@ struct LLMInfo: Hashable {
             case (.germanyHosting, .finance):
                 return LLMInfo(
                     title: "Germany",
-                    logoName: "title",
+                    logoName: "Germany",
                     overviewHeader: "Overview",
                     overviewBullets: [
                         "Hosted exclusively in German data centers",
@@ -863,8 +855,8 @@ struct LLMInfo: Hashable {
 
             case (.euHosting, .security):
                 return LLMInfo(
-                    title: "European Union",
-                    logoName: "title",
+                    title: "Europe",
+                    logoName: "EU",
                     overviewHeader: "Overview",
                     overviewBullets: [
                         "Hosted across EU data centers",
@@ -882,8 +874,8 @@ struct LLMInfo: Hashable {
 
             case (.euHosting, .finance):
                 return LLMInfo(
-                    title: "European Union",
-                    logoName: "title",
+                    title: "Europe",
+                    logoName: "EU",
                     overviewHeader: "Overview",
                     overviewBullets: [
                         "Hosted across EU data centers",
@@ -902,7 +894,7 @@ struct LLMInfo: Hashable {
             case (.globalHosting, .security):
                 return LLMInfo(
                     title: "Worldwide",
-                    logoName: "title",
+                    logoName: "WorldWide",
                     overviewHeader: "Overview",
                     overviewBullets: [
                         "Global data centers for higher availability",
@@ -921,7 +913,7 @@ struct LLMInfo: Hashable {
             case (.globalHosting, .finance):
                 return LLMInfo(
                     title: "Worldwide",
-                    logoName: "title",
+                    logoName: "WorldWide",
                     overviewHeader: "Overview",
                     overviewBullets: [
                         "Global data centers for higher availability",
@@ -940,7 +932,7 @@ struct LLMInfo: Hashable {
             case (.internalStorage, .security):
                 return LLMInfo(
                     title: "Internal Storage",
-                    logoName: "title",
+                    logoName: "titel",
                     overviewHeader: "Overview",
                     overviewBullets: [
                         "Model reads from a predefined company database",
@@ -959,7 +951,7 @@ struct LLMInfo: Hashable {
             case (.internalStorage, .finance):
                 return LLMInfo(
                     title: "Internal Storage",
-                    logoName: "title",
+                    logoName: "titel",
                     overviewHeader: "Overview",
                     overviewBullets: [
                         "Model reads from a predefined company database",
@@ -978,7 +970,7 @@ struct LLMInfo: Hashable {
             case (.fineTuning, .security):
                 return LLMInfo(
                     title: "Fine-Tuning",
-                    logoName: "title",
+                    logoName: "titel",
                     overviewHeader: "Overview",
                     overviewBullets: [
                         "Model is further trained on internal company data",
@@ -997,7 +989,7 @@ struct LLMInfo: Hashable {
             case (.fineTuning, .finance):
                 return LLMInfo(
                     title: "Fine-Tuning",
-                    logoName: "title",
+                    logoName: "titel",
                     overviewHeader: "Overview",
                     overviewBullets: [
                         "Model is further trained on internal company data",
@@ -1016,7 +1008,7 @@ struct LLMInfo: Hashable {
             case (.rag, .security):
                 return LLMInfo(
                     title: "RAG",
-                    logoName: "title",
+                    logoName: "titel",
                     overviewHeader: "Overview",
                     overviewBullets: [
                         "Like Internal Storage, but queries firm knowledge on every request",
@@ -1035,7 +1027,7 @@ struct LLMInfo: Hashable {
             case (.rag, .finance):
                 return LLMInfo(
                     title: "RAG",
-                    logoName: "title",
+                    logoName: "titel",
                     overviewHeader: "Overview",
                     overviewBullets: [
                         "Like Internal Storage, but queries firm knowledge on every request",
@@ -1121,6 +1113,9 @@ struct LLMCardView: View {
     @Environment(\.levelOfDetail) private var lod
 
     private var isTitleOnly: Bool { info.logoName == "titel" }
+    
+    private var titleFontSize: CGFloat { info.title.count > 8 ? 25 : 30 }
+
 
         var body: some View {
             switch lod {
@@ -1133,7 +1128,7 @@ struct LLMCardView: View {
             Group {
                 if isTitleOnly {
                     Text(info.title)
-                        .font(.system(size: 30, weight: .bold))
+                        .font(.system(size: titleFontSize, weight: .bold))
                         .lineLimit(2)
                         .minimumScaleFactor(0.8)
                         .accessibilityLabel("\(info.title) widget")
@@ -1145,7 +1140,7 @@ struct LLMCardView: View {
                             .frame(maxWidth: 60, maxHeight: 60)
                             .accessibilityHidden(true)
                         Text(info.title)
-                            .font(.system(size: 30, weight: .bold))
+                            .font(.system(size: titleFontSize, weight: .bold))
                             .lineLimit(1)
                             .minimumScaleFactor(0.8)
                             .accessibilityLabel("\(info.title) widget")
