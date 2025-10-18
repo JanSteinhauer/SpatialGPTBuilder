@@ -70,16 +70,34 @@ Maximize system performance at minimal cost and energy use — while ensuring th
 
 Currently, only the **widget system** is implemented:
 
-### **SpatialLLMWidget**
+---
 
-A foundation component that displays:
+## 🔧 Configuration (App Intent)
 
-* Basic information on LLMs (ChatGPT, Claude)
-* Security and performance summaries
-* Adaptive **Level of Detail (LOD)** views (logo + title from afar, detailed breakdown up close)
+Use the **configuration UI** to choose the item shown in the widget:
 
-This widget represents the **first visual layer** for the upcoming **role dashboards** (Security / FinOps).
-
+```swift
+enum LLMChoice: String, AppEnum {
+    // Providers
+    case chatgpt, anthropic, gemini, gemma, llama
+    // Delivery form factors
+    case standaloneWebApp, apiIntegration, mobileApp
+    // Access & governance
+    case freeUse, moderationFilter, roleBasedAccess
+    // Hosting models
+    case localServer, privateCloud, cloud
+    // Security measures
+    case standardEncryption, multiFactorAuth, privacyByDesign
+    // Enterprise suites
+    case microsoft365, googleWorkspace
+    // Data sources
+    case internalSystems, openData
+    // Regions
+    case germanyHosting, euHosting, globalHosting
+    // Data strategies
+    case internalStorage, fineTuning, rag
+}
+```
 ---
 
 ## ⚙️ Tech Stack
