@@ -13,6 +13,7 @@ struct SpatialLLMWidgetBundle: WidgetBundle {
     var body: some Widget {
         SecurityLLMWidget()
         FinanceLLMWidget()
+        IndividualTaskWidget()
     }
 }
 

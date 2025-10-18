@@ -79,3 +79,14 @@ struct LLMConfigurationIntent: WidgetConfigurationIntent {
     @Parameter(title: "Provider", default: .chatgpt)
     var provider: LLMChoice
 }
+
+enum IndividualTaskKind: String, AppEnum {
+    case finance
+    case security
+
+    static var typeDisplayRepresentation: TypeDisplayRepresentation { "Task Type" }
+    static var caseDisplayRepresentations: [IndividualTaskKind: DisplayRepresentation] = [
+        .finance: "Finance",
+        .security: "Security"
+    ]
+}
