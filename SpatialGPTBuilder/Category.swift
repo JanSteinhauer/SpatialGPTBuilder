@@ -30,4 +30,17 @@ enum Category: String, CaseIterable, Identifiable {
         case .integration:    return "Integration"
         }
     }
+    
+    var subheadline: String {
+            switch self {
+            case .hostingCountry: return "Hosting Countries"
+            case .dataSource:     return "Data Sources"
+            case .dataPrivacy:    return "Data Privacy Options"
+            case .accessControl:  return "Access Control"
+            case .infrastructure: return "Infrastructure Options"
+            case .interface:      return "Interface Options"
+            case .aiModel:        return "AI Models"
+            case .integration:    return "Integrations"
+            }
+        }
 }

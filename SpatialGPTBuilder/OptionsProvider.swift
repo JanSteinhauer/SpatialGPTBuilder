@@ -30,5 +30,14 @@ enum OptionsProvider {
             return ["germanyHosting", "euHosting", "globalHosting"].map(OptionItem.init)
         }
     }
+    
+    @MainActor
+    static func allItems() -> [OptionItem] {
+        Category.allCases
+            .flatMap { items(for: $0) }
+            .reduce(into: [String: OptionItem]()) { dict, item in dict[item.id] = item }
+            .values
+            .sorted { $0.displayName < $1.displayName }
+    }
 }
 

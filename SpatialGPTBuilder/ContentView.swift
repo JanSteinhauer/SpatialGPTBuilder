@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(\.openWindow) private var openWindow
+
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack{
@@ -21,7 +23,10 @@ struct ContentView: View {
             }
             AIIntegrationWorkflowDiagram()
                 .padding(.horizontal)
-                
+            
+        }
+        .onAppear {
+            openWindow(id: "building_blocks")
         }
     }
 }
