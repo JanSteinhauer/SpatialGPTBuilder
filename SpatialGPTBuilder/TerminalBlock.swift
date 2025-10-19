@@ -13,7 +13,7 @@ struct TerminalBlock: View {
     let title: String
     let width: CGFloat
     let height: CGFloat
-    
+
     var body: some View {
         let r = min(width, height) * 0.4
         let shape: some InsettableShape = {
@@ -30,7 +30,7 @@ struct TerminalBlock: View {
                 )
             }
         }()
-        
+
         Text(title)
             .font(.system(size: min(22, height * 0.55), weight: .bold))
             .frame(width: width, height: height)
@@ -40,4 +40,3 @@ struct TerminalBlock: View {
             .accessibilityLabel(title)
     }
 }
-
