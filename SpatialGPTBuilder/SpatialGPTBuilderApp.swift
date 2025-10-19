@@ -20,8 +20,16 @@ struct SpatialGPTBuilderApp: App {
         .defaultSize(width: 400, height: 700)
         .windowResizability(.contentSize)
         .defaultWindowPlacement { content, context in
-            
             return WindowPlacement(.leading(context.windows.first(where: { $0.id == "main" })!))
+        }
+        
+        WindowGroup(id: "current_result") {
+            CurrentResultView()
+        }
+        .defaultSize(width: 400, height: 700)
+        .windowResizability(.contentSize)
+        .defaultWindowPlacement { content, context in
+            return WindowPlacement(.trailing(context.windows.first(where: { $0.id == "main" })!))
         }
         
     }
