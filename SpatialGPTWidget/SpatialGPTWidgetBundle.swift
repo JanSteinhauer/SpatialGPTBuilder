@@ -15,6 +15,7 @@ struct SpatialLLMWidgetBundle: WidgetBundle {
         FinanceLLMWidget()
         IndividualTaskWidget()
         OverallTaskInfoWidget()
+        CategoryHeaderWidget()
     }
 }
 
