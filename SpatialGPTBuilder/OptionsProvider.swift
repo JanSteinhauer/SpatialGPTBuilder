@@ -40,4 +40,3 @@ enum OptionsProvider {
             .sorted { $0.displayName < $1.displayName }
     }
 }
-

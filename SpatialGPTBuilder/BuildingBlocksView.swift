@@ -13,7 +13,7 @@ struct BuildingBlocksView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            HStack{
+            HStack {
                 Spacer()
                 Text("Building Blocks")
                     .font(.title.bold())
@@ -21,7 +21,6 @@ struct BuildingBlocksView: View {
                     .padding(.top, 16)
                 Spacer()
             }
-           
 
             Divider()
                 .padding(.top, 8)
@@ -39,7 +38,11 @@ struct BuildingBlocksView: View {
                         ScrollView(.horizontal) {
                             LazyHStack(alignment: .top, spacing: 16) {
                                 ForEach(section.1) { item in
-                                    RoundedBlockTile(title: item.displayName, size: 112)
+                                    RoundedBlockTile(
+                                        title: item.displayName,
+                                        assetName: item.mappedAssetName,
+                                        size: 112
+                                    )
                                 }
                             }
                             .padding(.horizontal, 16)

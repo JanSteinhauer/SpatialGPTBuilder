@@ -17,6 +17,22 @@ struct OptionItem: Identifiable, Hashable {
         self.displayName = OptionItem.pretty(id)
         self.assetName = id
     }
+    
+    var mappedAssetName: String? {
+        let map: [String: String] = [
+            "chatgpt": "ChatGPT",
+            "anthropic": "Anthropic",
+            "gemini": "Gemini",
+            "gemma": "Gemma",
+            "llama": "Llama",
+            "microsoft365": "Microsoft",
+            "googleWorkspace": "Google",
+            "euHosting": "EU",
+            "germanyHosting": "Germany",
+            "globalHosting": "WorldWide"
+        ]
+        return map[id] ?? assetName
+    }
 
     private static func pretty(_ raw: String) -> String {
         let spaced = raw
@@ -28,3 +44,4 @@ struct OptionItem: Identifiable, Hashable {
             .capitalized
     }
 }
+

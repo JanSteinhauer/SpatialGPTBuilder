@@ -8,11 +8,13 @@
 import SwiftUI
 
 enum ImageAssetHelper {
-    #if canImport(UIKit)
-    static func imageExists(named: String) -> Bool {
-        return UIImage(named: named) != nil
+    static func imageExists(named name: String) -> Bool {
+        #if canImport(UIKit)
+        return UIImage(named: name) != nil
+        #elseif canImport(AppKit)
+        return NSImage(named: name) != nil
+        #else
+        return false
+        #endif
     }
-    #else
-    static func imageExists(named: String) -> Bool { false }
-    #endif
 }
