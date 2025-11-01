@@ -10,6 +10,8 @@ import SwiftUI
 struct AIIntegrationWorkflowDiagram: View {
     @State private var selections: [Category: OptionItem] = [:]
     @State private var showingPickerFor: Category?
+    
+    @EnvironmentObject private var workflow: WorkflowCoordinator
 
     var body: some View {
         GeometryReader { geo in
@@ -246,40 +248,28 @@ struct AIIntegrationWorkflowDiagram: View {
         }
         .background(.clear)
         .ignoresSafeArea()
-        .popover(item: $showingPickerFor, attachmentAnchor: .rect(.bounds)) { category in
-            PickerContent(
-                title: category.display,
-                options: OptionsProvider.items(for: category),
-                onSelect: { item in
-                    selections[category] = item
-                    showingPickerFor = nil
-                },
-                onCancel: { showingPickerFor = nil }
-            )
-            .frame(minWidth: 340)
-        }
     }
 
     // MARK: - Block helper (Button)
     @ViewBuilder
-    private func blockButton(category: Category,
-                             placeholder: String,
-                             x: CGFloat, y: CGFloat,
-                             w: CGFloat, h: CGFloat) -> some View {
-        Button {
-            showingPickerFor = category
-        } label: {
-            ProcessBlock(
-                placeholderTitle: placeholder,
-                selected: selections[category],
-                width: w, height: h
-            )
-        }
-        .buttonStyle(.plain)
-        .position(x: x, y: y)
-        .accessibilityLabel("\(placeholder) picker")
-        .accessibilityAddTraits(.isButton)
-    }
+     private func blockButton(category: Category,
+                              placeholder: String,
+                              x: CGFloat, y: CGFloat,
+                              w: CGFloat, h: CGFloat) -> some View {
+         Button {
+             workflow.beginPicking(category)
+         } label: {
+             ProcessBlock(
+                 placeholderTitle: placeholder,
+                 selected: workflow.selections[category],
+                 width: w, height: h
+             )
+         }
+         .buttonStyle(.plain)
+         .position(x: x, y: y)
+         .accessibilityLabel("\(placeholder) picker")
+         .accessibilityAddTraits(.isButton)
+     }
 }
 
 // MARK: - Popup Content

@@ -26,8 +26,9 @@ struct ContentView: View {
             
         }
         .onAppear {
-            openWindow(id: "building_blocks")
+//            openWindow(id: "building_blocks")
             openWindow(id: "current_result")
+            openWindow(id: "building_block_picker")
         }
     }
 }
