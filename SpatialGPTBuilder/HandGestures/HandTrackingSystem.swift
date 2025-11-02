@@ -27,7 +27,7 @@ struct HandTrackingSystem: System {
         .has(FloatyConfetti.self) && .has(PhysicsMotionComponent.self)
     )
     
-    var debugHandshake = true
+    var debugHandshake = false
 
 
     static var leftMotion  = MotionBuffer(maxSeconds: 2.0)

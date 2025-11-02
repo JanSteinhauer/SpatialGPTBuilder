@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum Category: String, CaseIterable, Identifiable {
+enum Category: String, CaseIterable, Identifiable, Codable, Sendable {
     case hostingCountry
     case dataSource
     case dataPrivacy

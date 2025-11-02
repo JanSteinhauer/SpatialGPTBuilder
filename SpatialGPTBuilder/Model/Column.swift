@@ -7,8 +7,7 @@
 
 import SwiftUI
 
-enum Column: CaseIterable, Hashable {
-    case col1, col2, col3
+enum Column: CaseIterable, Hashable, Codable, Sendable {    case col1, col2, col3
 
     var categories: [Category] {
         switch self {

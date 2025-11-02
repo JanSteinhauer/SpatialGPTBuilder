@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct OptionItem: Identifiable, Hashable {
+struct OptionItem: Identifiable, Hashable, Equatable, Codable, Sendable {
     let id: String
     let displayName: String
     let assetName: String

@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @Environment(\.openWindow) private var openWindow
     @Environment(\.openImmersiveSpace) private var openImmersiveSpace
+    @EnvironmentObject private var sharePlay: SharePlayCoordinator
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -21,6 +22,16 @@ struct ContentView: View {
                     .padding(.horizontal)
                     .padding(.top)
                 Spacer()
+                Button {
+                    Task { await sharePlay.startSharing() }
+                } label: {
+                    HStack(spacing: 8) {
+                        Image(systemName: "shareplay")
+                        Text(sharePlay.isSharing ? "Sharing…" : "Share")
+                    }
+                }
+                .buttonStyle(.borderedProminent)
+                .padding(.trailing)
             }
             AIIntegrationWorkflowDiagram()
                 .padding(.horizontal)

@@ -10,11 +10,20 @@ import SwiftUI
 @main
 struct SpatialGPTBuilderApp: App {
     @StateObject private var workflow = WorkflowCoordinator()
+    @StateObject private var sharePlay: SharePlayCoordinator
+    
+    init() {
+        let wf = WorkflowCoordinator()
+        _workflow = StateObject(wrappedValue: wf)
+        _sharePlay = StateObject(wrappedValue: SharePlayCoordinator(workflow: wf))
+    }
+
 
     var body: some Scene {
         WindowGroup(id: "main") {
             ContentView()
                 .environmentObject(workflow)
+                .environmentObject(sharePlay)
         }
         
 //                WindowGroup(id: "building_blocks") {

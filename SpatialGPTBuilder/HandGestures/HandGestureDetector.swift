@@ -44,7 +44,7 @@ struct HandGestureDetector {
     var hsMinAmplitude: Float  = 0.015
     var hsMaxAmplitude: Float  = 0.16
 
-    var debugHandshake = true
+    var debugHandshake = false
 
     private(set) var lastDiamondAt: TimeInterval   = 0
     private(set) var lastRectangleAt: TimeInterval = 0
