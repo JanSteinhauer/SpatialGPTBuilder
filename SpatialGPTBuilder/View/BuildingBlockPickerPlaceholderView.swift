@@ -9,35 +9,83 @@ import SwiftUI
 
 struct BuildingBlockPickerPlaceholderView: View {
     @EnvironmentObject private var workflow: WorkflowCoordinator
+    @Environment(\.openImmersiveSpace) private var openImmersiveSpace
+    @Environment(\.dismissImmersiveSpace) private var dismissImmersiveSpace
 
     var body: some View {
-        Group {
-            if let cat = workflow.pickingCategory {
-                PickerContentGrid(
-                    title: cat.display,
-                    options: OptionsProvider.items(for: cat),
-                    selected: Binding(
-                        get: { workflow.pendingSelection },
-                        set: { workflow.pendingSelection = $0 }
-                    ),
-                    onConfirm: { workflow.confirmSelection() },
-                    onCancel: { workflow.cancelPicking() }
-                )
-            } else {
-                VStack(spacing: 16) {
-                    Text("Add a Buildingblock by clicking on one in the AI Integration Workflow.")
-                        .font(.headline)
-                        .multilineTextAlignment(.center)
-                        .padding(.horizontal, 24)
-                    Text("Tip: You can keep this window open while selecting blocks.")
-                        .font(.footnote)
-                        .foregroundStyle(.secondary)
+        ZStack {
+            Group {
+                if let cat = workflow.pickingCategory {
+                    PickerContentGrid(
+                        title: cat.display,
+                        options: OptionsProvider.items(for: cat),
+                        selected: Binding(
+                            get: { workflow.pendingSelection },
+                            set: { workflow.pendingSelection = $0 }
+                        ),
+                        onConfirm: { workflow.confirmSelection() },
+                        onCancel: { workflow.cancelPicking() }
+                    )
+                } else if let req = workflow.pendingHandshake {
+                    HandshakePrompt(
+                        request: req,
+                        onStart: {
+                            Task { _ = await openImmersiveSpace(id: "HandTrackingScene") }
+                        },
+                        onHandshakeDetected: {
+                            Task {
+                                _ = await dismissImmersiveSpace()
+                                await MainActor.run { workflow.completeHandshake() }
+                            }
+                        }
+                    )
+                } else {
+                    idleHint
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(.background)
+            }
+            .frame(minWidth: 360, minHeight: 420)
+
+            if let msg = workflow.successMessage {
+                successBanner(msg)
+                    .transition(.move(edge: .top).combined(with: .opacity))
+                    .zIndex(10)
             }
         }
-        .frame(minWidth: 360, minHeight: 420)
+        .animation(.spring(response: 0.35, dampingFraction: 0.86), value: workflow.successMessage)
+        .onAppear {
+            // Nothing to wire here; HandshakePrompt listens to notifications.
+        }
+    }
+
+    private var idleHint: some View {
+        VStack(spacing: 16) {
+            Text("Pick a building block in the AI Integration Workflow.")
+                .font(.headline)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal, 24)
+            Text("Tip: Keep this window open while selecting blocks. Confirmations may require a handshake.")
+                .font(.footnote)
+                .foregroundStyle(.secondary)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(.background)
+    }
+
+    private func successBanner(_ text: String) -> some View {
+        VStack(spacing: 0) {
+            HStack(spacing: 12) {
+                Image(systemName: "checkmark.seal.fill")
+                    .imageScale(.large)
+                Text(text).font(.subheadline.weight(.semibold))
+                Spacer()
+            }
+            .padding(12)
+            .background(.regularMaterial)
+            .clipShape(RoundedRectangle(cornerRadius: 14))
+            .shadow(radius: 8, y: 4)
+            Spacer()
+        }
+        .padding()
+        .allowsHitTesting(false)
     }
 }
-

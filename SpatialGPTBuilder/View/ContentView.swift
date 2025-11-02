@@ -30,7 +30,6 @@ struct ContentView: View {
 //            openWindow(id: "building_blocks")
             openWindow(id: "current_result")
             openWindow(id: "building_block_picker")
-            Task { await openImmersiveSpace(id: "HandTrackingScene") }
         }
     }
 }
