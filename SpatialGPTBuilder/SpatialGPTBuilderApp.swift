@@ -47,5 +47,9 @@ struct SpatialGPTBuilderApp: App {
             return WindowPlacement(.leading(context.windows.first(where: { $0.id == "main" })!))
         }
         
+        ImmersiveSpace(id: "HandTrackingScene") {
+            HandTrackingView()
+        }
+        
     }
 }

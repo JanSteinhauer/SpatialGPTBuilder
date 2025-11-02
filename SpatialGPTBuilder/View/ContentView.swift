@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @Environment(\.openWindow) private var openWindow
+    @Environment(\.openImmersiveSpace) private var openImmersiveSpace
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -29,6 +30,7 @@ struct ContentView: View {
 //            openWindow(id: "building_blocks")
             openWindow(id: "current_result")
             openWindow(id: "building_block_picker")
+            Task { await openImmersiveSpace(id: "HandTrackingScene") }
         }
     }
 }
