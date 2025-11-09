@@ -33,6 +33,7 @@ struct SpatialGPTBuilderApp: App {
             ContentView()
                 .environmentObject(workflow)
                 .environmentObject(sharePlay)
+                .environmentObject(sync)
         }
         
 //                WindowGroup(id: "building_blocks") {

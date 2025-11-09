@@ -11,8 +11,8 @@ import Foundation
 
 @MainActor
 final class FirestoreSync: ObservableObject {
-    private let rest: FirestoreREST
-    private let workflow: WorkflowCoordinator
+    let rest: FirestoreREST
+    let workflow: WorkflowCoordinator
     private var pollTask: Task<Void, Never>?
     private var lastUpdateTime: String?
     private var pushDebounce: AnyObject?
