@@ -207,10 +207,9 @@ struct LLMInfo: Hashable {
                         securityHeader: "Financial Overview",
                         securityBullets: [
                             "Medium",
-                            "No recurring API costs when self-hosted; hardware required",
                             "Lower quality than Gemini but cost-efficient"
                         ],
-                        footer: "Gemma is a lightweight model designed for efficient local or private-cloud deployments."
+                        footer: "Gemma is designed for efficient local or private-cloud deployments."
                     )
             
         case (.standaloneWebApp, .security):
@@ -469,7 +468,6 @@ struct LLMInfo: Hashable {
                     securityBullets: [
                         "Very High",
                         "Significant personnel, energy, and hardware costs",
-                        "CapEx- and Ops-heavy to maintain"
                     ],
                     footer: "Expect high upfront and ongoing costs due to hardware and operations."
                 )
@@ -602,7 +600,7 @@ struct LLMInfo: Hashable {
                         "Maximum hardening against account takeover",
                         "Strong compliance posture"
                     ],
-                    footer: "MFA delivers strong protection by combining something you know with something you have."
+                    footer: "MFA delivers strong protection."
                 )
 
             case (.multiFactorAuth, .finance):
@@ -638,7 +636,6 @@ struct LLMInfo: Hashable {
                     securityBullets: [
                         "Very High",
                         "Personal data is deleted immediately",
-                        "Excellent for sensitive contexts"
                     ],
                     footer: "Maximizes privacy and compliance, at the expense of historical analytics."
                 )
@@ -656,7 +653,6 @@ struct LLMInfo: Hashable {
                     securityHeader: "Financial Overview",
                     securityBullets: [
                         "Medium to High",
-                        "Reduced analytics and insights",
                         "Cost depends on access model and controls"
                     ],
                     footer: "Trade-offs: higher privacy, fewer analytic possibilities, variable costs."
@@ -746,7 +742,6 @@ struct LLMInfo: Hashable {
                     overviewHeader: "Overview",
                     overviewBullets: [
                         "Connects to company-internal databases",
-                        "Custom integrations for line-of-business data",
                         "Maximizes enterprise data coverage"
                     ],
                     securityHeader: "Security Overview",
@@ -755,7 +750,7 @@ struct LLMInfo: Hashable {
                         "Internally hosted data for maximum control",
                         "Best for sensitive information"
                     ],
-                    footer: "Ideal when strict data control and auditability are required."
+                    footer: "Ideal when strict data control is required."
                 )
 
             case (.internalSystems, .finance):
@@ -823,7 +818,6 @@ struct LLMInfo: Hashable {
                     overviewBullets: [
                         "Hosted exclusively in German data centers",
                         "Must comply with strict GDPR and national standards",
-                        "Strong data residency guarantees"
                     ],
                     securityHeader: "Security Overview",
                     securityBullets: [
@@ -831,7 +825,7 @@ struct LLMInfo: Hashable {
                         "Maximum privacy and data protection",
                         "Clear local regulatory framework"
                     ],
-                    footer: "Germany hosting provides the strongest data residency and privacy posture."
+                    footer: "Germany hosting provides the strongest data privacy."
                 )
 
             case (.germanyHosting, .finance):
@@ -850,7 +844,7 @@ struct LLMInfo: Hashable {
                         "Potential premium for in-country hosting",
                         "Limited provider flexibility compared to global options"
                     ],
-                    footer: "Expect moderate cost due to stricter locality and compliance requirements."
+                    footer: "Expect moderate cost."
                 )
 
             case (.euHosting, .security):
@@ -898,12 +892,10 @@ struct LLMInfo: Hashable {
                     overviewHeader: "Overview",
                     overviewBullets: [
                         "Global data centers for higher availability",
-                        "Broad provider and region choice",
                         "Useful for multi-region performance"
                     ],
                     securityHeader: "Security Overview",
                     securityBullets: [
-                        "Low",
                         "Lower privacy protections in some regions",
                         "Heightened risk without strong contractual controls"
                     ],
@@ -918,7 +910,6 @@ struct LLMInfo: Hashable {
                     overviewBullets: [
                         "Global data centers for higher availability",
                         "Broad provider and region choice",
-                        "Useful for multi-region performance"
                     ],
                     securityHeader: "Financial Overview",
                     securityBullets: [
@@ -926,7 +917,7 @@ struct LLMInfo: Hashable {
                         "Fewer providers meet high standards in all regions",
                         "Premium pricing for globally compliant setups"
                     ],
-                    footer: "Expect higher cost for globally consistent compliance and SLAs."
+                    footer: "Expect higher cost."
                 )
             
             case (.internalStorage, .security):
@@ -943,7 +934,6 @@ struct LLMInfo: Hashable {
                     securityBullets: [
                         "Medium to High",
                         "Risk depends on the chosen AI model",
-                        "Outdated data can lead to incorrect answers"
                     ],
                     footer: "Internal Storage favors cost control but requires strict update procedures."
                 )
@@ -980,7 +970,6 @@ struct LLMInfo: Hashable {
                     securityHeader: "Security Overview",
                     securityBullets: [
                         "Low",
-                        "Company data enters the model’s training process",
                         "Risk profile depends on the AI model and vendor"
                     ],
                     footer: "Great alignment with company needs; ensure secure training workflows."
@@ -994,7 +983,6 @@ struct LLMInfo: Hashable {
                     overviewBullets: [
                         "Model is further trained on internal company data",
                         "Delivers highly company-specific answers",
-                        "Strong performance if training data is curated"
                     ],
                     securityHeader: "Financial Overview",
                     securityBullets: [
@@ -1012,14 +1000,12 @@ struct LLMInfo: Hashable {
                     overviewHeader: "Overview",
                     overviewBullets: [
                         "Like Internal Storage, but queries firm knowledge on every request",
-                        "Combines retrieval with generation for fresher answers",
                         "Quality depends on indexing and document hygiene"
                     ],
                     securityHeader: "Security Overview",
                     securityBullets: [
                         "Depends on data sources and AI model",
                         "Access control and logging are critical",
-                        "Strong governance needed for retrieved content"
                     ],
                     footer: "RAG improves freshness and context at the cost of pipeline complexity."
                 )
@@ -1037,7 +1023,6 @@ struct LLMInfo: Hashable {
                     securityHeader: "Financial Overview",
                     securityBullets: [
                         "Medium",
-                        "Data must be prepared, stored, and maintained in a specific format",
                         "Better data quality → better performance → higher cost"
                     ],
                     footer: "Ongoing cost scales with corpus size, refresh rate, and infra."
