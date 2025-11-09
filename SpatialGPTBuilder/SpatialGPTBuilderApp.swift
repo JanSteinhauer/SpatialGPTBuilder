@@ -11,11 +11,20 @@ import SwiftUI
 struct SpatialGPTBuilderApp: App {
     @StateObject private var workflow = WorkflowCoordinator()
     @StateObject private var sharePlay: SharePlayCoordinator
+    @StateObject private var sync: FirestoreSync
     
     init() {
         let wf = WorkflowCoordinator()
         _workflow = StateObject(wrappedValue: wf)
         _sharePlay = StateObject(wrappedValue: SharePlayCoordinator(workflow: wf))
+        let projectId = "hci-project-89a59"      // e.g. "spatialgptbuilder-12345"
+        let apiKey    = "AIzaSyBFnoBRrLIN-EJ6Z7671WtdBGB5XVR7X-g"
+        let docPath = "sessions/Session"    
+
+        _sync = StateObject(wrappedValue: FirestoreSync(projectId: projectId,
+                                                        apiKey: apiKey,
+                                                        documentPath: docPath,
+                                                        workflow: wf))
     }
 
 

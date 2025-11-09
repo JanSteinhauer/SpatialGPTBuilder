@@ -49,6 +49,8 @@ final class WorkflowCoordinator: ObservableObject {
         if before != selections {
             revision &+= 1
             print("[Workflow] confirmSelection \(cat.display) = \(opt.displayName) -> rev \(revision)")
+            NotificationCenter.default.post(name: .workflowDidChange, object: self)
+            print("[Workflow] 🔄 Posted .workflowDidChange after confirming \(opt.displayName)")
         } else {
             print("[Workflow] confirmSelection made no effective change.")
         }

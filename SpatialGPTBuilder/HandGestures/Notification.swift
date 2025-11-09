@@ -10,4 +10,5 @@ import Foundation
 extension Notification.Name {
     static let thumbsUpDetected = Notification.Name("thumbsUpDetected")
     static let handshakeDetected = Notification.Name("handshakeDetected")
+    static let workflowDidChange = Notification.Name("workflowDidChange")
 }
