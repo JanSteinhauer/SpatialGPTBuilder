@@ -45,7 +45,6 @@ final class WorkflowCoordinator: ObservableObject {
         pickingCategory = nil
         pendingSelection = nil
 
-        // bump revision whenever we mutate selections
         if before != selections {
             revision &+= 1
             print("[Workflow] confirmSelection \(cat.display) = \(opt.displayName) -> rev \(revision)")
@@ -60,12 +59,17 @@ final class WorkflowCoordinator: ObservableObject {
         let isCompleteNow     = selections.hasAllSelected(in: col)
         print("[Workflow] Column \(col.displayName) completion: \(wasCompleteBefore) -> \(isCompleteNow)")
 
-        if !wasCompleteBefore, isCompleteNow, !confirmedColumns.contains(col), pendingHandshake == nil {
+        if confirmedColumns.contains(col) && before[cat] != selections[cat] {
+            confirmedColumns.remove(col)
+            print("[Workflow] Column \(col.displayName) changed — revoked previous confirmation.")
+        }
+
+        if isCompleteNow, !confirmedColumns.contains(col), pendingHandshake == nil {
             print("[Workflow] Requesting handshake for \(col.displayName)")
             requestHandshake(for: .column(col))
         }
     }
-    
+
     func cancelPicking() {
         let was = (pickingCategory, pendingSelection)
         pickingCategory = nil
