@@ -19,7 +19,7 @@ struct SpatialGPTBuilderApp: App {
         _sharePlay = StateObject(wrappedValue: SharePlayCoordinator(workflow: wf))
         let projectId = "hci-project-89a59"      // e.g. "spatialgptbuilder-12345"
         let apiKey    = "AIzaSyBFnoBRrLIN-EJ6Z7671WtdBGB5XVR7X-g"
-        let docPath = "sessions/Session"    
+        let docPath = "sessions/Session"
 
         _sync = StateObject(wrappedValue: FirestoreSync(projectId: projectId,
                                                         apiKey: apiKey,
@@ -46,6 +46,7 @@ struct SpatialGPTBuilderApp: App {
         
         WindowGroup(id: "current_result") {
             CurrentResultView()
+                .environmentObject(workflow)
         }
         .defaultSize(width: 400, height: 700)
         .windowResizability(.contentSize)

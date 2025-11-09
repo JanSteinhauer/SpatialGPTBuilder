@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC40304B2EC115C600F2AC12 /* Process Model Rules.pdf in Resources */ = {isa = PBXBuildFile; fileRef = EC40304A2EC115C600F2AC12 /* Process Model Rules.pdf */; };
 		ECE6442B2E9B73F10004DE5F /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; productRef = ECE6442A2E9B73F10004DE5F /* RealityKitContent */; };
 		ECE6444D2E9B74420004DE5F /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECE6444C2E9B74420004DE5F /* WidgetKit.framework */; };
 		ECE6444F2E9B74420004DE5F /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECE6444E2E9B74420004DE5F /* SwiftUI.framework */; };
@@ -46,6 +47,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		EC40304A2EC115C600F2AC12 /* Process Model Rules.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Process Model Rules.pdf"; sourceTree = "<group>"; };
 		ECE644252E9B73F10004DE5F /* SpatialGPTBuilder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpatialGPTBuilder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECE644292E9B73F10004DE5F /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
 		ECE644372E9B73F40004DE5F /* SpatialGPTBuilderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpatialGPTBuilderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,6 +129,7 @@
 		ECE6441C2E9B73F10004DE5F = {
 			isa = PBXGroup;
 			children = (
+				EC40304A2EC115C600F2AC12 /* Process Model Rules.pdf */,
 				ECEBF99A2E9C0DD800877150 /* README.md */,
 				ECE644272E9B73F10004DE5F /* SpatialGPTBuilder */,
 				ECE644282E9B73F10004DE5F /* Packages */,
@@ -285,6 +288,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC40304B2EC115C600F2AC12 /* Process Model Rules.pdf in Resources */,
 				ECEBF99B2E9C0DD800877150 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
