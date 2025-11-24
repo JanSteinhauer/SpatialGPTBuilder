@@ -23,17 +23,17 @@ struct ContentView: View {
                     .padding(.top)
                 Spacer()
 
-                Button {
-                    Task { await clearDatabase() }
-                } label: {
-                    HStack(spacing: 8) {
-                        Image(systemName: "trash")
-                        Text("Clear DB")
-                    }
-                }
-                .buttonStyle(.borderedProminent)
-                .tint(.red)
-                .padding(.trailing)
+//                Button {
+//                    Task { await clearDatabase() }
+//                } label: {
+//                    HStack(spacing: 8) {
+//                        Image(systemName: "trash")
+//                        Text("Clear DB")
+//                    }
+//                }
+//                .buttonStyle(.borderedProminent)
+//                .tint(.red)
+//                .padding(.trailing)
             }
 
             AIIntegrationWorkflowDiagram()

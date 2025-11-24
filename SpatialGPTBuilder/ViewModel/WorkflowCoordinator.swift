@@ -27,36 +27,21 @@ final class WorkflowCoordinator: ObservableObject {
         pickingCategory = category
         pendingSelection = selections[category]
 
-        // Check if user switched to another column mid-handshake
-        func beginPicking(_ category: Category) {
-            let was = (pickingCategory, pendingSelection)
-            pickingCategory = category
-            pendingSelection = selections[category]
+        // 🧩 If user switches to another column while handshake pending, just deselect last item silently
+        if let pending = pendingHandshake, case .column(let col) = pending.scope,
+           col != category.column {
 
-            // 🧩 If user switches to another column while handshake pending, just deselect last item silently
-            if let pending = pendingHandshake, case .column(let col) = pending.scope,
-               col != category.column {
-
-                if let lastCat = col.categories.last(where: { selections[$0] != nil }) {
-                    print("[Workflow] Switched columns during pending handshake — deselecting last item in \(col.displayName)")
-                    selections[lastCat] = nil
-                }
-
-                // Cancel pending handshake but don't push to Firestore yet
-                pendingHandshake = nil
-                print("[Workflow] Handshake cancelled for \(col.displayName) (user switched column)")
-
-                // Do NOT post NotificationCenter change — prevents autosave
+            if let lastCat = col.categories.last(where: { selections[$0] != nil }) {
+                print("[Workflow] Switched columns during pending handshake — deselecting last item in \(col.displayName)")
+                selections[lastCat] = nil
             }
 
-            if was.0 != pickingCategory || was.1 != pendingSelection {
-                revision &+= 1
-                print("[Workflow] beginPicking(\(category.display)) -> rev \(revision)")
-            } else {
-                print("[Workflow] beginPicking(\(category.display)) -> no state change")
-            }
+            // Cancel pending handshake but don't push to Firestore yet
+            pendingHandshake = nil
+            print("[Workflow] Handshake cancelled for \(col.displayName) (user switched column)")
+
+            // Do NOT post NotificationCenter change — prevents autosave
         }
-
 
         if was.0 != pickingCategory || was.1 != pendingSelection {
             revision &+= 1
@@ -65,6 +50,7 @@ final class WorkflowCoordinator: ObservableObject {
             print("[Workflow] beginPicking(\(category.display)) -> no state change")
         }
     }
+
 
 
     func confirmSelection() {

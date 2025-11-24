@@ -142,6 +142,14 @@ func finalScore(_ m: Metrics, profile: ScoreProfile) -> Double {
 
 // Pull deltas from current selections and compute metrics
 func computeMetrics(from selections: [Category: OptionItem]) -> Metrics {
+    // If everything is cleared, return zero metrics
+    if selections.isEmpty {
+        return Metrics(costEURPer1K: 0,
+                       security: 0,
+                       speed: 0,
+                       issues: 0)
+    }
+
     var cost = Base.costEURPer1K
     var sec  = Base.security
     var spd  = Base.speed
@@ -155,8 +163,10 @@ func computeMetrics(from selections: [Category: OptionItem]) -> Metrics {
             iss  += d.issues
         }
     }
+
     return Metrics(costEURPer1K: max(0, cost),
                    security: clamp(sec, 0, 100),
                    speed: clamp(spd, 0, 100),
                    issues: clamp(iss, 0, 100))
 }
+

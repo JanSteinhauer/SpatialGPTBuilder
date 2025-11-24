@@ -738,7 +738,7 @@ struct LLMInfo: Hashable {
             case (.internalSystems, .security):
                 return LLMInfo(
                     title: "Internal",
-                    logoName: "title",
+                    logoName: "titel",
                     overviewHeader: "Overview",
                     overviewBullets: [
                         "Connects to company-internal databases",
@@ -756,7 +756,7 @@ struct LLMInfo: Hashable {
             case (.internalSystems, .finance):
                 return LLMInfo(
                     title: "Internal",
-                    logoName: "title",
+                    logoName: "titel",
                     overviewHeader: "Overview",
                     overviewBullets: [
                         "Connects to company-internal databases",
@@ -774,8 +774,8 @@ struct LLMInfo: Hashable {
 
             case (.openData, .security):
                 return LLMInfo(
-                    title: "Web Sources",
-                    logoName: "WWW",
+                    title: "Open Data",
+                    logoName: "titel",
                     overviewHeader: "Overview",
                     overviewBullets: [
                         "Uses freely available web content",
@@ -793,8 +793,8 @@ struct LLMInfo: Hashable {
 
             case (.openData, .finance):
                 return LLMInfo(
-                    title: "Web Sources",
-                    logoName: "WWW",
+                    title: "Open Data",
+                    logoName: "titel",
                     overviewHeader: "Overview",
                     overviewBullets: [
                         "Uses freely available web content",
@@ -888,7 +888,7 @@ struct LLMInfo: Hashable {
             case (.globalHosting, .security):
                 return LLMInfo(
                     title: "Worldwide",
-                    logoName: "WorldWide",
+                    logoName: "titel",
                     overviewHeader: "Overview",
                     overviewBullets: [
                         "Global data centers for higher availability",
@@ -905,7 +905,7 @@ struct LLMInfo: Hashable {
             case (.globalHosting, .finance):
                 return LLMInfo(
                     title: "Worldwide",
-                    logoName: "WorldWide",
+                    logoName: "titel",
                     overviewHeader: "Overview",
                     overviewBullets: [
                         "Global data centers for higher availability",

@@ -52,9 +52,9 @@ struct CategoryHeaderInfo: Hashable {
         switch kind {
         case .hostingCountry: return .init(title: "Hosting Country")
         case .dataSource:     return .init(title: "Data Source")
-        case .interface:      return .init(title: "Interface")
+        case .interface:      return .init(title: "Inter- face")
         case .accessControl:  return .init(title: "Access Control")
-        case .infrastructure: return .init(title: "Infrastructure")
+        case .infrastructure: return .init(title: "Infra- structure")
         case .dataPrivacy:    return .init(title: "Data Privacy")
         case .integration:    return .init(title: "Integration")
         case .aiModel:        return .init(title: "AI Model")
