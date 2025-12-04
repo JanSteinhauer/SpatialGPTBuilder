@@ -661,7 +661,7 @@ struct LLMInfo: Hashable {
             
             case (.microsoft365, .security):
                 return LLMInfo(
-                    title: "Microsoft 365",
+                    title: "Microsoft",
                     logoName: "Microsoft",
                     overviewHeader: "Overview",
                     overviewBullets: [
@@ -680,7 +680,7 @@ struct LLMInfo: Hashable {
 
             case (.microsoft365, .finance):
                 return LLMInfo(
-                    title: "Microsoft 365",
+                    title: "Microsoft",
                     logoName: "Microsoft",
                     overviewHeader: "Overview",
                     overviewBullets: [
