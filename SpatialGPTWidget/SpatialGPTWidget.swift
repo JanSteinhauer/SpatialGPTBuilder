@@ -31,16 +31,15 @@ struct LLMInfo: Hashable {
                 logoName: "ChatGPT",
                 overviewHeader: "Overview",
                 overviewBullets: [
-                    "Powerful model",
-                    "Widely used",
-                    "Based on US infrastructure"
+                    "Leistungsstarkes Modell",
+                    "Standardmäßig Verarbeitung in den USA"
                 ],
                 securityHeader: "Security Overview",
                 securityBullets: [
-                    "Medium",
-                    "Data processing occurs outside the EU"
+                    "Mittlere Sicherheit",
+                    "Geringes Ausfallrisiko durch stabile Infrastruktur"
                 ],
-                footer: "ChatGPT is an AI chatbot that understands and generates human-like text."
+                footer: "ChatGPT ist leistungsstark, aber sicherheitsseitig weniger EU-konform."
             )
 
         case (.chatgpt, .finance):
@@ -49,17 +48,15 @@ struct LLMInfo: Hashable {
                 logoName: "ChatGPT",
                 overviewHeader: "Overview",
                 overviewBullets: [
-                    "Powerful model",
-                    "Widely used",
-                    "Based on US infrastructure"
+                    "Leistungsstarkes Modell",
+                    "US-basierte Infrastruktur"
                 ],
                 securityHeader: "Financial Overview",
                 securityBullets: [
-                    "High API costs",
-                    "$0.01–$0.06 per 1,000 tokens",
-                    "High costs for continuous use"
+                    "Hohe API-Kosten",
+                    "Sehr gute Geschwindigkeit"
                 ],
-                footer: "ChatGPT is an AI chatbot that understands and generates human-like text."
+                footer: "ChatGPT ist hochwertig, aber kostspielig."
             )
 
         case (.anthropic, .security):
@@ -68,17 +65,15 @@ struct LLMInfo: Hashable {
                 logoName: "Anthropic",
                 overviewHeader: "Overview",
                 overviewBullets: [
-                    "Powerful model",
-                    "Very secure",
-                    "Produces reliable statements"
+                    "Sehr sicheres Modell",
+                    "Stabile und verlässliche Antworten"
                 ],
                 securityHeader: "Security Overview",
                 securityBullets: [
-                    "High",
-                    "Withholds sensitive data",
-                    "GDPR-friendly"
+                    "Hohe Sicherheit",
+                    "Sehr geringe Fehlerquote"
                 ],
-                footer: "Claude is an AI chatbot that understands and generates human-like text."
+                footer: "Claude bietet starke Sicherheitsmechanismen."
             )
 
         case (.anthropic, .finance):
@@ -87,16 +82,15 @@ struct LLMInfo: Hashable {
                 logoName: "Anthropic",
                 overviewHeader: "Overview",
                 overviewBullets: [
-                    "Powerful model",
-                    "Very secure",
-                    "Produces reliable statements"
+                    "Sehr sicheres Modell",
+                    "Verlässliche Ausgabequalität"
                 ],
                 securityHeader: "Financial Overview",
                 securityBullets: [
-                    "Medium",
-                    "$0.005–$0.03 per 1,000 tokens"
+                    "Mittlere Kosten",
+                    "Geringe indirekte Fehlerkosten"
                 ],
-                footer: "Claude is an AI chatbot that understands and generates human-like text."
+                footer: "Claude ist stabil und preislich moderat."
             )
             
         case (.gemini, .security):
@@ -105,17 +99,15 @@ struct LLMInfo: Hashable {
                 logoName: "Gemini",
                 overviewHeader: "Overview",
                 overviewBullets: [
-                    "Integrated into the Google ecosystem",
-                    "Strong at multimodal input",
-                    "Can generate images"
+                    "Gut im Google-Ökosystem",
+                    "Stark bei multimodalen Aufgaben"
                 ],
                 securityHeader: "Security Overview",
                 securityBullets: [
-                    "Medium",
-                    "Google Cloud security standards",
-                    "Hosting in the USA"
+                    "Mittlere Sicherheit",
+                    "US-Hosting kann Compliance senken"
                 ],
-                footer: "Gemini is an AI chatbot that understands and generates human-like text."
+                footer: "Gemini ist schnell, aber Daten werden außerhalb der EU gespeichert."
             )
 
         case (.gemini, .finance):
@@ -124,17 +116,15 @@ struct LLMInfo: Hashable {
                 logoName: "Gemini",
                 overviewHeader: "Overview",
                 overviewBullets: [
-                    "Integrated into the Google ecosystem",
-                    "Strong at multimodal input",
-                    "Can generate images"
+                    "Multimodal stark",
+                    "In Google-Dienste integriert"
                 ],
                 securityHeader: "Financial Overview",
                 securityBullets: [
-                    "Low",
-                    "$0.002–$0.01 per 1,000 tokens",
-                    "Useful if you are a Google customer"
+                    "Niedrige API-Kosten",
+                    "Sehr hohe Geschwindigkeit"
                 ],
-                footer: "Gemini is an AI chatbot that understands and generates human-like text."
+                footer: "Gemini ist schnell und kostengünstig."
             )
             
         case (.llama, .security):
@@ -143,17 +133,15 @@ struct LLMInfo: Hashable {
                         logoName: "Llama",
                         overviewHeader: "Overview",
                         overviewBullets: [
-                            "Powerful open-source LLM",
-                            "Runs locally or in a private cloud",
-                            "Flexible deployment and tuning"
+                            "Open-Source Modell",
+                            "Volle Kontrolle durch Self-Hosting"
                         ],
                         securityHeader: "Security Overview",
                         securityBullets: [
-                            "High",
-                            "Full data control when self-hosted",
-                            "No third-party data processing by default"
+                            "Sehr hohe Datensicherheit",
+                            "Keine externen Datenflüsse"
                         ],
-                        footer: "Llama is an open-source family of models that can be deployed on your own infrastructure."
+                        footer: "Llama bietet maximale Kontrolle."
                     )
 
                 case (.llama, .finance):
@@ -162,17 +150,15 @@ struct LLMInfo: Hashable {
                         logoName: "Llama",
                         overviewHeader: "Overview",
                         overviewBullets: [
-                            "Powerful open-source LLM",
-                            "Runs locally or in a private cloud",
-                            "Flexible deployment and tuning"
+                            "Open-Source Modell",
+                            "Flexibel und lokal betreibbar"
                         ],
                         securityHeader: "Financial Overview",
                         securityBullets: [
-                            "Medium",
-                            "No ongoing API fees; own hardware needed",
-                            "Performance and cost depend on your hardware"
+                            "Sehr niedrige Laufzeitkosten",
+                            "Hardware- und Betriebskosten nötig"
                         ],
-                        footer: "Llama is an open-source family of models that can be deployed on your own infrastructure."
+                        footer: "Es ist im Betrieb sehr günstig. Es entstehen hohe Initialkosten"
                     )
 
                 case (.gemma, .security):
@@ -218,17 +204,15 @@ struct LLMInfo: Hashable {
                 logoName: "titel",
                 overviewHeader: "Overview",
                 overviewBullets: [
-                    "Separate platform",
-                    "Easy browser access",
-                    "No installation required"
+                    "Läuft im Browser",
+                    "Kein Installationsbedarf"
                 ],
                 securityHeader: "Security Overview",
                 securityBullets: [
-                    "Medium",
-                    "Few attack surfaces but limited control",
-                    "Hard to embed data from other tools"
+                    "Mittlere Sicherheit",
+                    "Begrenzte Kontrolle über Browser-Umgebung"
                 ],
-                footer: "A standalone web app runs in the browser and needs no local setup."
+                footer: "Eine Web App läuft direkt im Browser ohne lokale Installation."
             )
 
         case (.standaloneWebApp, .finance):
@@ -237,17 +221,15 @@ struct LLMInfo: Hashable {
                 logoName: "titel",
                 overviewHeader: "Overview",
                 overviewBullets: [
-                    "Separate platform",
-                    "Easy browser access",
-                    "No installation required"
+                    "Läuft im Browser",
+                    "Schneller Zugriff ohne Installation"
                 ],
                 securityHeader: "Financial Overview",
                 securityBullets: [
-                    "Low cost",
-                    "Quick to deploy",
-                    "Minimal setup"
+                    "Niedrige Kosten",
+                    "Schnell bereitstellbar"
                 ],
-                footer: "Inexpensive and fast to launch from any browser."
+                footer: "Eine Web App ist günstig und sofort im Browser nutzbar."
             )
 
         // --- API Integration ---
@@ -257,17 +239,15 @@ struct LLMInfo: Hashable {
                 logoName: "titel",
                 overviewHeader: "Overview",
                 overviewBullets: [
-                    "Integrates into existing tools",
-                    "Seamless daily workflow",
-                    "Requires integration effort"
+                    "Direkte Tool-Integration",
+                    "Automatisiert Workflows"
                 ],
                 securityHeader: "Security Overview",
                 securityBullets: [
-                    "Medium",
-                    "Depends on API access control",
-                    "Interfaces can introduce vulnerabilities"
+                    "Mittlere Sicherheit",
+                    "Hängt von API-Zugriffsrechten ab"
                 ],
-                footer: "Connects AI directly into enterprise tools via APIs."
+                footer: "Eine API verbindet Systeme miteinander und ermöglicht automatisierte Abläufe."
             )
 
         case (.apiIntegration, .finance):
@@ -276,17 +256,15 @@ struct LLMInfo: Hashable {
                 logoName: "titel",
                 overviewHeader: "Overview",
                 overviewBullets: [
-                    "Integrates into existing tools",
-                    "Seamless daily workflow",
-                    "Requires integration effort"
+                    "Direkte Tool-Integration",
+                    "Nahtlos im Alltag nutzbar"
                 ],
                 securityHeader: "Financial Overview",
                 securityBullets: [
-                    "Medium",
-                    "Implementation adds some cost",
-                    "Long-term efficiency benefits"
+                    "Mittlere Kosten",
+                    "Einmaliger Integrationsaufwand"
                 ],
-                footer: "Requires dev work but streamlines workflows."
+                footer: "Eine API spart langfristig Zeit, weil Systeme automatisch zusammenarbeiten."
             )
 
         case (.mobileApp, .security):
@@ -295,17 +273,15 @@ struct LLMInfo: Hashable {
                 logoName: "titel",
                 overviewHeader: "Overview",
                 overviewBullets: [
-                    "Mobile or intranet availability",
-                    "High user convenience",
-                    "Accessible from anywhere"
+                    "Auf Mobilgeräten nutzbar",
+                    "Hohe Benutzerfreundlichkeit"
                 ],
                 securityHeader: "Security Overview",
                 securityBullets: [
-                    "Low",
-                    "Endpoint usage increases risk",
-                    "More device-based vulnerabilities"
+                    "Niedrigere Sicherheit",
+                    "Mehr Risiken durch Endgeräte"
                 ],
-                footer: "Flexible but comes with higher endpoint security risks."
+                footer: "Eine Mobile App läuft auf Smartphones/Tablets und ist überall abrufbar."
             )
 
         case (.mobileApp, .finance):
@@ -314,17 +290,15 @@ struct LLMInfo: Hashable {
                 logoName: "titel",
                 overviewHeader: "Overview",
                 overviewBullets: [
-                    "Mobile or intranet availability",
-                    "High user convenience",
-                    "Accessible from anywhere"
+                    "Überall nutzbar",
+                    "Hoher Komfort"
                 ],
                 securityHeader: "Financial Overview",
                 securityBullets: [
-                    "Medium",
-                    "Moderate setup & maintenance",
-                    "Convenience boosts productivity"
+                    "Mittlere Kosten",
+                    "Wartung und Updates notwendig"
                 ],
-                footer: "Cost-efficient and very convenient for daily use."
+                footer: "Eine Mobile App bietet hohe Flexibilität und erleichtert die tägliche Nutzung."
             )
             
         case (.freeUse, .security):
@@ -333,16 +307,15 @@ struct LLMInfo: Hashable {
                 logoName: "titel",
                 overviewHeader: "Overview",
                 overviewBullets: [
-                    "All users can use the application fully",
-                    "Very high flexibility for end users",
-                    "Fast adoption with minimal friction"
+                    "Alle Nutzer haben vollen Zugriff",
+                    "Sehr geringe Nutzungshürden"
                 ],
                 securityHeader: "Security Overview",
                 securityBullets: [
-                    "Low",
-                    "Risk of data misuse or unauthorized access",
+                    "Niedrige Sicherheit",
+                    "Höheres Risiko für Fehl- oder Missbrauch"
                 ],
-                footer: "Free Use maximizes accessibility but requires strong data boundaries elsewhere."
+                footer: "Free Use bedeutet: jeder kann das System frei nutzen, ohne Zugriffsbeschränkungen."
             )
 
         case (.freeUse, .finance):
@@ -351,16 +324,15 @@ struct LLMInfo: Hashable {
                 logoName: "titel",
                 overviewHeader: "Overview",
                 overviewBullets: [
-                    "All users can use the application fully",
-                    "Very high flexibility for end users",
-                    "Fast adoption with minimal friction"
+                    "Voller Zugriff für alle",
+                    "Sehr schnelle Einführung"
                 ],
                 securityHeader: "Financial Overview",
                 securityBullets: [
-                    "Very low (near zero) cost",
-                    "No moderation overhead",
+                    "Sehr geringe Kosten",
+                    "Kein Moderationsaufwand"
                 ],
-                footer: "Lowest-cost rollout, trading off governance for speed and convenience."
+                footer: "Free Use ist die günstigste Option, da keine Governance-Schichten nötig sind."
             )
 
         case (.moderationFilter, .security):
@@ -369,16 +341,15 @@ struct LLMInfo: Hashable {
                 logoName: "titel",
                 overviewHeader: "Overview",
                 overviewBullets: [
-                    "Inputs and outputs checked for sensitive data",
-                    "Prevents undesired information leakage",
+                    "Filtert sensible Inhalte",
+                    "Reduziert Informationslecks"
                 ],
                 securityHeader: "Security Overview",
                 securityBullets: [
-                    "Medium",
-                    "Blocks many risky cases",
-                    "Filters are not perfect and can be bypassed"
+                    "Mittlere Sicherheit",
+                    "Blockiert viele riskante Fälle"
                 ],
-                footer: "Moderation provides a balanced control layer without fully restricting access."
+                footer: "Moderation prüft Eingaben/Ausgaben und schützt vor unerwünschten Inhalten."
             )
 
         case (.moderationFilter, .finance):
@@ -387,16 +358,15 @@ struct LLMInfo: Hashable {
                 logoName: "titel",
                 overviewHeader: "Overview",
                 overviewBullets: [
-                    "Inputs and outputs checked for sensitive data",
-                    "Prevents undesired information leakage",
+                    "Filtert sensible Inhalte",
+                    "Reduziert Leckrisiken"
                 ],
                 securityHeader: "Financial Overview",
                 securityBullets: [
-                    "Low to medium cost",
-                    "Operational overhead for review/maintenance",
-                    "Reasonable ongoing effort"
+                    "Geringe bis mittlere Kosten",
+                    "Etwas Pflege- und Review-Aufwand"
                 ],
-                footer: "Moderation costs are modest compared to the governance benefits."
+                footer: "Moderation verursacht überschaubare Kosten bei deutlichem Governance-Nutzen."
             )
 
         case (.roleBasedAccess, .security):
@@ -405,17 +375,15 @@ struct LLMInfo: Hashable {
                 logoName: "titel",
                 overviewHeader: "Overview",
                 overviewBullets: [
-                    "Access rights assigned by roles/departments",
-                    "Least-privilege by design",
-                    "Granular policy control"
+                    "Zugriff nach Rollen/Abteilungen",
+                    "Least-Privilege-Prinzip"
                 ],
                 securityHeader: "Security Overview",
                 securityBullets: [
-                    "High",
-                    "Company controls and steers data flows",
-                    "Strong guardrails and auditability"
+                    "Hohe Sicherheit",
+                    "Strenge Kontrolle über Datenzugriffe"
                 ],
-                footer: "Role-based access maximizes control and compliance through defined permissions."
+                footer: "Role-Based Access bedeutet: Nutzer erhalten nur die Rechte, die sie wirklich brauchen."
             )
 
         case (.roleBasedAccess, .finance):
@@ -424,17 +392,15 @@ struct LLMInfo: Hashable {
                 logoName: "titel",
                 overviewHeader: "Overview",
                 overviewBullets: [
-                    "Access rights assigned by roles/departments",
-                    "Least-privilege by design",
-                    "Granular policy control"
+                    "Rollenbasierte Berechtigungen",
+                    "Genaue Steuerung möglich"
                 ],
                 securityHeader: "Financial Overview",
                 securityBullets: [
-                    "Medium cost",
-                    "High administrative overhead (complex management)",
-                    "May limit user flexibility and adoption"
+                    "Mittlere Kosten",
+                    "Administrativer Aufwand höher"
                 ],
-                footer: "Higher admin effort in exchange for strong governance and compliance."
+                footer: "Role-Based Access kostet mehr Verwaltung, bringt aber klare Governance-Strukturen."
             )
             
             case (.localServer, .security):
@@ -443,16 +409,15 @@ struct LLMInfo: Hashable {
                     logoName: "titel",
                     overviewHeader: "Overview",
                     overviewBullets: [
-                        "Runs on your own servers inside the corporate network",
-                        "Only available for certain self-hostable AI models; otherwise grayed out",
+                        "Läuft auf eigenen Servern",
+                        "Nur nutzbar für self-hostbare Modelle"
                     ],
                     securityHeader: "Security Overview",
                     securityBullets: [
-                        "Very High",
-                        "Full control over data and access",
-                        "No dependency on external vendors"
+                        "Sehr hohe Sicherheit",
+                        "Volle Daten- und Zugriffs­kontrolle"
                     ],
-                    footer: "Choose Local Server when strict data residency and full control are mandatory."
+                    footer: "Ein Local Server bedeutet: alles läuft im eigenen Rechenzentrum."
                 )
 
             case (.localServer, .finance):
@@ -461,15 +426,15 @@ struct LLMInfo: Hashable {
                     logoName: "titel",
                     overviewHeader: "Overview",
                     overviewBullets: [
-                        "Runs on your own servers inside the corporate network",
-                        "Only available for certain self-hostable AI models; otherwise grayed out",
+                        "Läuft auf eigenen Servern",
+                        "Nur nutzbar für self-hostbare Modelle"
                     ],
                     securityHeader: "Financial Overview",
                     securityBullets: [
-                        "Very High",
-                        "Significant personnel, energy, and hardware costs",
+                        "Sehr hohe Kosten",
+                        "Hardware, Strom und Personal erforderlich"
                     ],
-                    footer: "Expect high upfront and ongoing costs due to hardware and operations."
+                    footer: "Local Server erfordert hohe Investitionen in Hardware und Betrieb."
                 )
 
             case (.privateCloud, .security):
@@ -478,16 +443,15 @@ struct LLMInfo: Hashable {
                     logoName: "titel",
                     overviewHeader: "Overview",
                     overviewBullets: [
-                        "Dedicated cloud environment implemented for your company",
-                        "Provided/managed by an external vendor",
+                        "Eigene isolierte Cloud-Umgebung",
+                        "Von einem Anbieter betrieben"
                     ],
                     securityHeader: "Security Overview",
                     securityBullets: [
-                        "Medium",
-                        "Improved data control and policy alignment",
-                        "Still dependent on an external provider’s infrastructure"
+                        "Mittlere Sicherheit",
+                        "Mehr Kontrolle als Public Cloud"
                     ],
-                    footer: "Private Cloud balances control with managed operations."
+                    footer: "Private Cloud ist eine abgeschottete Cloud nur für Ihr Unternehmen."
                 )
 
             case (.privateCloud, .finance):
@@ -496,16 +460,15 @@ struct LLMInfo: Hashable {
                     logoName: "titel",
                     overviewHeader: "Overview",
                     overviewBullets: [
-                        "Dedicated cloud environment implemented for your company",
-                        "Provided/managed by an external vendor",
+                        "Eigene isolierte Cloud-Umgebung",
+                        "Extern betrieben"
                     ],
                     securityHeader: "Financial Overview",
                     securityBullets: [
-                        "High",
-                        "Ongoing maintenance costs",
-                        "More expensive than public cloud"
+                        "Hohe Kosten",
+                        "Wartung und SLAs verteuern Betrieb"
                     ],
-                    footer: "Higher TCO than public cloud due to dedicated environments and SLAs."
+                    footer: "Private Cloud kostet mehr, da sie dediziert und stärker betreut wird."
                 )
 
             case (.cloud, .security):
@@ -514,17 +477,15 @@ struct LLMInfo: Hashable {
                     logoName: "titel",
                     overviewHeader: "Overview",
                     overviewBullets: [
-                        "No own hardware needed",
-                        "Everything runs via public APIs (e.g., OpenAI API)",
-                        "Fastest to start and scale"
+                        "Keine eigene Hardware nötig",
+                        "Sehr schnell skalierbar"
                     ],
                     securityHeader: "Security Overview",
                     securityBullets: [
-                        "Very Low",
-                        "Data leaves the company (depends on chosen AI model and vendor)",
-                        "Strong contractual and technical safeguards required"
+                        "Niedrige Sicherheit",
+                        "Daten verlassen das Unternehmen"
                     ],
-                    footer: "Public cloud offers speed and scale but shifts control to the provider."
+                    footer: "Public Cloud heißt: Sie nutzen die Infrastruktur eines externen Anbieters."
                 )
 
             case (.cloud, .finance):
@@ -533,17 +494,15 @@ struct LLMInfo: Hashable {
                     logoName: "titel",
                     overviewHeader: "Overview",
                     overviewBullets: [
-                        "No own hardware needed",
-                        "Everything runs via public APIs (e.g., OpenAI API)",
-                        "Fastest to start and scale"
+                        "Keine Hardware nötig",
+                        "Sehr schnell startklar"
                     ],
                     securityHeader: "Financial Overview",
                     securityBullets: [
-                        "Low to Medium",
-                        "Pay-as-you-go; no hardware purchases",
-                        "Costs scale with usage"
+                        "Niedrige bis mittlere Kosten",
+                        "Zahlen pro Nutzung"
                     ],
-                    footer: "Operational expenditure model with quick time-to-value."
+                    footer: "Public Cloud spart Hardwarekosten und ermöglicht schnellen Start."
                 )
             
             case (.standardEncryption, .security):
@@ -552,17 +511,15 @@ struct LLMInfo: Hashable {
                     logoName: "titel",
                     overviewHeader: "Overview",
                     overviewBullets: [
-                        "Password-based protection",
-                        "Quick and easy to implement",
-                        "Baseline security for small teams"
+                        "Passwortbasierter Schutz",
+                        "Schnell eingerichtet"
                     ],
                     securityHeader: "Security Overview",
                     securityBullets: [
-                        "Low",
-                        "Not fully GDPR-compliant in many setups",
-                        "Higher risk of compromise"
+                        "Niedrige Sicherheit",
+                        "Nicht immer DSGVO-konform"
                     ],
-                    footer: "Standard encryption is fast to deploy but offers limited protection and compliance."
+                    footer: "Standardverschlüsselung schützt einfach, aber nicht besonders stark."
                 )
 
             case (.standardEncryption, .finance):
@@ -571,17 +528,15 @@ struct LLMInfo: Hashable {
                     logoName: "titel",
                     overviewHeader: "Overview",
                     overviewBullets: [
-                        "Password-based protection",
-                        "Quick and easy to implement",
-                        "Baseline security for small teams"
+                        "Passwortbasierter Schutz",
+                        "Schnell eingerichtet"
                     ],
                     securityHeader: "Financial Overview",
                     securityBullets: [
-                        "Low cost",
-                        "Minimal operational overhead",
-                        "Few administrative requirements"
+                        "Sehr geringe Kosten",
+                        "Kaum Administrationsaufwand"
                     ],
-                    footer: "Lowest-cost option with basic protection only."
+                    footer: "Standardverschlüsselung ist die günstigste, aber einfachste Schutzoption."
                 )
 
             case (.multiFactorAuth, .security):
@@ -590,17 +545,15 @@ struct LLMInfo: Hashable {
                     logoName: "titel",
                     overviewHeader: "Overview",
                     overviewBullets: [
-                        "Users authenticate with password plus a second factor",
-                        "Second factor via authenticator app or SMS",
-                        "Significantly strengthens account security"
+                        "Passwort + zweiter Faktor",
+                        "Per App oder SMS"
                     ],
                     securityHeader: "Security Overview",
                     securityBullets: [
-                        "Very High",
-                        "Maximum hardening against account takeover",
-                        "Strong compliance posture"
+                        "Sehr hohe Sicherheit",
+                        "Starker Schutz vor Accountübernahmen"
                     ],
-                    footer: "MFA delivers strong protection."
+                    footer: "MFA bedeutet Anmeldung mit zwei unabhängigen Sicherheitsfaktoren."
                 )
 
             case (.multiFactorAuth, .finance):
@@ -609,17 +562,15 @@ struct LLMInfo: Hashable {
                     logoName: "titel",
                     overviewHeader: "Overview",
                     overviewBullets: [
-                        "Users authenticate with password plus a second factor",
-                        "Second factor via authenticator app or SMS",
-                        "Significantly strengthens account security"
+                        "Passwort + zweiter Faktor",
+                        "Per App oder SMS"
                     ],
                     securityHeader: "Financial Overview",
                     securityBullets: [
-                        "Very High cost",
-                        "Licensing and rollout costs",
-                        "Ongoing support and user training"
+                        "Hohe Kosten",
+                        "Lizenzierung, Support und Schulungen nötig"
                     ],
-                    footer: "Higher costs due to licensing, rollout, and helpdesk load."
+                    footer: "MFA erhöht die Sicherheit stark, ist aber teuer in Rollout und Betrieb."
                 )
 
             case (.privacyByDesign, .security):
@@ -628,16 +579,15 @@ struct LLMInfo: Hashable {
                     logoName: "titel",
                     overviewHeader: "Overview",
                     overviewBullets: [
-                        "No data is stored (anonymous usage)",
-                        "No history access limits some use cases",
-                        "Strong privacy defaults from the start"
+                        "Keine Datenspeicherung",
+                        "Anonyme Nutzung"
                     ],
                     securityHeader: "Security Overview",
                     securityBullets: [
-                        "Very High",
-                        "Personal data is deleted immediately",
+                        "Sehr hohe Sicherheit",
+                        "Personenbezogene Daten werden sofort gelöscht"
                     ],
-                    footer: "Maximizes privacy and compliance, at the expense of historical analytics."
+                    footer: "Privacy by Design bedeutet maximale Privatsphäre ohne Datenspeicherung."
                 )
 
             case (.privacyByDesign, .finance):
@@ -646,16 +596,15 @@ struct LLMInfo: Hashable {
                     logoName: "titel",
                     overviewHeader: "Overview",
                     overviewBullets: [
-                        "No data is stored (anonymous usage)",
-                        "No history access limits some use cases",
-                        "Strong privacy defaults from the start"
+                        "Keine Datenspeicherung",
+                        "Anonyme Nutzung"
                     ],
                     securityHeader: "Financial Overview",
                     securityBullets: [
-                        "Medium to High",
-                        "Cost depends on access model and controls"
+                        "Mittlere bis hohe Kosten",
+                        "Aufwand abhängig von Kontrollen und Architektur"
                     ],
-                    footer: "Trade-offs: higher privacy, fewer analytic possibilities, variable costs."
+                    footer: "Privacy by Design spart Datenhaltung, kann aber technische Zusatzkosten erzeugen."
                 )
             
             
@@ -665,17 +614,15 @@ struct LLMInfo: Hashable {
                     logoName: "Microsoft",
                     overviewHeader: "Overview",
                     overviewBullets: [
-                        "Integrates with Teams and Outlook",
-                        "Access to documents in SharePoint",
-                        "Fits existing Microsoft workflows"
+                        "Integration in Teams und Outlook",
+                        "Zugriff auf SharePoint-Dokumente"
                     ],
                     securityHeader: "Security Overview",
                     securityBullets: [
-                        "High",
-                        "GDPR-compliant if hosted in DE/EU",
-                        "Mature enterprise controls"
+                        "Hohe Sicherheit",
+                        "EU-Hosting möglich"
                     ],
-                    footer: "Use Microsoft 365 to leverage existing MS ecosystem."
+                    footer: "Microsoft 365 bedeutet Nutzung der bestehenden Microsoft-Umgebung."
                 )
 
             case (.microsoft365, .finance):
@@ -684,17 +631,15 @@ struct LLMInfo: Hashable {
                     logoName: "Microsoft",
                     overviewHeader: "Overview",
                     overviewBullets: [
-                        "Integrates with Teams and Outlook",
-                        "Access to documents in SharePoint",
-                        "Fits existing Microsoft workflows"
+                        "In bestehende MS-Tools eingebettet",
+                        "Gute Zusammenarbeit"
                     ],
                     securityHeader: "Financial Overview",
                     securityBullets: [
-                        "Medium",
-                        "License costs (≈ $12.50 per user)",
-                        "Scope limited to MS-stored data"
+                        "Mittlere Kosten",
+                        "Lizenz pro Nutzer"
                     ],
-                    footer: "Data scope is bounded by Microsoft storage."
+                    footer: "Microsoft 365 lohnt sich besonders für bereits MS-basierte Unternehmen."
                 )
 
             case (.googleWorkspace, .security):
@@ -703,17 +648,15 @@ struct LLMInfo: Hashable {
                     logoName: "Google",
                     overviewHeader: "Overview",
                     overviewBullets: [
-                        "Connects to Gmail and Google Drive",
-                        "Strong collaboration features",
-                        "Well-suited for Google-first orgs"
+                        "Integration mit Gmail & Drive",
+                        "Starke Kollaboration"
                     ],
                     securityHeader: "Security Overview",
                     securityBullets: [
-                        "Medium",
-                        "Good technical security",
-                        "US-based hosting and regulations"
+                        "Hohe Sicherheit",
+                        "Gute Sicherheitstechnik",
                     ],
-                    footer: "Solid security posture, but consider data residency and compliance."
+                    footer: "Google Workspace ist stark für Zusammenarbeit."
                 )
 
             case (.googleWorkspace, .finance):
@@ -722,17 +665,16 @@ struct LLMInfo: Hashable {
                     logoName: "Google",
                     overviewHeader: "Overview",
                     overviewBullets: [
-                        "Connects to Gmail and Google Drive",
-                        "Strong collaboration features",
-                        "Well-suited for Google-first orgs"
+                        "Gmail & Drive Integration",
+                        "Gutes Collaboration-Ökosystem"
                     ],
                     securityHeader: "Financial Overview",
                     securityBullets: [
-                        "Low to Medium",
-                        "Licensing applies",
+                        "Geringe bis mittlere Kosten",
+                        "Lizenz erforderlich",
                         "Scope limited to Google-stored data"
                     ],
-                    footer: "Cost-effective if already standardized on Google Workspace."
+                    footer: "Google Workspace ist günstig, wenn das Unternehmen schon Google nutzt."
                 )
 
             case (.internalSystems, .security):
@@ -741,16 +683,15 @@ struct LLMInfo: Hashable {
                     logoName: "titel",
                     overviewHeader: "Overview",
                     overviewBullets: [
-                        "Connects to company-internal databases",
-                        "Maximizes enterprise data coverage"
+                        "Anbindung interner Datenbanken",
+                        "Maximale Datenabdeckung"
                     ],
                     securityHeader: "Security Overview",
                     securityBullets: [
-                        "High",
-                        "Internally hosted data for maximum control",
-                        "Best for sensitive information"
+                        "Hohe Sicherheit",
+                        "Ideal für sensible Informationen"
                     ],
-                    footer: "Ideal when strict data control is required."
+                    footer: "Internal Systems heißt: das Modell nutzt ausschließlich Unternehmensdaten."
                 )
 
             case (.internalSystems, .finance):
@@ -759,17 +700,15 @@ struct LLMInfo: Hashable {
                     logoName: "titel",
                     overviewHeader: "Overview",
                     overviewBullets: [
-                        "Connects to company-internal databases",
-                        "Custom integrations for line-of-business data",
-                        "Maximizes enterprise data coverage"
+                        "Zugriff auf interne Datenquellen",
+                        "Stark anpassbare Integration"
                     ],
                     securityHeader: "Financial Overview",
                     securityBullets: [
-                        "High",
-                        "Integration and maintenance effort",
-                        "Search limited to internal sources"
+                        "Hohe Kosten",
+                        "Integrations- und Wartungsaufwand"
                     ],
-                    footer: "Expect higher TCO due to integration and ongoing maintenance."
+                    footer: "Interne Systeme steigern Datenqualität, sind aber teuer in Entwicklung & Wartung."
                 )
 
             case (.openData, .security):
@@ -778,17 +717,15 @@ struct LLMInfo: Hashable {
                     logoName: "titel",
                     overviewHeader: "Overview",
                     overviewBullets: [
-                        "Uses freely available web content",
-                        "Broad external information coverage",
-                        "Similar to public web grounding"
+                        "Nutzt öffentlich verfügbare Webdaten",
+                        "Breite externe Abdeckung"
                     ],
                     securityHeader: "Security Overview",
                     securityBullets: [
-                        "Low",
-                        "No control over data origin or quality",
-                        "Risk of misinformation"
+                        "Niedrige Sicherheit",
+                        "Fehlinformation möglich"
                     ],
-                    footer: "Great reach, but requires validation and careful governance."
+                    footer: "Open Data nutzt freie Webquellen, die nicht kontrolliert oder geprüft sind."
                 )
 
             case (.openData, .finance):
@@ -797,17 +734,15 @@ struct LLMInfo: Hashable {
                     logoName: "titel",
                     overviewHeader: "Overview",
                     overviewBullets: [
-                        "Uses freely available web content",
-                        "Broad external information coverage",
-                        "Similar to public web grounding"
+                        "Freie Webinhalte als Datenbasis",
+                        "Breite Informationsmenge"
                     ],
                     securityHeader: "Financial Overview",
                     securityBullets: [
-                        "Very Low",
-                        "Data is freely available",
-                        "Minimal direct costs"
+                        "Sehr niedrige Kosten",
+                        "Daten sind kostenlos",
                     ],
-                    footer: "Lowest cost, but added effort to ensure reliability."
+                    footer: "Open Data ist günstig, erfordert aber zusätzliche Qualitätskontrollen."
                 )
 
             case (.germanyHosting, .security):
@@ -816,16 +751,15 @@ struct LLMInfo: Hashable {
                     logoName: "Germany",
                     overviewHeader: "Overview",
                     overviewBullets: [
-                        "Hosted exclusively in German data centers",
-                        "Must comply with strict GDPR and national standards",
+                        "Hosting nur in deutschen Rechenzentren",
+                        "Erfüllt strenge Datenschutzstandards"
                     ],
                     securityHeader: "Security Overview",
                     securityBullets: [
-                        "Very High",
-                        "Maximum privacy and data protection",
-                        "Clear local regulatory framework"
+                        "Sehr hohe Sicherheit",
+                        "Maximaler Datenschutz"
                     ],
-                    footer: "Germany hosting provides the strongest data privacy."
+                    footer: "Deutschland Hosting bedeutet höchste Datensicherheit und klare Regeln."
                 )
 
             case (.germanyHosting, .finance):
@@ -834,17 +768,15 @@ struct LLMInfo: Hashable {
                     logoName: "Germany",
                     overviewHeader: "Overview",
                     overviewBullets: [
-                        "Hosted exclusively in German data centers",
-                        "Must comply with strict GDPR and national standards",
-                        "Strong data residency guarantees"
+                        "Hosting in deutschen Rechenzentren",
+                        "Sehr starke Datenresidenz"
                     ],
                     securityHeader: "Financial Overview",
                     securityBullets: [
-                        "Medium",
-                        "Potential premium for in-country hosting",
-                        "Limited provider flexibility compared to global options"
+                        "Mittlere Kosten",
+                        "Preisaufschlag für In-Country-Hosting"
                     ],
-                    footer: "Expect moderate cost."
+                    footer: "Deutschland Hosting kostet moderat, bringt aber starke Datenschutzvorteile."
                 )
 
             case (.euHosting, .security):
@@ -853,17 +785,15 @@ struct LLMInfo: Hashable {
                     logoName: "EU",
                     overviewHeader: "Overview",
                     overviewBullets: [
-                        "Hosted across EU data centers",
-                        "Generally GDPR-compliant",
-                        "National standards vary by member state"
+                        "Hosting in EU-Rechenzentren",
+                        "GDPR-konform"
                     ],
                     securityHeader: "Security Overview",
                     securityBullets: [
-                        "High",
-                        "Strong legal basis across the EU",
-                        "Variations in national implementations"
+                        "Hohe Sicherheit",
+                        "Solider EU-Rechtsrahmen"
                     ],
-                    footer: "EU hosting balances compliance with broader infrastructure choice."
+                    footer: "EU-Hosting bietet gute Sicherheit und mehr Anbieterwahl."
                 )
 
             case (.euHosting, .finance):
@@ -872,17 +802,15 @@ struct LLMInfo: Hashable {
                     logoName: "EU",
                     overviewHeader: "Overview",
                     overviewBullets: [
-                        "Hosted across EU data centers",
-                        "Generally GDPR-compliant",
-                        "National standards vary by member state"
+                        "Hosting in EU-Rechenzentren",
+                        "GDPR-konform"
                     ],
                     securityHeader: "Financial Overview",
                     securityBullets: [
-                        "Medium",
-                        "Competitive pricing among EU providers",
-                        "Costs depend on country and SLAs"
+                        "Mittlere Kosten",
+                        "Preis variiert je nach Anbieter und Land"
                     ],
-                    footer: "Typical EU pricing with good compliance coverage."
+                    footer: "EU-Hosting ist preislich moderat mit stabiler Compliance."
                 )
 
             case (.globalHosting, .security):
@@ -891,15 +819,15 @@ struct LLMInfo: Hashable {
                     logoName: "titel",
                     overviewHeader: "Overview",
                     overviewBullets: [
-                        "Global data centers for higher availability",
-                        "Useful for multi-region performance"
+                        "Weltweite Rechenzentren",
+                        "Gute Performance über Regionen"
                     ],
                     securityHeader: "Security Overview",
                     securityBullets: [
-                        "Lower privacy protections in some regions",
-                        "Heightened risk without strong contractual controls"
+                        "Niedrigere Privatsphäre",
+                        "Regionale Unterschiede im Datenschutz"
                     ],
-                    footer: "Global hosting maximizes reach but weakens data residency guarantees."
+                    footer: "Globales Hosting bietet Reichweite, aber schwächere Datenschutzgarantien."
                 )
 
             case (.globalHosting, .finance):
@@ -908,16 +836,15 @@ struct LLMInfo: Hashable {
                     logoName: "titel",
                     overviewHeader: "Overview",
                     overviewBullets: [
-                        "Global data centers for higher availability",
-                        "Broad provider and region choice",
+                        "Breite Provider-Auswahl",
+                        "Hohe globale Verfügbarkeit"
                     ],
                     securityHeader: "Financial Overview",
                     securityBullets: [
-                        "High",
-                        "Fewer providers meet high standards in all regions",
-                        "Premium pricing for globally compliant setups"
+                        "Niedrige Kosten",
+                        "Zuschläge für weltweite Compliance"
                     ],
-                    footer: "Expect higher cost."
+                    footer: "Globales Hosting ist flexibel und günstiger als regionale Optionen."
                 )
             
             case (.internalStorage, .security):
@@ -926,16 +853,15 @@ struct LLMInfo: Hashable {
                     logoName: "titel",
                     overviewHeader: "Overview",
                     overviewBullets: [
-                        "Model reads from a predefined company database",
-                        "Database updates are manual (no live data access)",
-                        "Potential limitations due to stale content"
+                        "Zugriff auf feste interne Datenbank",
+                        "Manuelle Updates, kein Live-Zugriff"
                     ],
                     securityHeader: "Security Overview",
                     securityBullets: [
-                        "Medium to High",
-                        "Risk depends on the chosen AI model",
+                        "Mittlere bis hohe Sicherheit",
+                        "Risiko abhängig vom Modell"
                     ],
-                    footer: "Internal Storage favors cost control but requires strict update procedures."
+                    footer: "Internal Storage heißt: das Modell nutzt nur eine feste, intern gepflegte Datenquelle."
                 )
 
             case (.internalStorage, .finance):
@@ -944,17 +870,15 @@ struct LLMInfo: Hashable {
                     logoName: "titel",
                     overviewHeader: "Overview",
                     overviewBullets: [
-                        "Model reads from a predefined company database",
-                        "Database updates are manual (no live data access)",
-                        "Potential limitations due to stale content"
+                        "Feste interne Datenquelle",
+                        "Manuelle Pflege notwendig"
                     ],
                     securityHeader: "Financial Overview",
                     securityBullets: [
-                        "Low to Medium",
-                        "No live-data query costs",
-                        "Pay for database storage plus maintenance"
+                        "Niedrige bis mittlere Kosten",
+                        "Keine Live-Query-Gebühren"
                     ],
-                    footer: "Cheaper than live pipelines; maintenance effort remains."
+                    footer: "Internal Storage ist günstig, benötigt aber regelmäßige Datenpflege."
                 )
 
             case (.fineTuning, .security):
@@ -963,16 +887,15 @@ struct LLMInfo: Hashable {
                     logoName: "titel",
                     overviewHeader: "Overview",
                     overviewBullets: [
-                        "Model is further trained on internal company data",
-                        "Delivers highly company-specific answers",
-                        "Strong performance if training data is curated"
+                        "Training mit Unternehmensdaten",
+                        "Sehr spezifische Antworten"
                     ],
                     securityHeader: "Security Overview",
                     securityBullets: [
-                        "Low",
-                        "Risk profile depends on the AI model and vendor"
+                        "Niedrige Sicherheit",
+                        "Risiko hängt vom Modell und Anbieter ab"
                     ],
-                    footer: "Great alignment with company needs; ensure secure training workflows."
+                    footer: "Fine-Tuning nutzt interne Daten im Training – Sicherheitsprozesse sind entscheidend."
                 )
 
             case (.fineTuning, .finance):
@@ -981,16 +904,15 @@ struct LLMInfo: Hashable {
                     logoName: "titel",
                     overviewHeader: "Overview",
                     overviewBullets: [
-                        "Model is further trained on internal company data",
-                        "Delivers highly company-specific answers",
+                        "Modell an Firmendaten angepasst",
+                        "Sehr hohe Antwortqualität"
                     ],
                     securityHeader: "Financial Overview",
                     securityBullets: [
-                        "High",
-                        "Data preparation and training are costly",
-                        "Best performance, but highest upfront spend"
+                        "Hohe Kosten",
+                        "Aufwändige Datenaufbereitung und Training"
                     ],
-                    footer: "Expect significant costs for data prep, training, and validation."
+                    footer: "Fine-Tuning liefert Top-Performance, ist aber teuer in Vorbereitung und Training."
                 )
 
             case (.rag, .security):
@@ -999,15 +921,15 @@ struct LLMInfo: Hashable {
                     logoName: "titel",
                     overviewHeader: "Overview",
                     overviewBullets: [
-                        "Like Internal Storage, but queries firm knowledge on every request",
-                        "Quality depends on indexing and document hygiene"
+                        "Abruf von Firmendokumenten bei jeder Anfrage",
+                        "Hängt stark von Datenqualität ab"
                     ],
                     securityHeader: "Security Overview",
                     securityBullets: [
-                        "Depends on data sources and AI model",
-                        "Access control and logging are critical",
+                        "Sicherheit abhängig von Quellen",
+                        "Zugriffsrechte und Logging zentral"
                     ],
-                    footer: "RAG improves freshness and context at the cost of pipeline complexity."
+                    footer: "RAG nutzt Live-Datenabruf für aktuelle Antworten – benötigt gute Zugriffskontrollen."
                 )
 
             case (.rag, .finance):
@@ -1016,16 +938,15 @@ struct LLMInfo: Hashable {
                     logoName: "titel",
                     overviewHeader: "Overview",
                     overviewBullets: [
-                        "Like Internal Storage, but queries firm knowledge on every request",
-                        "Combines retrieval with generation for fresher answers",
-                        "Quality depends on indexing and document hygiene"
+                        "Live-Dokumentabruf pro Anfrage",
+                        "Bessere Aktualität als Internal Storage"
                     ],
                     securityHeader: "Financial Overview",
                     securityBullets: [
-                        "Medium",
-                        "Better data quality → better performance → higher cost"
+                        "Mittlere Kosten",
+                        "Pipeline-, Index- und Hosting-Kosten"
                     ],
-                    footer: "Ongoing cost scales with corpus size, refresh rate, and infra."
+                    footer: "RAG liefert aktuelle Antworten, kostet aber laufend durch Retrieval-Pipelines."
                 )
 
 
