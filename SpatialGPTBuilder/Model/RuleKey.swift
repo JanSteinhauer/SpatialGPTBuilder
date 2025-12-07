@@ -42,7 +42,7 @@ let RULES: [RuleKey: Deltas] = [
     .chatgpt:        .init(cost: 0.020, security: -5,  speed: +10, issues: -5),
     .anthropic:      .init(cost: 0.012, security: +5,  speed: +8,  issues: -8),
     .gemini:         .init(cost: 0.006, security: -2,  speed: +8,  issues: -5),
-    .llama:          .init(cost: 0.004, security: +10, speed: -5,  issues: +8),   // self-host amortized
+    .llama:          .init(cost: 0.004, security: +10, speed: -5,  issues: +8),
     .gemma:          .init(cost: 0.003, security: +8,  speed: -2,  issues: +6),
 
     // Infrastructure (deployment target)
@@ -65,7 +65,7 @@ let RULES: [RuleKey: Deltas] = [
     .roleBasedAccess:.init(cost: 0.003, security: +12, speed: -1,  issues: -6),
     .moderationFilter:.init(cost: 0.002, security: +10, speed: -3, issues: -8),
     .privacyByDesign:.init(cost: 0.003, security: +15, speed: -1,  issues: -6),
-    .standardEncryption:.init(cost: 0.000, security: -8, speed: +1, issues: +4), // baseline
+    .standardEncryption:.init(cost: 0.000, security: -8, speed: +1, issues: +4),
 
     // Interface (integration surface)
     .standaloneWebApp:.init(cost: 0.001, security: -2, speed: +8,  issues: +2),
@@ -108,7 +108,6 @@ enum ScoreProfile {
 }
 
 enum Targets {
-    // Base lines for “predetermined” comparison; adjust as needed or inject from outside.
     static let costEURPer1K: Double = 0.030
     static let security: Int = 80
     static let speed: Int = 60
@@ -155,8 +154,11 @@ func computeMetrics(from selections: [Category: OptionItem]) -> Metrics {
     var spd  = Base.speed
     var iss  = Base.issues
 
-    for (_, item) in selections {
-        if let key = RuleKey(rawValue: item.id), let d = RULES[key] {
+    let selectedKeys = selections.values.compactMap { RuleKey(rawValue: $0.id) }
+    let effectiveRules = applyConditionalAdjustments(RULES, chosen: selectedKeys)
+
+    for key in selectedKeys {
+        if let d = effectiveRules[key] {
             cost += d.cost
             sec  += d.security
             spd  += d.speed
@@ -169,4 +171,87 @@ func computeMetrics(from selections: [Category: OptionItem]) -> Metrics {
                    speed: clamp(spd, 0, 100),
                    issues: clamp(iss, 0, 100))
 }
+
+
+func applyConditionalAdjustments(
+    _ rules: [RuleKey: Deltas],
+    chosen: [RuleKey]
+) -> [RuleKey: Deltas] {
+
+    var out = rules
+    func bump(_ key: RuleKey, security: Int = 0, speed: Int = 0, issues: Int = 0, cost: Double = 0) {
+        guard out[key] != nil else { return }
+        out[key]!.security += security
+        out[key]!.speed    += speed
+        out[key]!.issues   += issues
+        out[key]!.cost     += cost
+    }
+
+    func has(_ key: RuleKey) -> Bool { chosen.contains(key) }
+
+    if has(.fineTuning) && has(.globalHosting) {
+        bump(.fineTuning, security: -10, issues: +5)
+    }
+
+    if has(.llama) && has(.localServer) {
+        bump(.llama, speed: +5)
+    }
+
+    if has(.rag) && has(.openData) {
+        bump(.rag, security: -5, issues: +10)
+    }
+
+    if has(.internalStorage) && has(.privacyByDesign) {
+        bump(.internalStorage, security: +5, issues: -5)
+    }
+
+    if has(.cloud) && has(.standardEncryption) {
+        bump(.standardEncryption, security: -10, issues: +8)
+    }
+
+    if has(.multiFactorAuth) &&
+        (has(.roleBasedAccess) || has(.moderationFilter) || has(.freeUse)) {
+        bump(.multiFactorAuth, security: +5)
+    }
+
+    if has(.microsoft365) && has(.internalSystems) {
+        bump(.microsoft365, speed: +3, issues: -3)
+    }
+
+    if has(.roleBasedAccess) && has(.rag) {
+        bump(.rag, security: +5)
+    }
+
+    if has(.localServer) && has(.germanyHosting) {
+        bump(.localServer, security: +10)
+    }
+
+    if has(.apiIntegration) && (has(.gemini) || has(.chatgpt)) {
+        bump(.apiIntegration, speed: +3)
+    }
+
+    if has(.gemini) && has(.googleWorkspace) {
+        bump(.gemini, speed: +5, issues: -5)
+        bump(.googleWorkspace, speed: +5, issues: -3)
+    }
+
+    if has(.openData) {
+        bump(.openData, security: -15, issues: +10)
+    }
+
+    if has(.standaloneWebApp) && has(.privacyByDesign) {
+        bump(.privacyByDesign, security: -8, issues: +5)
+    }
+
+    if has(.globalHosting) && has(.internalSystems) {
+        bump(.internalSystems, security: -15, issues: +10)
+    }
+
+    if has(.fineTuning) && has(.openData) {
+        bump(.fineTuning, security: -5, issues: +10)
+    }
+
+    return out
+}
+
 
