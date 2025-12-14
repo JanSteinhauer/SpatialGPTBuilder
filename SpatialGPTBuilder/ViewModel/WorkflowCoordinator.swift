@@ -133,13 +133,18 @@ final class WorkflowCoordinator: ObservableObject {
 
         pendingHandshake = nil
 
+        // 🔁 push new state to Firestore
+        revision &+= 1
+        NotificationCenter.default.post(name: .workflowDidChange, object: self)
+        print("[Workflow] 🔄 Posted .workflowDidChange after handshake completion (rev \(revision))")
+
         Task { @MainActor in
             try? await Task.sleep(nanoseconds: 5_000_000_000)
             successMessage = nil
             print("[Workflow] successMessage cleared.")
         }
     }
-    
+
     // MARK: Snapshot I/O
     func makeSnapshot() -> WorkflowSnapshot {
         let snap = WorkflowSnapshot(

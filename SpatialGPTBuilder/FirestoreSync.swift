@@ -18,6 +18,7 @@ final class FirestoreSync: ObservableObject {
     private var pushDebounce: AnyObject?
     
     private var pushWorkItem: DispatchWorkItem?
+    private var lastRemoteHandshakeCompleted: Bool? = nil
 
     // Tweak this if you want faster/slower updates
     private let pollInterval: TimeInterval = 1.0
@@ -62,6 +63,10 @@ final class FirestoreSync: ObservableObject {
             }
         }
     }
+    
+    private func boolField(_ fields: [String: Any], key: String) -> Bool? {
+            (fields[key] as? [String: Any])?["booleanValue"] as? Bool
+        }
     
     func runDiagnostics() {
             Task { @MainActor in
@@ -150,7 +155,29 @@ final class FirestoreSync: ObservableObject {
             let (json, updateTime) = try await rest.getDocument()
             guard let fields = json["fields"] as? [String: Any] else { return }
 
-            // Apply only if Firestore changed since last pull
+            // --- 🔁 Remote handshake completion handling ---
+            if let remoteFlag = boolField(fields, key: "handshakeCompleted") {
+                if let last = lastRemoteHandshakeCompleted {
+                    // Detect rising edge: false -> true
+                    if remoteFlag && !last && workflow.pendingHandshake != nil {
+                        print("[FirestoreSync] Remote handshakeCompleted=true → posting .handshakeDetected")
+                        
+                        // Same event shape the HandTrackingSystem uses; "isLeft" is arbitrary here
+                        NotificationCenter.default.post(
+                            name: .handshakeDetected,
+                            object: nil,
+                            userInfo: [
+                                "isLeft": false,
+                                "source": "firestore"
+                            ]
+                        )
+                    }
+                }
+                lastRemoteHandshakeCompleted = remoteFlag
+            }
+            // --- end remote handshake completion handling ---
+
+            // Existing updateTime logic
             if updateTime != nil && updateTime == self.lastUpdateTime { return }
             self.lastUpdateTime = updateTime
 
@@ -158,9 +185,12 @@ final class FirestoreSync: ObservableObject {
                 workflow.apply(snapshot: snapshot)
             }
         } catch {
-            // Optional: print("Pull error: \(error)")
+            // Optional log
+            // print("Pull error: \(error)")
         }
     }
+
+
 
     private func schedulePush() {
         pushWorkItem?.cancel()
@@ -201,14 +231,21 @@ final class FirestoreSync: ObservableObject {
     }
 
     private func encodeSnapshot(_ s: WorkflowSnapshot) -> [String: FirestoreREST.FirestoreValue] {
-        return [
+        var fields: [String: FirestoreREST.FirestoreValue] = [
             "revision": .integer(Int64(s.revision)),
-            "pickingCategory": s.pickingCategory != nil ? .string(s.pickingCategory!.rawValue) : .string(""),
+            "pickingCategory": s.pickingCategory != nil
+                ? .string(s.pickingCategory!.rawValue)
+                : .string(""),
             "pendingSelection": encodeOption(s.pendingSelection),
             "selections": encodeSelections(s.selections),
             "updatedAt": .timestamp(ISO8601DateFormatter().string(from: Date()))
         ]
+
+        fields["handshakeCompleted"] = .boolean(workflow.pendingHandshake == nil)
+
+        return fields
     }
+
 
     private func decodeOption(_ v: Any?) -> OptionItem? {
         guard let m = (v as? [String: Any])?["mapValue"] as? [String: Any],

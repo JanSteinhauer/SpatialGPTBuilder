@@ -21,18 +21,32 @@ final class FirestoreREST {
         case map([String: FirestoreValue])
         case null
         case timestamp(String)
+        case boolean(Bool)
 
         // Encode/Decode Firestore's wire format
         init(from decoder: Decoder) throws {
             let c = try decoder.singleValueContainer()
             let raw = try c.decode([String: AnyDecodable].self)
-            if let v = raw["stringValue"]?.string { self = .string(v) ; return }
-            if let v = raw["integerValue"]?.string, let n = Int64(v) { self = .integer(n) ; return }
-            if let v = raw["mapValue"]?.dict?["fields"]?.dict?.mapValues({ $0.firestoreValue }) {
-                self = .map(v) ; return
+
+            if let v = raw["stringValue"]?.string {
+                self = .string(v); return
             }
-            if let v = raw["nullValue"]?.string { _ = v; self = .null ; return }
-            if let v = raw["timestampValue"]?.string { self = .timestamp(v) ; return }
+            if let v = raw["integerValue"]?.string, let n = Int64(v) {
+                self = .integer(n); return
+            }
+            if let v = raw["mapValue"]?.dict?["fields"]?.dict?.mapValues({ $0.firestoreValue }) {
+                self = .map(v); return
+            }
+            if let v = raw["booleanValue"]?.bool {
+                self = .boolean(v); return          // 👈 NEW
+            }
+            if let v = raw["nullValue"]?.string {
+                _ = v; self = .null; return
+            }
+            if let v = raw["timestampValue"]?.string {
+                self = .timestamp(v); return
+            }
+
             throw DecodingError.typeMismatch(
                 FirestoreREST.FirestoreValue.self,
                 DecodingError.Context(
@@ -42,6 +56,7 @@ final class FirestoreREST {
             )
         }
 
+
         func encode(to encoder: Encoder) throws {
             var c = encoder.singleValueContainer()
             switch self {
@@ -50,6 +65,7 @@ final class FirestoreREST {
             case .map(let m): try c.encode(["mapValue": ["fields": m]])
             case .null: try c.encode(["nullValue": "NULL_VALUE"])
             case .timestamp(let t): try c.encode(["timestampValue": t])
+            case .boolean(let b):   try c.encode(["booleanValue": b])
             }
         }
     }
@@ -128,6 +144,7 @@ final class FirestoreREST {
         case .null:           return ["nullValue": "NULL_VALUE"]
         case .timestamp(let t): return ["timestampValue": t]
         case .map(let m):     return ["mapValue": ["fields": encodeMap(m)]]
+        case .boolean(let b):    return ["booleanValue": b]
         }
     }
 }
@@ -137,6 +154,7 @@ struct AnyDecodable: Decodable {
     let raw: Any
     var string: String? { raw as? String }
     var dict: [String: AnyDecodable]? { raw as? [String: AnyDecodable] }
+    var bool: Bool? { raw as? Bool }
     
     init(from decoder: Decoder) throws {
         let c = try decoder.singleValueContainer()
@@ -150,6 +168,7 @@ struct AnyDecodable: Decodable {
     
     var firestoreValue: FirestoreREST.FirestoreValue {
         if let d = dict, d["nullValue"]?.string != nil { return .null }
+        if let b = bool { return .boolean(b) }
         if let s = string { return .string(s) }
         if let d = dict, let fields = d["mapValue"]?.dict?["fields"]?.dict {
             return .map(fields.mapValues { $0.firestoreValue })
