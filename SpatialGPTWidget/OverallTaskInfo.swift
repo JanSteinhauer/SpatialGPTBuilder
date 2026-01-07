@@ -17,7 +17,7 @@ private struct OverallTaskInfo: Hashable {
 
     static let common: OverallTaskInfo = .init(
         title: "Overall Task",
-        goal: "Deliver a complete, reliable GPT that meets user needs, security standards, and budget goals.",
+        goal: "Bereitstellung eines vollständigen, zuverlässigen AI Integration Workflows, der Nutzeranforderungen, Sicherheitsvorgaben und Budgetziele erfüllt.",
         important: [
             "Use all building blocks: model, data strategy, hosting, access control, and UX, none can stand alone.",
             "Work together as one team: security, finance, data, and engineering align decisions and trade-offs.",

@@ -33,62 +33,55 @@ struct IndividualTaskInfo: Hashable {
         case .finance:
             return IndividualTaskInfo(
                 title: "Finance Task",
-                goal: "Minimize total cost while maintaining good-enough answer quality for business use.",
+                goal: "Wir wollen die Kosten so niedrig wie möglich halten, ohne dass die Antworten für den Arbeitsalltag zu schlecht werden.",
                 kpis: [
-                    "Blended price / 1K tokens ≤ $0.010",
-                    "Avg tokens / query (in+out) ≤ 2,000",
-                    "Cost / query ≤ $0.020",
-                    "Monthly spend within ±10% of budget",
-                    "≥ 70% requests on low-cost tier",
-                    "Cache hit rate ≥ 35%",
-                    "RAG pipeline cost share ≤ 25% of total",
-                    "Adoption per € (MAU / monthly €) ≥ 1.5"
+                    "Kosten sollen planbar und stabil bleiben",
+                    "Günstige Optionen werden so oft wie möglich genutzt",
+                    "Teure Optionen nur, wenn sie wirklich notwendig sind",
                 ],
                 good: [
-                    "Route routine queries to low-cost tier; upscale only when needed",
-                    "Prefer RAG for freshness vs fine-tuning cost",
-                    "Enforce token caps, summaries, and batching"
+                    "Einfache und wiederkehrende Anfragen zuerst über günstige Modelle abwickeln",
+                    "Teurere Modelle nur bei höherem Qualitätsbedarf einsetzen",
+                    "Aktuelle Informationen lieber über Dokumentenabruf (RAG) holen statt über teures Training",
                 ],
                 required: [
-                    "Daily cost dashboard & alerts at 50/80/100%",
-                    "Pricing table synced to model versions",
-                    "FinOps review for fine-tuning or private/local deployments"
+                    "Tägliche Übersicht über die laufenden Kosten",
+                    "Frühe Warnungen bei steigenden Ausgaben",
+                    "Klare Regeln, wer kostenintensive Optionen nutzen darf",
+                    "Kostenprüfung vor größeren technischen Entscheidungen"
                 ],
                 noGos: [
-                    "Uncapped Free Use without quotas",
-                    "Defaulting batch jobs to premium tier",
-                    "Ignoring residency to save costs on sensitive data"
+                    "Automatischer Einsatz teurer Modelle für einfache Aufgaben",
+                    "Kosteneinsparungen auf Kosten von Datenschutz oder Compliance"
                 ]
             )
+            
         case .security:
             return IndividualTaskInfo(
                 title: "Security Task",
-                goal: "Prevent data leakage and meet GDPR while keeping the system usable.",
+                goal: "Wir wollen verhindern, dass Daten nach außen gelangen, und gleichzeitig die DSGVO einhalten, ohne das System unnötig kompliziert zu machen.",
                 kpis: [
-                    "Requests processed in DE/EU ≥ 98%",
-                    "Sensitive-data exposure incidents: 0 per 10,000 requests",
-                    "Moderation/DLP block rate: 1–5 per 1,000 (≤ 2% false positives)",
-                    "MFA coverage: 100% of active users",
-                    "Log/data retention ≤ 14 days for user content",
-                    "Users on least-privilege RBAC ≥ 95%",
-                    "Third-party processing (sensitive workloads) ≤ 5%",
+                  "Daten und Anfragen bleiben überwiegend innerhalb von Deutschland oder der EU",
+                  "Keine Vorfälle, bei denen sensible Daten unbeabsichtigt offengelegt werden",
+                  "Alle aktiven Nutzer sind durch eine zusätzliche Anmeldungssicherung geschützt",
+                  "Zugriffsrechte sind auf das absolut notwendige Minimum beschränkt",
+                  "Externe Anbieter werden nur sehr eingeschränkt für sensible Daten genutzt"
                 ],
                 good: [
-                    "Role-based access with scoped policies",
-                    "Privacy-by-default (no storage of personal prompts)",
-                    "Moderation on inputs and outputs"
+                  "Zugriffe sind rollenbasiert und klar eingeschränkt",
+                  "Datenschutz ist standardmäßig aktiviert (keine unnötige Speicherung von Eingaben)",
                 ],
                 required: [
-                    "MFA and secrets rotation; DPAs for external processing",
-                    "Redacted logging with purpose-limited retention",
-                    "Human-in-the-loop for high-risk actions"
+                  "Mehrstufige Anmeldung und regelmäßiger Austausch von Zugangsdaten",
+                  "Protokolle enthalten nur anonymisierte oder gekürzte Daten und werden zeitlich begrenzt gespeichert",
+                  "Kritische oder risikoreiche Aktionen werden zusätzlich von Menschen geprüft"
                 ],
                 noGos: [
-                    "Global hosting for regulated/sensitive data",
-                    "Fine-tuning on personal/confidential data without legal sign-off",
-                    "Free Use in production without moderation and RBAC"
+                  "Weltweites Hosting für regulierte oder sensible Daten",
+                  "Training oder Nachschärfen von Modellen mit personenbezogenen oder vertraulichen Daten ohne rechtliche Freigabe",
+                  "Produktiver Einsatz ohne Zugriffskontrollen und Inhaltsprüfung"
                 ]
-            )
+              )
         }
     }
 }
@@ -107,13 +100,13 @@ struct IndividualTaskProvider: AppIntentTimelineProvider {
                             config: IndividualTaskConfigurationIntent(),
                             info: .forKind(.finance))
     }
-
+    
     func snapshot(for configuration: IndividualTaskConfigurationIntent, in context: Context) async -> IndividualTaskEntry {
         IndividualTaskEntry(date: .now,
                             config: configuration,
                             info: .forKind(configuration.task))
     }
-
+    
     func timeline(for configuration: IndividualTaskConfigurationIntent, in context: Context) async -> Timeline<IndividualTaskEntry> {
         let start = Date()
         let entries = (0..<3).compactMap { h in
