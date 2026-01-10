@@ -9,7 +9,7 @@ import SwiftUI
 
 @MainActor
 final class FirestoreREST {
-    struct DocEnvelope: Decodable {
+    struct DocEnvelope: Codable {
         let name: String
         let fields: [String: FirestoreValue]?
         let updateTime: String?
@@ -143,6 +143,34 @@ final class FirestoreREST {
         }
     }
 
+    // GET /documents/{collectionId}
+    // Lists documents in the specified collection
+    func listDocuments(collection: String) async throws -> [DocEnvelope] {
+        // Base: .../databases/(default)/documents/{collection}
+        let urlStr = "\(base)/\(collection)?key=\(apiKey)&pageSize=300" // basic pagination limit for now
+        guard let url = URL(string: urlStr) else {
+            throw URLError(.badURL)
+        }
+        
+        var req = URLRequest(url: url)
+        req.httpMethod = "GET"
+        
+        let (data, resp) = try await URLSession.shared.data(for: req)
+        guard let http = resp as? HTTPURLResponse else { throw URLError(.badServerResponse) }
+        
+        if !(200..<300).contains(http.statusCode) {
+            throw httpError(resp, data: data)
+        }
+        
+        // Response format: { "documents": [ ... ] }
+        struct ListResponse: Decodable {
+            let documents: [DocEnvelope]?
+        }
+        
+        let listResp = try JSONDecoder().decode(ListResponse.self, from: data)
+        return listResp.documents ?? []
+    }
+
 
     // MARK: - Encode/decode helpers
     private func httpError(_ resp: URLResponse?, data: Data) -> NSError {
@@ -188,12 +216,21 @@ struct AnyDecodable: Decodable {
     }
     
     var firestoreValue: FirestoreREST.FirestoreValue {
-        if let d = dict, d["nullValue"]?.string != nil { return .null }
         if let b = bool { return .boolean(b) }
         if let s = string { return .string(s) }
-        if let d = dict, let fields = d["mapValue"]?.dict?["fields"]?.dict {
-            return .map(fields.mapValues { $0.firestoreValue })
+        
+        if let d = dict {
+            if d["nullValue"]?.string != nil { return .null }
+            if let s = d["stringValue"]?.string { return .string(s) }
+            if let i = d["integerValue"]?.string, let n = Int64(i) { return .integer(n) }
+            if let t = d["timestampValue"]?.string { return .timestamp(t) }
+            if let b = d["booleanValue"]?.bool { return .boolean(b) }
+            
+            if let fields = d["mapValue"]?.dict?["fields"]?.dict {
+                return .map(fields.mapValues { $0.firestoreValue })
+            }
         }
+        
         return .null
     }
 }
