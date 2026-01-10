@@ -65,7 +65,6 @@ struct IndividualTaskInfo: Hashable {
                   "Keine Vorfälle, bei denen sensible Daten unbeabsichtigt offengelegt werden",
                   "Alle aktiven Nutzer sind durch eine zusätzliche Anmeldungssicherung geschützt",
                   "Zugriffsrechte sind auf das absolut notwendige Minimum beschränkt",
-                  "Externe Anbieter werden nur sehr eingeschränkt für sensible Daten genutzt"
                 ],
                 good: [
                   "Zugriffe sind rollenbasiert und klar eingeschränkt",
@@ -79,7 +78,6 @@ struct IndividualTaskInfo: Hashable {
                 noGos: [
                   "Weltweites Hosting für regulierte oder sensible Daten",
                   "Training oder Nachschärfen von Modellen mit personenbezogenen oder vertraulichen Daten ohne rechtliche Freigabe",
-                  "Produktiver Einsatz ohne Zugriffskontrollen und Inhaltsprüfung"
                 ]
               )
         }

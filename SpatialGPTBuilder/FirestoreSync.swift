@@ -15,9 +15,102 @@ final class FirestoreSync: ObservableObject {
     let workflow: WorkflowCoordinator
     private var pollTask: Task<Void, Never>?
     private var lastUpdateTime: String?
-    private var pushDebounce: AnyObject?
-    
+    private var lastSnapshot: WorkflowSnapshot?
     private var pushWorkItem: DispatchWorkItem?
+
+    // ... (rest of the class)
+
+    private func pushNow() {
+        Task {
+            let snap = workflow.makeSnapshot()
+            let fields = encodeSnapshot(snap)
+            
+            // Calculate diff
+            let changes = diff(old: lastSnapshot, new: snap)
+            lastSnapshot = snap
+            
+            do {
+                try await rest.patchDocument(fields: fields, updateMask: Array(fields.keys))
+                if !changes.isEmpty {
+                    logWriteAction(changes: changes)
+                }
+            } catch {
+                print("Push error: \(error)")
+            }
+        }
+    }
+    
+    private func diff(old: WorkflowSnapshot?, new: WorkflowSnapshot) -> [String: Any] {
+        var changes: [String: Any] = [:]
+        let oldSelections = old?.selections ?? [:]
+        let newSelections = new.selections
+        
+        var added: [String] = []
+        var modified: [String] = []
+        var removed: [String] = []
+        
+        // Check for additions and modifications
+        for (cat, item) in newSelections {
+            if let oldItem = oldSelections[cat] {
+                if oldItem != item {
+                    modified.append("\(cat.rawValue): \(oldItem.displayName) -> \(item.displayName)")
+                }
+            } else {
+                added.append("\(cat.rawValue): \(item.displayName)")
+            }
+        }
+        
+        // Check for removals
+        for (cat, item) in oldSelections {
+            if newSelections[cat] == nil {
+                removed.append("\(cat.rawValue): \(item.displayName)")
+            }
+        }
+        
+        if !added.isEmpty { changes["added"] = added }
+        if !modified.isEmpty { changes["modified"] = modified }
+        if !removed.isEmpty { changes["removed"] = removed }
+        
+        return changes
+    }
+
+    private func logWriteAction(changes: [String: Any]) {
+        Task {
+            let now = ISO8601DateFormatter().string(from: Date())
+            
+            // Map the changes dictionary to Firestore values
+            var changeMap: [String: FirestoreREST.FirestoreValue] = [:]
+            
+            if let added = changes["added"] as? [String] {
+                changeMap["added"] = .map(added.enumerated().reduce(into: [:]) { dict, pair in
+                    dict["\(pair.offset)"] = .string(pair.element)
+                })
+            }
+            if let modified = changes["modified"] as? [String] {
+                changeMap["modified"] = .map(modified.enumerated().reduce(into: [:]) { dict, pair in
+                    dict["\(pair.offset)"] = .string(pair.element)
+                })
+            }
+            if let removed = changes["removed"] as? [String] {
+                changeMap["removed"] = .map(removed.enumerated().reduce(into: [:]) { dict, pair in
+                    dict["\(pair.offset)"] = .string(pair.element)
+                })
+            }
+
+            let logFields: [String: FirestoreREST.FirestoreValue] = [
+                "timestamp": .timestamp(now),
+                "action": .string("Building Block Update"), // More specific title
+                "changes": .map(changeMap)
+            ]
+            
+            do {
+                try await rest.createDocument(collection: "logging", fields: logFields)
+                print("📝 [FirestoreSync] Logged changes: \(changes)")
+            } catch {
+                print("❌ [FirestoreSync] Failed to log changes: \(error)")
+            }
+        }
+    }
     private var lastRemoteHandshakeCompleted: Bool? = nil
 
     // Tweak this if you want faster/slower updates
@@ -199,17 +292,6 @@ final class FirestoreSync: ObservableObject {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.15, execute: work)
     }
 
-    private func pushNow() {
-        Task {
-            let snap = workflow.makeSnapshot()
-            let fields = encodeSnapshot(snap)
-            do {
-                try await rest.patchDocument(fields: fields, updateMask: Array(fields.keys))
-            } catch {
-                print("Push error: \(error)")
-            }
-        }
-    }
 
     // MARK: - Firestore fields <-> WorkflowSnapshot
 

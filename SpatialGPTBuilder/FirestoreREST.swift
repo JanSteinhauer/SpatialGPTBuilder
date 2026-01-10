@@ -122,6 +122,27 @@ final class FirestoreREST {
         }
     }
 
+    // POST /documents/{collectionId}
+    // Creates a new random-ID document in the specified collection
+    func createDocument(collection: String, fields: [String: FirestoreValue]) async throws {
+        // Base: .../databases/(default)/documents
+        // Target: .../databases/(default)/documents/{collection}
+        let url = URL(string: "\(base)/\(collection)?key=\(apiKey)")!
+        var req = URLRequest(url: url)
+        req.httpMethod = "POST"
+        req.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+
+        let body: [String: Any] = ["fields": encodeMap(fields)]
+        req.httpBody = try JSONSerialization.data(withJSONObject: body)
+
+        let (data, resp) = try await URLSession.shared.data(for: req)
+        guard let http = resp as? HTTPURLResponse else { throw URLError(.badServerResponse) }
+
+        if !(200..<300).contains(http.statusCode) {
+            throw httpError(resp, data: data)
+        }
+    }
+
 
     // MARK: - Encode/decode helpers
     private func httpError(_ resp: URLResponse?, data: Data) -> NSError {

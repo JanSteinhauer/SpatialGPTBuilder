@@ -19,7 +19,7 @@ final class WorkflowCoordinator: ObservableObject {
     @Published var successMessage: String? = nil
 
     @Published private(set) var confirmedColumns: Set<Column> = []
-    @Published private(set) var revision: Int = 0 // <— new
+    @Published private(set) var revision: Int = 0
 
     // MARK: Picking API
     func beginPicking(_ category: Category) {
