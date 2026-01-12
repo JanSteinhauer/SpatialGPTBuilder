@@ -38,16 +38,16 @@ struct ContentView: View {
 //                .buttonStyle(.borderedProminent)
 //                .tint(.red)
 //                .padding(.trailing)
-                Button {
-                    Task { await downloadLogs() }
-                } label: {
-                    HStack(spacing: 8) {
-                        Image(systemName: "arrow.down.doc")
-                        Text("Download Logs")
-                    }
-                }
-                .buttonStyle(.bordered)
-                .padding(.trailing)
+//                Button {
+//                    Task { await downloadLogs() }
+//                } label: {
+//                    HStack(spacing: 8) {
+//                        Image(systemName: "arrow.down.doc")
+//                        Text("Download Logs")
+//                    }
+//                }
+//                .buttonStyle(.bordered)
+//                .padding(.trailing)
             }
 
             AIIntegrationWorkflowDiagram()

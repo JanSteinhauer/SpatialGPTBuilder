@@ -17,14 +17,15 @@ private struct OverallTaskInfo: Hashable {
 
     static let common: OverallTaskInfo = .init(
         title: "Overall Task",
-        goal: "Bereitstellung eines vollständigen, zuverlässigen AI Integration Workflows, der Nutzeranforderungen, Sicherheitsvorgaben und Budgetziele erfüllt.",
+        goal: "Gemeinsam eine sinnvolle KI-Lösung für ein Unternehmen entwerfen und sich dabei auf eine funktionierende Gesamtstruktur einigen.",
         important: [
-            "Use all building blocks: model, data strategy, hosting, access control, and UX, none can stand alone.",
-            "Work together as one team: security, finance, data, and engineering align decisions and trade-offs.",
-            "Integrate every layer: Model & Data (internal storage or RAG, refresh cadence); Hosting & Residency (Local, DE/EU, Global, SLAs); Access & Governance (MFA, RBAC, Moderation, logging/audit); Finance & Monitoring (budgets, usage tracking, monthly reviews).",
-            "Success = cohesion: each block must operate as one shared architecture, not isolated tasks."
+            "Besprecht gemeinsam, welche Bestandteile die Lösung braucht, und trefft dazu gemeinsame Entscheidungen.",
+            "Achtet darauf, unterschiedliche Sichtweisen einzubringen und euch auf Kompromisse zu einigen.",
+            "Verbindet alle Entscheidungen zu einem durchgängigen Ablauf, der verständlich und umsetzbar ist.",
+            "Wenn ihr euch auf einen wichtigen Baustein geeinigt habt, bestätigt dies durch einen Handschlag."
         ]
     )
+
 }
 
 // MARK: - Timeline
