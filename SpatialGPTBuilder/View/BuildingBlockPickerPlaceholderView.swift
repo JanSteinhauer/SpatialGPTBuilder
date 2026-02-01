@@ -59,11 +59,12 @@ struct BuildingBlockPickerPlaceholderView: View {
 
     private var idleHint: some View {
         VStack(spacing: 16) {
-            Text("Pick a building block in the AI Integration Workflow.")
+            Text("Wählen Sie einen Baustein im AI Integration Workflow.")
                 .font(.headline)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 24)
-            Text("Tip: Keep this window open while selecting blocks. Confirmations may require a handshake.")
+
+            Text("Tipp: Lassen Sie dieses Fenster während der Auswahl geöffnet.")
                 .font(.footnote)
                 .foregroundStyle(.secondary)
         }

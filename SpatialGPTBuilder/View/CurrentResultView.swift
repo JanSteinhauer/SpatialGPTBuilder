@@ -26,23 +26,26 @@ struct CurrentResultView: View {
         let s = clamp((security + 9) / 20, 0, 5) // round-ish
         return String(repeating: "⭐️", count: s)
     }
+    
     private func speedLabel(_ v: Int) -> String {
         switch v {
-        case ..<35: return "slow"
-        case 35..<65: return "middle"
-        case 65...: return "fast"
-        default: return "middle"
+        case ..<35: return "langsam" // slow
+        case 35..<65: return "mittel"  // middle
+        case 65...: return "schnell" // fast
+        default: return "mittel"
         }
     }
+    
     private func issuesLabel(_ v: Int) -> String {
         switch v {
-        case 0...10: return "no issues"
-        case 11...30: return "low risk"
-        case 31...60: return "moderate risk"
-        case 61...100: return "high risk"
+        case 0...10: return "keine Probleme" // no issues
+        case 11...30: return "geringes Risiko" // low risk
+        case 31...60: return "mittleres Risiko" // moderate risk
+        case 61...100: return "hohes Risiko" // high risk
         default: return "—"
         }
     }
+    
     private func currency(_ eurPer1K: Double) -> String {
         // Show as €/1K tokens, compact
         let val = eurPer1K
@@ -59,7 +62,7 @@ struct CurrentResultView: View {
         VStack(alignment: .leading, spacing: 0) {
             HStack {
                 Spacer()
-                Text("Current Result")
+                Text("Aktuelles Ergebnis") // Current Result
                     .font(.title.bold())
                     .padding(.horizontal, 16)
                     .padding(.top, 16)
@@ -71,13 +74,13 @@ struct CurrentResultView: View {
             // COST
             VStack(spacing: 12) {
                 HStack {
-                    Text("current cost:")
+                    Text("Aktuelle Kosten:") // current cost:
                     Spacer()
                     Text(currency(metrics.costEURPer1K))
                         .monospacedDigit()
                 }
                 HStack {
-                    Text("predetermined cost:")
+                    Text("Vorgegebene Kosten:") // predetermined cost:
                     Spacer()
                     Text(currency(Targets.costEURPer1K))
                         .monospacedDigit()
@@ -91,16 +94,16 @@ struct CurrentResultView: View {
             // SECURITY
             VStack(spacing: 12) {
                 HStack {
-                    Text("current security:")
+                    Text("Aktuelle Sicherheit:") // current security:
                     Spacer()
                     Text(stars(from: metrics.security))
-                        .accessibilityLabel("\(metrics.security) out of 100")
+                        .accessibilityLabel("\(metrics.security) von 100") // out of 100
                 }
                 HStack {
-                    Text("predetermined security:")
+                    Text("Vorgegebene Sicherheit:") // predetermined security:
                     Spacer()
                     Text(stars(from: Targets.security))
-                        .accessibilityLabel("\(Targets.security) out of 100")
+                        .accessibilityLabel("\(Targets.security) von 100")
                 }
             }
             .padding(.horizontal, 16)
@@ -111,12 +114,12 @@ struct CurrentResultView: View {
             // SPEED
             VStack(spacing: 12) {
                 HStack {
-                    Text("current speed:")
+                    Text("Aktuelle Geschwindigkeit:") // current speed:
                     Spacer()
                     Text(speedLabel(metrics.speed))
                 }
                 HStack {
-                    Text("predetermined speed:")
+                    Text("Vorgegebene Geschwindigkeit:") // predetermined speed:
                     Spacer()
                     Text(speedLabel(Targets.speed))
                 }
@@ -128,7 +131,7 @@ struct CurrentResultView: View {
 
             // ISSUES
             HStack {
-                Text("issues:")
+                Text("Risiken:") // issues (changed to 'Risiken' to match the 'Risk' values)
                 Spacer()
                 Text(issuesLabel(metrics.issues))
             }
@@ -138,13 +141,13 @@ struct CurrentResultView: View {
             Divider()
 
             // SCORE
-            Text("current score")
+            Text("Aktueller Score") // current score (Headline)
                 .font(.headline)
                 .padding(.horizontal, 16)
                 .padding(.top, 12)
 
             HStack {
-                Text("current score:")
+                Text("Aktueller Score:") // current score:
                 Spacer()
                 Text(String(format: "%.0f", score))
                     .monospacedDigit()
@@ -154,7 +157,7 @@ struct CurrentResultView: View {
 
             HStack {
                 Spacer()
-                Button("Submit") {
+                Button("Fertig") { // Submit
                     // TODO: Submit Message
                 }
                 .buttonStyle(.borderedProminent)

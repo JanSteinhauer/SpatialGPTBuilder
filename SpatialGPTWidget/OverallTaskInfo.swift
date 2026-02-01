@@ -16,8 +16,8 @@ private struct OverallTaskInfo: Hashable {
     let important: [String]
 
     static let common: OverallTaskInfo = .init(
-        title: "Overall Task",
-        goal: "Gemeinsam eine sinnvolle KI-Lösung für ein Unternehmen entwerfen und sich dabei auf eine funktionierende Gesamtstruktur einigen.",
+        title: "Allgemeine Aufgabe",
+        goal: "Entwickelt gemeinsam einen sinnvollen AI Integrations Workflow für ein Unternehmen. Ziel ist es, diesen konzeptionell zu entwerfen und sich dabei auf eine funktionierende, stimmige Gesamtstruktur zu einigen.",
         important: [
             "Besprecht gemeinsam, welche Bestandteile die Lösung braucht, und trefft dazu gemeinsame Entscheidungen.",
             "Achtet darauf, unterschiedliche Sichtweisen einzubringen und euch auf Kompromisse zu einigen.",
@@ -78,7 +78,7 @@ private struct OverallTaskCardView: View {
                 .font(.system(size: 40, weight: .bold))
                 .minimumScaleFactor(0.6)
                 .multilineTextAlignment(.center)
-                .accessibilityLabel("Overall Task")
+                .accessibilityLabel("Allgemeine Aufgabe")
         }
         .padding(16)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -97,11 +97,11 @@ private struct OverallTaskCardView: View {
                         VStack(alignment: .leading, spacing: 8) {
                             OverallHeaderRow(title: info.title)
                             Divider()
-                            OverallSectionHeader(title: "Goal")
+                            OverallSectionHeader(title: "Ziel")
                             OverallBulletList(items: [info.goal])
                         }
                         VStack(alignment: .leading, spacing: 8) {
-                            OverallSectionHeader(title: "Task Important")
+                            OverallSectionHeader(title: "Wichtig für die Aufgabe")
                             OverallBulletList(items: info.important)
                         }
                         Spacer(minLength: 0)
@@ -121,10 +121,10 @@ private struct OverallTaskDetailColumn: View {
         VStack(alignment: .leading, spacing: 8) {
             OverallHeaderRow(title: info.title)
             Divider()
-            OverallSectionHeader(title: "Goal")
+            OverallSectionHeader(title: "Ziel")
             OverallBulletList(items: [info.goal])
             Divider()
-            OverallSectionHeader(title: "Task Important")
+            OverallSectionHeader(title: "Wichtig für die Aufgabe")
             OverallBulletList(items: info.important)
             Spacer(minLength: 0)
         }
