@@ -22,7 +22,8 @@ private struct OverallTaskInfo: Hashable {
             "Besprecht gemeinsam, welche Bestandteile die Lösung braucht, und trefft dazu gemeinsame Entscheidungen.",
             "Achtet darauf, unterschiedliche Sichtweisen einzubringen und euch auf Kompromisse zu einigen.",
             "Verbindet alle Entscheidungen zu einem durchgängigen Ablauf, der verständlich und umsetzbar ist.",
-            "Wenn ihr euch auf einen wichtigen Baustein geeinigt habt, bestätigt dies durch einen Handschlag."
+            "Wenn ihr euch auf einen wichtigen Baustein geeinigt habt, bestätigt dies durch einen Handschlag.",
+            "Einmal gewählte Bausteine können nicht mehr geändert werden."
         ]
     )
 

@@ -16,16 +16,31 @@ struct BuildingBlockPickerPlaceholderView: View {
         ZStack {
             Group {
                 if let cat = workflow.pickingCategory {
-                    PickerContentGrid(
-                        title: cat.display,
-                        options: OptionsProvider.items(for: cat),
-                        selected: Binding(
-                            get: { workflow.pendingSelection },
-                            set: { workflow.pendingSelection = $0 }
-                        ),
-                        onConfirm: { workflow.confirmSelection() },
-                        onCancel: { workflow.cancelPicking() }
-                    )
+                    if let existing = workflow.selections[cat] {
+                         VStack(spacing: 16) {
+                             Text("Sie haben bereits \(existing.displayName) gewählt.")
+                                 .font(.headline)
+                                 .multilineTextAlignment(.center)
+                                 .padding(.horizontal, 24)
+                             
+                             Text("Eine Änderung ist nicht mehr möglich.")
+                                 .font(.subheadline)
+                                 .foregroundStyle(.secondary)
+                         }
+                         .frame(maxWidth: .infinity, maxHeight: .infinity)
+                         .background(.background)
+                    } else {
+                        PickerContentGrid(
+                            title: cat.display,
+                            options: OptionsProvider.items(for: cat),
+                            selected: Binding(
+                                get: { workflow.pendingSelection },
+                                set: { workflow.pendingSelection = $0 }
+                            ),
+                            onConfirm: { workflow.confirmSelection() },
+                            onCancel: { workflow.cancelPicking() }
+                        )
+                    }
                 } else if let req = workflow.pendingHandshake {
                     HandshakePrompt(
                         request: req,
