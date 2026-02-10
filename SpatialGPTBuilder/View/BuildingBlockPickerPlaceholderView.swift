@@ -46,6 +46,7 @@ struct BuildingBlockPickerPlaceholderView: View {
                         request: req,
                         warningMessage: workflow.handshakeWarning,
                         onStart: {
+                            workflow.startHandshakeTimeout()
                             Task { _ = await openImmersiveSpace(id: "HandTrackingScene") }
                         },
                         onHandshakeDetected: {

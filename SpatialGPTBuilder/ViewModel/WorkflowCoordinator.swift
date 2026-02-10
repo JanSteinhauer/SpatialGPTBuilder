@@ -120,6 +120,15 @@ final class WorkflowCoordinator: ObservableObject {
         let handshakeID = UUID()
         self.currentHandshakeID = handshakeID
         
+        // Timeout logic is now manual via startHandshakeTimeout()
+        
+        print("[Workflow] Handshake requested for \(scope) with items: \(items.map{$0.displayName}.joined(separator: ", "))")
+    }
+
+    func startHandshakeTimeout() {
+        guard let handshakeID = self.currentHandshakeID else { return }
+        print("[Workflow] Starting 5s handshake timeout...")
+        
         Task {
             try? await Task.sleep(nanoseconds: 5 * 1_000_000_000)
             if self.currentHandshakeID == handshakeID && self.pendingHandshake != nil {
@@ -127,8 +136,6 @@ final class WorkflowCoordinator: ObservableObject {
                 self.completeHandshake()
             }
         }
-        
-        print("[Workflow] Handshake requested for \(scope) with items: \(items.map{$0.displayName}.joined(separator: ", "))")
     }
 
     func completeHandshake() {
