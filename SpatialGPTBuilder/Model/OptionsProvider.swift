@@ -16,17 +16,17 @@ enum OptionsProvider {
         case .interface:
             return ["standaloneWebApp", "mobileApp"].map(OptionItem.init)
         case .accessControl:
-            return ["freeUse", "moderationFilter", "roleBasedAccess"].map(OptionItem.init)
+            return ["moderationFilter", "roleBasedAccess"].map(OptionItem.init)
         case .infrastructure:
             return ["localServer", "cloud"].map(OptionItem.init)
         case .dataPrivacy:
-            return ["standardEncryption", "multiFactorAuth", "privacyByDesign"].map(OptionItem.init)
+            return ["standardEncryption", "multiFactorAuth"].map(OptionItem.init)
         case .integration:
             return ["microsoft365", "googleWorkspace"].map(OptionItem.init)
         case .dataSource:
             return ["internalSystems", "openData"].map(OptionItem.init)
         case .hostingCountry:
-            return ["germanyHosting", "euHosting", "globalHosting"].map(OptionItem.init)
+            return ["germanyHosting", "euHosting"].map(OptionItem.init)
         }
     }
     
