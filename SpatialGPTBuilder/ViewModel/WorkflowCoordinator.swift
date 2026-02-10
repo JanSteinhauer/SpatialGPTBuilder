@@ -17,6 +17,7 @@ final class WorkflowCoordinator: ObservableObject {
 
     @Published var pendingHandshake: HandshakeRequest? = nil
     @Published var successMessage: String? = nil
+    @Published var handshakeWarning: String? = nil
 
     @Published private(set) var confirmedColumns: Set<Column> = []
     @Published private(set) var revision: Int = 0
@@ -27,25 +28,24 @@ final class WorkflowCoordinator: ObservableObject {
 
     // MARK: Picking API
     func beginPicking(_ category: Category) {
+        // 🧩 If user switches to another column or category while handshake pending, BLOCK it
+        if pendingHandshake != nil {
+            print("[Workflow] Selection blocked - pending handshake must be completed first.")
+            handshakeWarning = "Bitte starten Sie zuerst den Handshake!"
+            
+            // Clear warning after 3 seconds
+            Task { @MainActor in
+                try? await Task.sleep(nanoseconds: 3 * 1_000_000_000)
+                if handshakeWarning == "Bitte starten Sie zuerst den Handshake!" {
+                    handshakeWarning = nil
+                }
+            }
+            return
+        }
+
         let was = (pickingCategory, pendingSelection)
         pickingCategory = category
         pendingSelection = selections[category]
-
-        // 🧩 If user switches to another column while handshake pending, just deselect last item silently
-        if let pending = pendingHandshake, case .column(let col) = pending.scope,
-           col != category.column {
-
-            if let lastCat = col.categories.last(where: { selections[$0] != nil }) {
-                print("[Workflow] Switched columns during pending handshake — deselecting last item in \(col.displayName)")
-                selections[lastCat] = nil
-            }
-
-            // Cancel pending handshake but don't push to Firestore yet
-            pendingHandshake = nil
-            print("[Workflow] Handshake cancelled for \(col.displayName) (user switched column)")
-
-            // Do NOT post NotificationCenter change — prevents autosave
-        }
 
         if was.0 != pickingCategory || was.1 != pendingSelection {
             revision &+= 1

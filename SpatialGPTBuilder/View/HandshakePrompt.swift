@@ -10,6 +10,7 @@ import AudioToolbox
 
 struct HandshakePrompt: View {
     let request: HandshakeRequest
+    var warningMessage: String? = nil
     let onStart: () -> Void
     let onHandshakeDetected: () -> Void
 
@@ -95,6 +96,19 @@ struct HandshakePrompt: View {
         .onReceive(NotificationCenter.default.publisher(for: .handshakeDetected)) { _ in
             onHandshakeDetected()
             started = false
+        }
+        .overlay(alignment: .top) {
+            if let warning = warningMessage {
+                Text(warning)
+                    .font(.headline)
+                    .foregroundStyle(.white)
+                    .padding()
+                    .background(Color.red.cornerRadius(12))
+                    .shadow(radius: 4)
+                    .padding(.top, -60) // Position above or within the prompt
+                    .transition(.move(edge: .top).combined(with: .opacity))
+                    .animation(.spring(), value: warning)
+            }
         }
     }
 }
