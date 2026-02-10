@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import AudioToolbox
 
 struct CurrentResultView: View {
     @EnvironmentObject private var workflow: WorkflowCoordinator
@@ -19,6 +20,10 @@ struct CurrentResultView: View {
                                                 speed: Base.speed,
                                                 issues: Base.issues)
     @State private var score: Double = 0
+    
+    // Validation State
+    @State private var isTaskCompleted: Bool = false
+    @State private var validationMessage: String? = nil
 
     // Formatting helpers
     private func stars(from security: Int) -> String {
@@ -62,7 +67,7 @@ struct CurrentResultView: View {
         VStack(alignment: .leading, spacing: 0) {
             HStack {
                 Spacer()
-                Text("Aktuelles Ergebnis") // Current Result
+                Text(isTaskCompleted ? "Aufgabe erfolgreich beendet" : "Aktuelles Ergebnis") // Current Result or Success Message
                     .font(.title.bold())
                     .padding(.horizontal, 16)
                     .padding(.top, 16)
@@ -158,13 +163,45 @@ struct CurrentResultView: View {
             HStack {
                 Spacer()
                 Button("Fertig") { // Submit
-                    // TODO: Submit Message
+                    let allSelected = Category.allCases.allSatisfy { workflow.selections.keys.contains($0) }
+                    
+                    if allSelected {
+                        // Success
+                        AudioServicesPlaySystemSound(1000)
+                        withAnimation {
+                            isTaskCompleted = true
+                        }
+                    } else {
+                        // Error
+                        AudioServicesPlaySystemSound(1053)
+                        withAnimation {
+                            validationMessage = "Bitte wählen Sie für jeden Building Block etwas aus."
+                        }
+                        
+                        Task {
+                            try? await Task.sleep(nanoseconds: 3 * 1_000_000_000)
+                            withAnimation {
+                                validationMessage = nil
+                            }
+                        }
+                    }
                 }
                 .buttonStyle(.borderedProminent)
             }
             .padding(.horizontal, 16)
             .padding(.bottom, 16)
             .padding(.top, 4)
+        }
+        .overlay(alignment: .bottom) {
+            if let message = validationMessage {
+                Text(message)
+                    .font(.body.bold())
+                    .padding()
+                    .background(.regularMaterial)
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
+                    .padding(.bottom, 60) // Check avoid overlapping with button if needed, but overlay is on top
+                    .transition(.opacity)
+            }
         }
         .onAppear { recompute() }
         // Update whenever the workflow’s revision changes (already bumped in your coordinator)
