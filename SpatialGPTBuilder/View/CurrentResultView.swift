@@ -205,16 +205,11 @@ struct CurrentResultView: View {
         }
         .onAppear { recompute() }
         // Update whenever the workflow’s revision changes (already bumped in your coordinator)
-        .onChange(of: workflow.revision) { _ in
-            recompute()
-        }
-        // Also react instantly if the selections dictionary object identity changes
-        .onChange(of: workflow.selections) { _ in
-            recompute()
-        }
-        // And when a handshake completes (optional — often coincides with revision bump)
-        .onReceive(NotificationCenter.default.publisher(for: .workflowDidChange)) { _ in
-            recompute()
+        // Only update when a handshake completes (signaled by successMessage being set)
+        .onChange(of: workflow.successMessage) { msg in
+            if msg != nil {
+                recompute()
+            }
         }
     }
 }

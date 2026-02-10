@@ -20,6 +20,10 @@ final class WorkflowCoordinator: ObservableObject {
 
     @Published private(set) var confirmedColumns: Set<Column> = []
     @Published private(set) var revision: Int = 0
+    
+    // Internal tracking for handshake timeout
+    private var currentHandshakeID: UUID?
+
 
     // MARK: Picking API
     func beginPicking(_ category: Category) {
@@ -111,6 +115,19 @@ final class WorkflowCoordinator: ObservableObject {
             items = col.categories.compactMap { selections[$0] }
         }
         pendingHandshake = HandshakeRequest(scope: scope, items: items)
+        
+        // Timeout logic: Auto-complete after 5 seconds if not handled
+        let handshakeID = UUID()
+        self.currentHandshakeID = handshakeID
+        
+        Task {
+            try? await Task.sleep(nanoseconds: 5 * 1_000_000_000)
+            if self.currentHandshakeID == handshakeID && self.pendingHandshake != nil {
+                print("[Workflow] Handshake timed out - automatically completing.")
+                self.completeHandshake()
+            }
+        }
+        
         print("[Workflow] Handshake requested for \(scope) with items: \(items.map{$0.displayName}.joined(separator: ", "))")
     }
 
