@@ -12,7 +12,7 @@ enum OptionsProvider {
     static func items(for category: Category) -> [OptionItem] {
         switch category {
         case .aiModel:
-            return ["chatgpt", "anthropic", "llama"].map(OptionItem.init)
+            return ["chatgpt", "llama"].map(OptionItem.init)
         case .interface:
             return ["standaloneWebApp", "mobileApp"].map(OptionItem.init)
         case .accessControl:

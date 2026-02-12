@@ -320,6 +320,7 @@ final class FirestoreSync: ObservableObject {
                 : .string(""),
             "pendingSelection": encodeOption(s.pendingSelection),
             "selections": encodeSelections(s.selections),
+            "pendingHandshake": encodeHandshake(s.pendingHandshake),
             "updatedAt": .timestamp(ISO8601DateFormatter().string(from: Date()))
         ]
 
@@ -370,14 +371,99 @@ final class FirestoreSync: ObservableObject {
         let picking = pick.flatMap { Category(rawValue: $0) }
 
         let pending = decodeOption(fields["pendingSelection"])
+        let handshake = decodeHandshake(fields["pendingHandshake"])
         let selections = decodeSelections(fields["selections"])
 
         return WorkflowSnapshot(
             selections: selections,
             pickingCategory: picking,
             pendingSelection: pending,
+            pendingHandshake: handshake,
             revision: rev
         )
+    }
+    
+    // MARK: - Handshake Helpers
+    
+    private func encodeHandshake(_ req: HandshakeRequest?) -> FirestoreREST.FirestoreValue {
+        guard let req = req else { return .null }
+        
+        var scopeMap: [String: FirestoreREST.FirestoreValue] = [:]
+        switch req.scope {
+        case .category(let c):
+            scopeMap["type"] = .string("category")
+            scopeMap["value"] = .string(c.rawValue)
+        case .column(let col):
+            scopeMap["type"] = .string("column")
+            // Since Column is an enum without String rawValue (based on earlier check, it had col1, col2 etc),
+            // let's assume we can map it by name or cases.
+            // Column definition: enum Column: CaseIterable, Hashable, Codable, Sendable { case col1, col2, col3 ... }
+            // It doesn't seem to have rawValue string.
+            // Let's rely on explicit mapping or Codable if we were using it directly, but here we are manual.
+            // Let's use displayName or index or just stringify the case.
+            // We can add rawValue to Column or just switch.
+            let colStr: String
+            switch col {
+            case .col1: colStr = "col1"
+            case .col2: colStr = "col2"
+            case .col3: colStr = "col3"
+            }
+            scopeMap["value"] = .string(colStr)
+        }
+        
+        // Encode items array
+        let itemsMap = req.items.enumerated().reduce(into: [String: FirestoreREST.FirestoreValue]()) { dict, pair in
+            dict["\(pair.offset)"] = encodeOption(pair.element)
+        }
+        
+        return .map([
+            "scope": .map(scopeMap),
+            "items": .map(itemsMap)
+        ])
+    }
+
+    private func decodeHandshake(_ v: Any?) -> HandshakeRequest? {
+        guard let m = (v as? [String: Any])?["mapValue"] as? [String: Any],
+              let fields = m["fields"] as? [String: Any] else { return nil }
+        
+        // Decode Scope
+        guard let scopeMap = (fields["scope"] as? [String: Any])?["mapValue"] as? [String: Any],
+              let scopeFields = scopeMap["fields"] as? [String: Any],
+              let type = (scopeFields["type"] as? [String: Any])?["stringValue"] as? String,
+              let value = (scopeFields["value"] as? [String: Any])?["stringValue"] as? String
+        else { return nil }
+
+        let scope: HandshakeScope
+        if type == "category", let cat = Category(rawValue: value) {
+            scope = .category(cat)
+        } else if type == "column" {
+            // map back
+            switch value {
+            case "col1": scope = .column(.col1)
+            case "col2": scope = .column(.col2)
+            case "col3": scope = .column(.col3)
+            default: return nil
+            }
+        } else {
+            return nil
+        }
+        
+        // Decode Items
+        var items: [OptionItem] = []
+        if let itemsMap = (fields["items"] as? [String: Any])?["mapValue"] as? [String: Any],
+           let itemsFields = itemsMap["fields"] as? [String: Any] {
+            // The keys are indices "0", "1", ...
+            let sortedKeys = itemsFields.keys.compactMap(Int.init).sorted()
+            for k in sortedKeys {
+                if let itemVal = itemsFields["\(k)"],
+                   let item = decodeOption(itemVal) {
+                    items.append(item)
+                }
+            }
+        }
+        
+        // Return request
+        return HandshakeRequest(scope: scope, items: items)
     }
 }
 

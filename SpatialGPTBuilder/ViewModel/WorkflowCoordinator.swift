@@ -179,6 +179,7 @@ final class WorkflowCoordinator: ObservableObject {
             selections: selections,
             pickingCategory: pickingCategory,
             pendingSelection: pendingSelection,
+            pendingHandshake: pendingHandshake,
             revision: revision
         )
         // Lightweight log (don’t spam options list)
@@ -192,10 +193,31 @@ final class WorkflowCoordinator: ObservableObject {
             print("[Workflow] apply(snapshot rev=\(snapshot.revision)) skipped; local rev=\(self.revision) is newer.")
             return
         }
+        let oldHandshake = self.pendingHandshake
+        
         self.selections = snapshot.selections
         self.pickingCategory = snapshot.pickingCategory
         self.pendingSelection = snapshot.pendingSelection
+        self.pendingHandshake = snapshot.pendingHandshake
         self.revision = snapshot.revision
         print("[Workflow] ⬅︎ Applied snapshot rev \(snapshot.revision). selections=\(selections.count)")
+        
+        // 🔔 Sound Logic for Remote Handshake
+        // 1. Handshake STARTED remotely (nil -> some)
+        if oldHandshake == nil, let newHandshake = self.pendingHandshake {
+            print("[Workflow] Remote handshake STARTED: \(newHandshake.scope)")
+            // Play "Tock" / Start sound
+            AudioServicesPlaySystemSound(1057)
+        }
+        
+        // 2. Handshake COMPLETED remotely (some -> nil)
+        // Note: checking `snapshot.revision > self.revision` at the top ensures we only process *new* states.
+        // If we just completed it locally, our local state is already nil, so oldHandshake is nil, so this won't fire.
+        // This correctly targets the case where we were pending (oldHandshake != nil) and now it's done (newHandshake == nil).
+        if oldHandshake != nil, self.pendingHandshake == nil {
+            print("[Workflow] Remote handshake COMPLETED/CANCELLED.")
+            // Play Success sound
+            AudioServicesPlaySystemSound(1025)
+        }
     }
 }

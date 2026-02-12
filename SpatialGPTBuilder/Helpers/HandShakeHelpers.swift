@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct HandshakeRequest: Equatable {
+struct HandshakeRequest: Equatable, Codable, Sendable {
     let scope: HandshakeScope
     let items: [OptionItem]
 }
 
-enum HandshakeScope: Equatable {
+enum HandshakeScope: Equatable, Codable, Sendable {
     case category(Category)
     case column(Column)
 }

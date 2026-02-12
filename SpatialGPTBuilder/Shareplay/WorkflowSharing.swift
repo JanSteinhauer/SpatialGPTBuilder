@@ -13,9 +13,10 @@ struct WorkflowSnapshot: Codable, Sendable, Equatable {
     var selections: [Category: OptionItem]
     var pickingCategory: Category?
     var pendingSelection: OptionItem?
+    var pendingHandshake: HandshakeRequest?
     var revision: Int      // monotonically increasing
 
-    static let empty = WorkflowSnapshot(selections: [:], pickingCategory: nil, pendingSelection: nil, revision: 0)
+    static let empty = WorkflowSnapshot(selections: [:], pickingCategory: nil, pendingSelection: nil, pendingHandshake: nil, revision: 0)
 }
 
 // 2) Your activity (what shows in the SharePlay sheet)
