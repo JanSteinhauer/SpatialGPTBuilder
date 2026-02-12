@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import AudioToolbox
 
 @MainActor
 final class WorkflowCoordinator: ObservableObject {
@@ -148,6 +149,9 @@ final class WorkflowCoordinator: ObservableObject {
             confirmedColumns.insert(col)
             print("[Workflow] Handshake completed for \(col.displayName). Confirmed columns: \(confirmedColumns.map{$0.displayName})")
         }
+
+        // Play success sound (e.g. Fanfare or similar system sound)
+        AudioServicesPlaySystemSound(1025)
 
         let list = request.items.map(\.displayName).joined(separator: ", ")
         successMessage = list.isEmpty

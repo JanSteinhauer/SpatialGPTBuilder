@@ -48,12 +48,6 @@ struct BuildingBlockPickerPlaceholderView: View {
                         onStart: {
                             workflow.startHandshakeTimeout()
                             Task { _ = await openImmersiveSpace(id: "HandTrackingScene") }
-                        },
-                        onHandshakeDetected: {
-                            Task {
-                                _ = await dismissImmersiveSpace()
-                                await MainActor.run { workflow.completeHandshake() }
-                            }
                         }
                     )
                 } else {
@@ -61,6 +55,17 @@ struct BuildingBlockPickerPlaceholderView: View {
                 }
             }
             .frame(minWidth: 360, minHeight: 420)
+             .onReceive(NotificationCenter.default.publisher(for: .handshakeDetected)) { _ in
+                  Task {
+                      await dismissImmersiveSpace()
+                      await MainActor.run { workflow.completeHandshake() }
+                  }
+             }
+             .onChange(of: workflow.pendingHandshake) { oldValue, newValue in
+                 if newValue == nil {
+                     Task { await dismissImmersiveSpace() }
+                 }
+             }
 
             if let msg = workflow.successMessage {
                 successBanner(msg)

@@ -12,7 +12,7 @@ struct HandshakePrompt: View {
     let request: HandshakeRequest
     var warningMessage: String? = nil
     let onStart: () -> Void
-    let onHandshakeDetected: () -> Void
+    // let onHandshakeDetected: () -> Void // Removed
 
     @State private var started = false
 
@@ -93,10 +93,7 @@ struct HandshakePrompt: View {
         .frame(width: 440)
         .background(.regularMaterial)
         .clipShape(RoundedRectangle(cornerRadius: 24))
-        .onReceive(NotificationCenter.default.publisher(for: .handshakeDetected)) { _ in
-            onHandshakeDetected()
-            started = false
-        }
+        // Listener removed
         .overlay(alignment: .top) {
             if let warning = warningMessage {
                 Text(warning)
