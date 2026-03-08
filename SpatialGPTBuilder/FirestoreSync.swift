@@ -222,7 +222,8 @@ final class FirestoreSync: ObservableObject {
                 "pendingSelection": .null,
                 "selections": .map([:]),
                 "createdAt": .timestamp(now),
-                "updatedAt": .timestamp(now)
+                "updatedAt": .timestamp(now),
+                "groupWithHandshake": .boolean(UserDefaults.standard.bool(forKey: "groupWithHandshake"))
             ]
             try await rest.patchDocument(fields: shell, updateMask: Array(shell.keys))
         }
@@ -269,6 +270,13 @@ final class FirestoreSync: ObservableObject {
                 lastRemoteHandshakeCompleted = remoteFlag
             }
             // --- end remote handshake completion handling ---
+
+            // --- Remote groupWithHandshake handling ---
+            if let groupFlag = boolField(fields, key: "groupWithHandshake") {
+                if UserDefaults.standard.bool(forKey: "groupWithHandshake") != groupFlag {
+                    UserDefaults.standard.set(groupFlag, forKey: "groupWithHandshake")
+                }
+            }
 
             // Existing updateTime logic
             if updateTime != nil && updateTime == self.lastUpdateTime { return }
@@ -325,6 +333,7 @@ final class FirestoreSync: ObservableObject {
         ]
 
         fields["handshakeCompleted"] = .boolean(workflow.pendingHandshake == nil)
+        fields["groupWithHandshake"] = .boolean(UserDefaults.standard.bool(forKey: "groupWithHandshake"))
 
         return fields
     }

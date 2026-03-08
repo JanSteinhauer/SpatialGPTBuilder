@@ -16,13 +16,15 @@ struct HandshakePrompt: View {
 
     @State private var started = false
 
+    @AppStorage("groupWithHandshake") var groupWithHandshake: Bool = true
+
     // Match the grid feel of PickerContentGrid
     private let columns = [GridItem(.adaptive(minimum: 140), spacing: 12, alignment: .top)]
 
     var body: some View {
         VStack(spacing: 24) {
             // New German Title - Centered & Bold
-            Text("Klicke um den Handshake zu starten")
+            Text(groupWithHandshake ? "Klicke um den Handshake zu starten" : "Building Blöcke bestätigen")
                 .font(.title2.bold())
                 .multilineTextAlignment(.center)
                 .fixedSize(horizontal: false, vertical: true)
@@ -69,17 +71,27 @@ struct HandshakePrompt: View {
                 .transition(.opacity.combined(with: .scale))
             } else {
                 Button {
-                    // Play system sound for feedback (approx. "Tock" or confirmation click)
-                    AudioServicesPlaySystemSound(1057)
-                    
-                    withAnimation {
-                        started = true
+                    if groupWithHandshake {
+                        // Play system sound for feedback (approx. "Tock" or confirmation click)
+                        AudioServicesPlaySystemSound(1057)
+                        
+                        withAnimation {
+                            started = true
+                        }
+                        onStart()
+                    } else {
+                        // Complete without handshake
+                        AudioServicesPlaySystemSound(1057)
+                        NotificationCenter.default.post(
+                            name: .handshakeDetected,
+                            object: nil,
+                            userInfo: ["source": "button_bypass"]
+                        )
                     }
-                    onStart()
                 } label: {
                     HStack(spacing: 12) {
-                        Image(systemName: "hand.wave.fill")
-                        Text("Handshake starten")
+                        Image(systemName: groupWithHandshake ? "hand.wave.fill" : "checkmark")
+                        Text(groupWithHandshake ? "Handshake starten" : "Bestätigen")
                     }
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 6)

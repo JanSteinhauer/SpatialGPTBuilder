@@ -12,6 +12,7 @@ struct SpatialGPTBuilderApp: App {
     @StateObject private var workflow = WorkflowCoordinator()
     @StateObject private var sharePlay: SharePlayCoordinator
     @StateObject private var sync: FirestoreSync
+    @AppStorage("groupWithHandshake") var groupWithHandshake: Bool = true
     
     init() {
         let wf = WorkflowCoordinator()
