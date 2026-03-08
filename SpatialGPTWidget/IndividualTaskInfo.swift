@@ -167,19 +167,19 @@ struct IndividualTaskCardView: View {
             HeaderRow(title: info.title)
 
             Divider()
-            SectionHeader(title: "Goal")
+            SectionHeader(title: "Ziel")
             BulletList(items: [info.goal])
 
             Divider()
-            SectionHeader(title: "KPI Responsible For")
+            SectionHeader(title: "Erfolgskennzahlen")
             BulletList(items: info.kpis)
 
             Divider()
-            SectionHeader(title: "Good")
+            SectionHeader(title: "Gut")
             BulletList(items: info.good)
 
             Divider()
-            SectionHeader(title: "Required")
+            SectionHeader(title: "Erforderlich")
             BulletList(items: info.required)
 
 //            Divider()
