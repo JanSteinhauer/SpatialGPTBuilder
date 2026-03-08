@@ -21,6 +21,10 @@ struct CurrentResultView: View {
                                                 issues: Base.issues)
     @State private var score: Double = 0
     
+    private var hasSelection: Bool {
+        !workflow.selections.isEmpty
+    }
+    
     // Validation State
     @State private var isTaskCompleted: Bool = false
     @State private var validationMessage: String? = nil
@@ -81,7 +85,7 @@ struct CurrentResultView: View {
                 HStack {
                     Text("Aktuelle Kosten:") // current cost:
                     Spacer()
-                    Text(currency(metrics.costEURPer1K))
+                    Text(hasSelection ? currency(metrics.costEURPer1K) : "—")
                         .monospacedDigit()
                 }
                 HStack {
@@ -101,8 +105,12 @@ struct CurrentResultView: View {
                 HStack {
                     Text("Aktuelle Sicherheit:") // current security:
                     Spacer()
-                    Text(stars(from: metrics.security))
-                        .accessibilityLabel("\(metrics.security) von 100") // out of 100
+                    if hasSelection {
+                        Text(stars(from: metrics.security))
+                            .accessibilityLabel("\(metrics.security) von 100") // out of 100
+                    } else {
+                        Text("—")
+                    }
                 }
                 HStack {
                     Text("Vorgegebene Sicherheit:") // predetermined security:
@@ -121,7 +129,7 @@ struct CurrentResultView: View {
                 HStack {
                     Text("Aktuelle Geschwindigkeit:") // current speed:
                     Spacer()
-                    Text(speedLabel(metrics.speed))
+                    Text(hasSelection ? speedLabel(metrics.speed) : "—")
                 }
                 HStack {
                     Text("Vorgegebene Geschwindigkeit:") // predetermined speed:
@@ -138,7 +146,7 @@ struct CurrentResultView: View {
             HStack {
                 Text("Risiken:") // issues (changed to 'Risiken' to match the 'Risk' values)
                 Spacer()
-                Text(issuesLabel(metrics.issues))
+                Text(hasSelection ? issuesLabel(metrics.issues) : "—")
             }
             .padding(.horizontal, 16)
             .padding(.vertical, 12)
@@ -154,7 +162,7 @@ struct CurrentResultView: View {
             HStack {
                 Text("Aktueller Score:") // current score:
                 Spacer()
-                Text(String(format: "%.0f", score))
+                Text(hasSelection ? String(format: "%.0f", score) : "—")
                     .monospacedDigit()
             }
             .padding(.horizontal, 16)
