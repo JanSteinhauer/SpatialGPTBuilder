@@ -1,0 +1,92 @@
+//
+//  AppIntent.swift
+//  SpatialGPTBuilderWidgetExtension
+//
+//  Created by Steinhauer, Jan on 08.03.26.
+//
+
+import WidgetKit
+import AppIntents
+
+enum LLMChoice: String, AppEnum {
+    case chatgpt
+    case anthropic
+    case gemini
+    case gemma
+    case llama
+    case standaloneWebApp
+    case apiIntegration
+    case mobileApp
+    case freeUse
+    case moderationFilter
+    case roleBasedAccess
+    case localServer
+    case privateCloud
+    case cloud
+    case standardEncryption
+    case multiFactorAuth
+    case privacyByDesign
+    case microsoft365
+    case googleWorkspace
+    case internalSystems
+    case openData
+    case germanyHosting
+    case euHosting
+    case globalHosting
+    case internalStorage
+    case fineTuning
+    case rag
+
+    
+    static var typeDisplayRepresentation: TypeDisplayRepresentation = "LLM Provider"
+    
+    static var caseDisplayRepresentations: [LLMChoice : DisplayRepresentation] = [
+        .chatgpt: "ChatGPT",
+        .anthropic: "Claude (Anthropic)",
+        .gemini: "Gemini (Google)",
+        .gemma: "Gemma",
+        .llama: "Llama",
+        .standaloneWebApp: "WebApp",
+        .apiIntegration: "API Integration",
+        .mobileApp: "Mobile App",
+        .freeUse: "Free Use",
+        .moderationFilter: "Moderation Filter",
+        .roleBasedAccess: "Role-Based Access",
+        .localServer: "Local Server",
+        .privateCloud: "Private Cloud",
+        .cloud: "Cloud",
+        .standardEncryption: "Standard Encryption",
+        .multiFactorAuth: "Multi-Factor Authentication",
+        .privacyByDesign: "Privacy by Design",
+        .microsoft365: "Microsoft 365",
+        .googleWorkspace: "Google Workspace",
+        .internalSystems: "Internal Systems",
+        .openData: "Open Data",
+        .germanyHosting: "Germany Hosting",
+        .euHosting: "EU Hosting",
+        .globalHosting: "Global Hosting",
+        .internalStorage: "Internal Storage",
+        .fineTuning: "Fine-Tuning",
+        .rag: "RAG"
+        
+    ]
+}
+
+struct LLMConfigurationIntent: WidgetConfigurationIntent {
+    static var title: LocalizedStringResource { "LLM Configuration" }
+    static var description: IntentDescription { "Choose which LLM to show." }
+
+    @Parameter(title: "Provider", default: .chatgpt)
+    var provider: LLMChoice
+}
+
+enum IndividualTaskKind: String, AppEnum {
+    case finance
+    case security
+
+    static var typeDisplayRepresentation: TypeDisplayRepresentation { "Task Type" }
+    static var caseDisplayRepresentations: [IndividualTaskKind: DisplayRepresentation] = [
+        .finance: "Finance",
+        .security: "Security"
+    ]
+}

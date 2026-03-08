@@ -1,0 +1,193 @@
+//
+//  OverallTaskInfo.swift
+//  SpatialGPTWidgetExtension
+//
+//  Created by Steinhauer, Jan on 18.10.25.
+//
+
+import WidgetKit
+import SwiftUI
+
+// MARK: - Model
+
+private struct OverallTaskInfo: Hashable {
+    let title: String
+    let goal: String
+    let important: [String]
+
+    static let common: OverallTaskInfo = .init(
+        title: "Allgemeine Aufgabe",
+        goal: "Entwickelt gemeinsam einen sinnvollen AI Integrations Workflow für ein Unternehmen. Ziel ist es, diesen konzeptionell zu entwerfen und sich dabei auf eine funktionierende, stimmige Gesamtstruktur zu einigen.",
+        important: [
+            "Besprecht gemeinsam, welche Bestandteile die Lösung braucht, und trefft dazu gemeinsame Entscheidungen.",
+            "Achtet darauf, unterschiedliche Sichtweisen einzubringen und euch auf Kompromisse zu einigen.",
+            "Verbindet alle Entscheidungen zu einem durchgängigen Ablauf, der verständlich und umsetzbar ist.",
+            "Wenn ihr euch auf einen wichtigen Baustein geeinigt habt, bestätigt dies durch einen Handschlag.",
+            "Einmal gewählte Bausteine können nicht mehr geändert werden."
+        ]
+    )
+
+}
+
+// MARK: - Timeline
+
+private struct OverallTaskEntry: TimelineEntry {
+    let date: Date
+    let info: OverallTaskInfo
+}
+
+private struct OverallTaskProvider: TimelineProvider {
+    func placeholder(in context: Context) -> OverallTaskEntry {
+        OverallTaskEntry(date: .now, info: .common)
+    }
+
+    func getSnapshot(in context: Context, completion: @escaping (OverallTaskEntry) -> Void) {
+        completion(OverallTaskEntry(date: .now, info: .common))
+    }
+
+    func getTimeline(in context: Context, completion: @escaping (Timeline<OverallTaskEntry>) -> Void) {
+        let start = Date()
+        let entries = (0..<3).compactMap { h in
+            OverallTaskEntry(date: Calendar.current.date(byAdding: .hour, value: h, to: start)!, info: .common)
+        }
+        completion(Timeline(entries: entries, policy: .atEnd))
+    }
+}
+
+// MARK: - Views
+
+private struct OverallTaskCardView: View {
+    let info: OverallTaskInfo
+    @Environment(\.levelOfDetail) private var lod
+
+    var body: some View {
+        switch lod {
+        case .simplified:
+            simplifiedView
+        default:
+            detailedView
+        }
+    }
+
+    // Far-away: just the label
+    private var simplifiedView: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 16)
+                .fill(.clear)
+                .accessibilityHidden(true)
+            Text(info.title)
+                .font(.system(size: 40, weight: .bold))
+                .minimumScaleFactor(0.6)
+                .multilineTextAlignment(.center)
+                .accessibilityLabel("Allgemeine Aufgabe")
+        }
+        .padding(16)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .containerBackground(.white.gradient, for: .widget)
+    }
+
+    // Close-up: Goal + Task Important
+    private var detailedView: some View {
+        GeometryReader { geo in
+            let isPortraitish = geo.size.height >= geo.size.width
+            Group {
+                if isPortraitish {
+                    OverallTaskDetailColumn(info: info)
+                } else {
+                    HStack(alignment: .top, spacing: 16) {
+                        VStack(alignment: .leading, spacing: 8) {
+                            OverallHeaderRow(title: info.title)
+                            Divider()
+                            OverallSectionHeader(title: "Ziel")
+                            OverallBulletList(items: [info.goal])
+                        }
+                        VStack(alignment: .leading, spacing: 8) {
+                            OverallSectionHeader(title: "Wichtig für die Aufgabe")
+                            OverallBulletList(items: info.important)
+                        }
+                        Spacer(minLength: 0)
+                    }
+                    .padding(16)
+                }
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+            .containerBackground(.white.gradient, for: .widget)
+        }
+    }
+}
+
+private struct OverallTaskDetailColumn: View {
+    let info: OverallTaskInfo
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            OverallHeaderRow(title: info.title)
+            Divider()
+            OverallSectionHeader(title: "Ziel")
+            OverallBulletList(items: [info.goal])
+            Divider()
+            OverallSectionHeader(title: "Wichtig für die Aufgabe")
+            OverallBulletList(items: info.important)
+            Spacer(minLength: 0)
+        }
+        .padding(16)
+    }
+}
+
+// MARK: - Reusable bits (namespaced to avoid clashes)
+
+private struct OverallHeaderRow: View {
+    let title: String
+    var body: some View {
+        HStack(spacing: 10) {
+            Image(systemName: "cube.box.fill")
+                .imageScale(.large)
+                .accessibilityHidden(true)
+            Text(title)
+                .font(.system(size: 22, weight: .semibold))
+                .lineLimit(1)
+                .minimumScaleFactor(0.8)
+        }
+    }
+}
+
+private struct OverallSectionHeader: View {
+    let title: String
+    var body: some View {
+        Text(title)
+            .font(.system(size: 14, weight: .semibold))
+            .textCase(.none)
+            .accessibilityAddTraits(.isHeader)
+    }
+}
+
+private struct OverallBulletList: View {
+    let items: [String]
+    var body: some View {
+        VStack(alignment: .leading, spacing: 4) {
+            ForEach(items.indices, id: \.self) { i in
+                HStack(alignment: .firstTextBaseline, spacing: 6) {
+                    Text("•").accessibilityHidden(true)
+                    Text(items[i]).fixedSize(horizontal: false, vertical: true)
+                }
+            }
+        }
+        .font(.system(size: 12))
+    }
+}
+
+// MARK: - Widget
+
+struct OverallTaskInfoWidget: Widget {
+    let kind = "OverallTaskInfoWidget"
+
+    var body: some WidgetConfiguration {
+        StaticConfiguration(kind: kind, provider: OverallTaskProvider()) { entry in
+            OverallTaskCardView(info: entry.info)
+        }
+        .configurationDisplayName("Overall Task Info")
+        .description("Common task: Goal and Task Important for building the GPT.")
+        .supportedFamilies([.systemExtraLargePortrait])
+        .supportedMountingStyles([.elevated])
+        .widgetTexture(.paper)
+    }
+}
