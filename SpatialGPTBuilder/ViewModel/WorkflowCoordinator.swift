@@ -128,8 +128,9 @@ final class WorkflowCoordinator: ObservableObject {
 
     func startHandshakeTimeout() {
         guard let handshakeID = self.currentHandshakeID else { return }
-        print("[Workflow] Starting 5s handshake timeout...")
+        print("[Workflow] 5s handshake timeout disabled by user request.")
         
+        /*
         Task {
             try? await Task.sleep(nanoseconds: 5 * 1_000_000_000)
             if self.currentHandshakeID == handshakeID && self.pendingHandshake != nil {
@@ -137,6 +138,7 @@ final class WorkflowCoordinator: ObservableObject {
                 self.completeHandshake()
             }
         }
+        */
     }
 
     func completeHandshake() {
