@@ -213,11 +213,8 @@ struct CurrentResultView: View {
         }
         .onAppear { recompute() }
         // Update whenever the workflow’s revision changes (already bumped in your coordinator)
-        // Only update when a handshake completes (signaled by successMessage being set)
-        .onChange(of: workflow.successMessage) { msg in
-            if msg != nil {
-                recompute()
-            }
+        .onChange(of: workflow.revision) { _ in
+            recompute()
         }
     }
 }
